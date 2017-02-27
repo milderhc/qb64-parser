@@ -496,6 +496,18 @@ public class QB64BaseListener implements QB64Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunproc(QB64Parser.FunprocContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunproc(QB64Parser.FunprocContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNegop(QB64Parser.NegopContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -539,18 +551,6 @@ public class QB64BaseListener implements QB64Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProop(QB64Parser.ProopContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFunproc(QB64Parser.FunprocContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunproc(QB64Parser.FunprocContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

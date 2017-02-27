@@ -25,7 +25,7 @@ public class QB64Parser extends Parser {
 		IF=31, THEN=32, ELSE=33, ENDIF=34, WHILE=35, WEND=36, DO=37, LOOP=38, 
 		UNTIL=39, FOR=40, TO=41, STEP=42, NEXT=43, INTEGER=44, SINGLE=45, DOUBLE=46, 
 		LONG=47, STRING=48, DIM=49, AS=50, NOT=51, OR=52, AND=53, XOR=54, MOD=55, 
-		IDPREFIX=56, WS=57;
+		SUB=56, ENDSUB=57, FUNCTION=58, ENDFUNCTION=59, IDPREFIX=60, WS=61;
 	public static final int
 		RULE_qb = 0, RULE_main = 1, RULE_commands = 2, RULE_command = 3, RULE_input = 4, 
 		RULE_print = 5, RULE_if_ = 6, RULE_while_ = 7, RULE_do_while = 8, RULE_do_until = 9, 
@@ -38,7 +38,8 @@ public class QB64Parser extends Parser {
 		RULE_single_id_double = 30, RULE_single_id_string = 31, RULE_array = 32, 
 		RULE_expression_list = 33, RULE_expression = 34, RULE_call_function = 35, 
 		RULE_value = 36, RULE_numeric_value = 37, RULE_string_value = 38, RULE_type = 39, 
-		RULE_negop = 40, RULE_compop = 41, RULE_binop = 42, RULE_proop = 43, RULE_funproc = 44;
+		RULE_funproc = 40, RULE_negop = 41, RULE_compop = 42, RULE_binop = 43, 
+		RULE_proop = 44;
 	public static final String[] ruleNames = {
 		"qb", "main", "commands", "command", "input", "print", "if_", "while_", 
 		"do_while", "do_until", "for_", "declaration", "id_list", "print_list", 
@@ -47,12 +48,12 @@ public class QB64Parser extends Parser {
 		"array_id_int", "array_id_long", "array_id_single", "array_id_double", 
 		"array_id_string", "single_id_int", "single_id_long", "single_id_single", 
 		"single_id_double", "single_id_string", "array", "expression_list", "expression", 
-		"call_function", "value", "numeric_value", "string_value", "type", "negop", 
-		"compop", "binop", "proop", "funproc"
+		"call_function", "value", "numeric_value", "string_value", "type", "funproc", 
+		"negop", "compop", "binop", "proop"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'skdjfksdf'", "'askldfj'", "'%'", "'&'", "'!'", "'#'", "'$'", null, 
+		null, "'skdjfksdf'", "'skdjf'", "'%'", "'&'", "'!'", "'#'", "'$'", null, 
 		null, null, null, null, "'='", null, "'/'", "'*'", null, null, "'<>'", 
 		"'<'", "'<='", "'>'", "'>='", "';'", "':'", "','", "'('", "')'"
 	};
@@ -64,7 +65,8 @@ public class QB64Parser extends Parser {
 		"COLON", "COMMA", "LEFTPAR", "RIGHTPAR", "INPUT", "PRINT", "IF", "THEN", 
 		"ELSE", "ENDIF", "WHILE", "WEND", "DO", "LOOP", "UNTIL", "FOR", "TO", 
 		"STEP", "NEXT", "INTEGER", "SINGLE", "DOUBLE", "LONG", "STRING", "DIM", 
-		"AS", "NOT", "OR", "AND", "XOR", "MOD", "IDPREFIX", "WS"
+		"AS", "NOT", "OR", "AND", "XOR", "MOD", "SUB", "ENDSUB", "FUNCTION", "ENDFUNCTION", 
+		"IDPREFIX", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -2551,6 +2553,42 @@ public class QB64Parser extends Parser {
 		return _localctx;
 	}
 
+	public static class FunprocContext extends ParserRuleContext {
+		public FunprocContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_funproc; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterFunproc(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFunproc(this);
+		}
+	}
+
+	public final FunprocContext funproc() throws RecognitionException {
+		FunprocContext _localctx = new FunprocContext(_ctx, getState());
+		enterRule(_localctx, 80, RULE_funproc);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(340);
+			match(T__1);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class NegopContext extends ParserRuleContext {
 		public TerminalNode NOT() { return getToken(QB64Parser.NOT, 0); }
 		public NegopContext(ParserRuleContext parent, int invokingState) {
@@ -2569,11 +2607,11 @@ public class QB64Parser extends Parser {
 
 	public final NegopContext negop() throws RecognitionException {
 		NegopContext _localctx = new NegopContext(_ctx, getState());
-		enterRule(_localctx, 80, RULE_negop);
+		enterRule(_localctx, 82, RULE_negop);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(340);
+			setState(342);
 			match(NOT);
 			}
 		}
@@ -2610,12 +2648,12 @@ public class QB64Parser extends Parser {
 
 	public final CompopContext compop() throws RecognitionException {
 		CompopContext _localctx = new CompopContext(_ctx, getState());
-		enterRule(_localctx, 82, RULE_compop);
+		enterRule(_localctx, 84, RULE_compop);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(342);
+			setState(344);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIFFOP) | (1L << LESSOP) | (1L << LESSOREQUALOP) | (1L << GREATER) | (1L << GREATEROREQUAL))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2657,12 +2695,12 @@ public class QB64Parser extends Parser {
 
 	public final BinopContext binop() throws RecognitionException {
 		BinopContext _localctx = new BinopContext(_ctx, getState());
-		enterRule(_localctx, 84, RULE_binop);
+		enterRule(_localctx, 86, RULE_binop);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(344);
+			setState(346);
 			_la = _input.LA(1);
 			if ( !(_la==OR || _la==AND) ) {
 			_errHandler.recoverInline(this);
@@ -2705,12 +2743,12 @@ public class QB64Parser extends Parser {
 
 	public final ProopContext proop() throws RecognitionException {
 		ProopContext _localctx = new ProopContext(_ctx, getState());
-		enterRule(_localctx, 86, RULE_proop);
+		enterRule(_localctx, 88, RULE_proop);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(346);
+			setState(348);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIVOP) | (1L << PRODUCTOP) | (1L << MOD))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2720,42 +2758,6 @@ public class QB64Parser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class FunprocContext extends ParserRuleContext {
-		public FunprocContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_funproc; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterFunproc(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFunproc(this);
-		}
-	}
-
-	public final FunprocContext funproc() throws RecognitionException {
-		FunprocContext _localctx = new FunprocContext(_ctx, getState());
-		enterRule(_localctx, 88, RULE_funproc);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(348);
-			match(T__1);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2795,7 +2797,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3;\u0161\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3?\u0161\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -2831,7 +2833,7 @@ public class QB64Parser extends Parser {
 		"\u0112\3\2\2\2B\u0115\3\2\2\2D\u0119\3\2\2\2F\u012e\3\2\2\2H\u014a\3\2"+
 		"\2\2J\u014e\3\2\2\2L\u0150\3\2\2\2N\u0152\3\2\2\2P\u0154\3\2\2\2R\u0156"+
 		"\3\2\2\2T\u0158\3\2\2\2V\u015a\3\2\2\2X\u015c\3\2\2\2Z\u015e\3\2\2\2\\"+
-		"`\5\4\3\2]_\5Z.\2^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2ac\3\2\2\2b`"+
+		"`\5\4\3\2]_\5R*\2^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2ac\3\2\2\2b`"+
 		"\3\2\2\2cd\7\2\2\3d\3\3\2\2\2ef\5\6\4\2f\5\3\2\2\2gh\5\b\5\2hi\5\6\4\2"+
 		"il\3\2\2\2jl\3\2\2\2kg\3\2\2\2kj\3\2\2\2l\7\3\2\2\2mw\5\16\b\2nw\5\20"+
 		"\t\2ow\5\22\n\2pw\5\24\13\2qw\5\26\f\2rw\5\30\r\2sw\5\36\20\2tw\5\f\7"+
@@ -2848,7 +2850,7 @@ public class QB64Parser extends Parser {
 		"\u009a\7*\2\2\u009a\u009b\5 \21\2\u009b\u009c\7+\2\2\u009c\u009d\5F$\2"+
 		"\u009d\u00a0\5\6\4\2\u009e\u009f\7,\2\2\u009f\u00a1\5F$\2\u00a0\u009e"+
 		"\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\3\2\2\2\u00a2\u00a4\7-\2\2\u00a3"+
-		"\u00a5\7:\2\2\u00a4\u00a3\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\27\3\2\2\2"+
+		"\u00a5\7>\2\2\u00a4\u00a3\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\27\3\2\2\2"+
 		"\u00a6\u00a7\7\63\2\2\u00a7\u00a8\5\32\16\2\u00a8\u00a9\7\64\2\2\u00a9"+
 		"\u00aa\5P)\2\u00aa\31\3\2\2\2\u00ab\u00b0\5$\23\2\u00ac\u00ad\7\34\2\2"+
 		"\u00ad\u00af\5\32\16\2\u00ae\u00ac\3\2\2\2\u00af\u00b2\3\2\2\2\u00b0\u00ae"+
@@ -2879,35 +2881,35 @@ public class QB64Parser extends Parser {
 		"\u00f8\3\2\2\2\u00fa\u00fd\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fb\u00fc\3\2"+
 		"\2\2\u00fc\65\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fe\u0102\5@!\2\u00ff\u0101"+
 		"\5B\"\2\u0100\u00ff\3\2\2\2\u0101\u0104\3\2\2\2\u0102\u0100\3\2\2\2\u0102"+
-		"\u0103\3\2\2\2\u0103\67\3\2\2\2\u0104\u0102\3\2\2\2\u0105\u0106\7:\2\2"+
-		"\u0106\u0107\7\5\2\2\u01079\3\2\2\2\u0108\u0109\7:\2\2\u0109\u010a\7\6"+
-		"\2\2\u010a;\3\2\2\2\u010b\u010d\7:\2\2\u010c\u010e\7\7\2\2\u010d\u010c"+
-		"\3\2\2\2\u010d\u010e\3\2\2\2\u010e=\3\2\2\2\u010f\u0110\7:\2\2\u0110\u0111"+
-		"\7\b\2\2\u0111?\3\2\2\2\u0112\u0113\7:\2\2\u0113\u0114\7\t\2\2\u0114A"+
+		"\u0103\3\2\2\2\u0103\67\3\2\2\2\u0104\u0102\3\2\2\2\u0105\u0106\7>\2\2"+
+		"\u0106\u0107\7\5\2\2\u01079\3\2\2\2\u0108\u0109\7>\2\2\u0109\u010a\7\6"+
+		"\2\2\u010a;\3\2\2\2\u010b\u010d\7>\2\2\u010c\u010e\7\7\2\2\u010d\u010c"+
+		"\3\2\2\2\u010d\u010e\3\2\2\2\u010e=\3\2\2\2\u010f\u0110\7>\2\2\u0110\u0111"+
+		"\7\b\2\2\u0111?\3\2\2\2\u0112\u0113\7>\2\2\u0113\u0114\7\t\2\2\u0114A"+
 		"\3\2\2\2\u0115\u0116\7\35\2\2\u0116\u0117\5D#\2\u0117\u0118\7\36\2\2\u0118"+
 		"C\3\2\2\2\u0119\u011e\5F$\2\u011a\u011b\7\34\2\2\u011b\u011d\5D#\2\u011c"+
 		"\u011a\3\2\2\2\u011d\u0120\3\2\2\2\u011e\u011c\3\2\2\2\u011e\u011f\3\2"+
 		"\2\2\u011fE\3\2\2\2\u0120\u011e\3\2\2\2\u0121\u0122\b$\1\2\u0122\u012f"+
-		"\5J&\2\u0123\u0124\7\24\2\2\u0124\u012f\5F$\t\u0125\u0126\5R*\2\u0126"+
+		"\5J&\2\u0123\u0124\7\24\2\2\u0124\u012f\5F$\t\u0125\u0126\5T+\2\u0126"+
 		"\u0127\5F$\b\u0127\u012f\3\2\2\2\u0128\u012f\5H%\2\u0129\u012a\7\35\2"+
 		"\2\u012a\u012b\5F$\2\u012b\u012c\7\36\2\2\u012c\u012f\3\2\2\2\u012d\u012f"+
 		"\5$\23\2\u012e\u0121\3\2\2\2\u012e\u0123\3\2\2\2\u012e\u0125\3\2\2\2\u012e"+
 		"\u0128\3\2\2\2\u012e\u0129\3\2\2\2\u012e\u012d\3\2\2\2\u012f\u0147\3\2"+
 		"\2\2\u0130\u0131\f\r\2\2\u0131\u0132\7\20\2\2\u0132\u0146\5F$\16\u0133"+
-		"\u0134\f\f\2\2\u0134\u0135\5X-\2\u0135\u0136\5F$\r\u0136\u0146\3\2\2\2"+
+		"\u0134\f\f\2\2\u0134\u0135\5Z.\2\u0135\u0136\5F$\r\u0136\u0146\3\2\2\2"+
 		"\u0137\u0138\f\13\2\2\u0138\u0139\7\24\2\2\u0139\u0146\5F$\f\u013a\u013b"+
 		"\f\n\2\2\u013b\u013c\7\23\2\2\u013c\u0146\5F$\13\u013d\u013e\f\7\2\2\u013e"+
-		"\u013f\5T+\2\u013f\u0140\5F$\b\u0140\u0146\3\2\2\2\u0141\u0142\f\6\2\2"+
-		"\u0142\u0143\5V,\2\u0143\u0144\5F$\7\u0144\u0146\3\2\2\2\u0145\u0130\3"+
+		"\u013f\5V,\2\u013f\u0140\5F$\b\u0140\u0146\3\2\2\2\u0141\u0142\f\6\2\2"+
+		"\u0142\u0143\5X-\2\u0143\u0144\5F$\7\u0144\u0146\3\2\2\2\u0145\u0130\3"+
 		"\2\2\2\u0145\u0133\3\2\2\2\u0145\u0137\3\2\2\2\u0145\u013a\3\2\2\2\u0145"+
 		"\u013d\3\2\2\2\u0145\u0141\3\2\2\2\u0146\u0149\3\2\2\2\u0147\u0145\3\2"+
 		"\2\2\u0147\u0148\3\2\2\2\u0148G\3\2\2\2\u0149\u0147\3\2\2\2\u014a\u014b"+
 		"\7\3\2\2\u014bI\3\2\2\2\u014c\u014f\5L\'\2\u014d\u014f\5N(\2\u014e\u014c"+
 		"\3\2\2\2\u014e\u014d\3\2\2\2\u014fK\3\2\2\2\u0150\u0151\t\2\2\2\u0151"+
 		"M\3\2\2\2\u0152\u0153\7\16\2\2\u0153O\3\2\2\2\u0154\u0155\t\3\2\2\u0155"+
-		"Q\3\2\2\2\u0156\u0157\7\65\2\2\u0157S\3\2\2\2\u0158\u0159\t\4\2\2\u0159"+
-		"U\3\2\2\2\u015a\u015b\t\5\2\2\u015bW\3\2\2\2\u015c\u015d\t\6\2\2\u015d"+
-		"Y\3\2\2\2\u015e\u015f\7\4\2\2\u015f[\3\2\2\2\33`kv\u0084\u00a0\u00a4\u00b0"+
+		"Q\3\2\2\2\u0156\u0157\7\4\2\2\u0157S\3\2\2\2\u0158\u0159\7\65\2\2\u0159"+
+		"U\3\2\2\2\u015a\u015b\t\4\2\2\u015bW\3\2\2\2\u015c\u015d\t\5\2\2\u015d"+
+		"Y\3\2\2\2\u015e\u015f\t\6\2\2\u015f[\3\2\2\2\33`kv\u0084\u00a0\u00a4\u00b0"+
 		"\u00b5\u00bb\u00cc\u00d0\u00d6\u00da\u00e0\u00e6\u00ed\u00f4\u00fb\u0102"+
 		"\u010d\u011e\u012e\u0145\u0147\u014e";
 	public static final ATN _ATN =

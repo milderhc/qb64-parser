@@ -408,6 +408,16 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitType(QB64Parser.TypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64Parser#funproc}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunproc(QB64Parser.FunprocContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#funproc}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunproc(QB64Parser.FunprocContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64Parser#negop}.
 	 * @param ctx the parse tree
 	 */
@@ -447,14 +457,4 @@ public interface QB64Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProop(QB64Parser.ProopContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64Parser#funproc}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunproc(QB64Parser.FunprocContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64Parser#funproc}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunproc(QB64Parser.FunprocContext ctx);
 }
