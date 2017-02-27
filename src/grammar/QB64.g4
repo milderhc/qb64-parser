@@ -32,7 +32,6 @@ for_                : FOR single_numeric_assignment
                         (STEP expression)?
                         NEXT (IDPREFIX)? ;
 
-
 declaration         : DIM id_list AS type ;
 id_list             : id (COMMA id_list)* ;
 print_list          : (expression | id) (SEMICOLON print_list)* ;
@@ -65,7 +64,7 @@ single_numeric_id   : single_id_int
                     | single_id_single
                     | single_id_double
                     ;
-                    
+
 array_id            : array_numeric_id
                     | array_id_string
                     ;
@@ -75,7 +74,7 @@ array_numeric_id    : array_id_int
                     | array_id_single
                     | array_id_double
                     ;
-                    
+
 array_id_int        : single_id_int array*;
 array_id_long       : single_id_long array*;
 array_id_single     : single_id_single array*;
@@ -93,13 +92,13 @@ expression_list     : expression (COMMA expression_list)* ;
 
 expression          : value
                     | expression POTOP expression
-                    | expression PROOP expression
+                    | expression proop expression
                     | expression SUBOP expression
                     | expression ADDOP expression
                     | SUBOP expression
-                    | NEGOP expression
-                    | expression COMPOP expression                                          
-                    | expression BINOP expression
+                    | negop expression
+                    | expression compop expression
+                    | expression binop expression
                     | call_function
                     | LEFTPAR expression RIGHTPAR
                     | id
@@ -133,16 +132,25 @@ DOUBLEVALUE         : [0-9]+[.][0-9]+ ;
 STRINGVALUE         : ('\'' | '"') ~['\'"']* ('\'' | '"');
 
 //Operators
+negop               : NOT ;
+compop              : (DIFFOP | LESSOP | LESSOREQUALOP | GREATER | GREATEROREQUAL);
+binop               : (OR | AND);
+proop               : (DIVOP | PRODUCTOP | MOD);
+
 EQUALOP             : '=' ;
 
-NEGOP               : NOT ;
-COMPOP              : ('<>' | '<' | '<=' | '>' | '>=');
-BINOP               : (OR | AND);
-PROOP               : ('/' | '*' | MOD);
 POTOP               : ('^');
 
+DIVOP               : '/' ;
+PRODUCTOP           : '*' ;
 ADDOP               : ('+');
 SUBOP               : ('-');
+
+DIFFOP              : '<>' ;
+LESSOP              : '<' ;
+LESSOREQUALOP       : '<=' ;
+GREATER             : '>' ;
+GREATEROREQUAL      : '>=' ;
 
 SEMICOLON           : ';';
 COLON               : ':';
@@ -186,7 +194,6 @@ XOR             : X O R ;
 MOD             : M O D ;
 
 funproc         : 'askldfj' ;
-
 
 fragment A: 'a' | 'A' ;
 fragment B: 'b' | 'B' ;
