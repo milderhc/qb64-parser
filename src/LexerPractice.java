@@ -48,6 +48,7 @@ public class LexerPractice {
         keywords.add("end");
         keywords.add("sub");
         keywords.add("function");
+        keywords.add("shared");
     }
 
     private void fillOperators() {
@@ -140,8 +141,8 @@ public class LexerPractice {
             else if (operators.containsKey(lexemaLower))
                 output.append("<" + operators.get(lexemaLower));
             else {
-                String tokenType = identify(token.getType(), parser.getTokenTypeMap());
                 try {
+                    String tokenType = identify(token.getType(), parser.getTokenTypeMap());
                     output.append("<" + tokenType + "," +
                             (tokenType.equals("token_string") ? lexema.replaceAll("\"", "") : lexemaLower));
                 } catch (Exception e) {
@@ -175,7 +176,7 @@ public class LexerPractice {
 
     public static void main(String[] args) throws Exception {
         LexerPractice lexerPractice = new LexerPractice();
-        for (int i = 1; i <= SAMPLES; ++i) {
+        for (int i = 8; i <= SAMPLES; ++i) {
             lexerPractice.setNewFiles(directory + "/" + inputPrefix + i + extension,
                                       directory + "/" + outputPrefix + i + extension );
             lexerPractice.generateOutput();

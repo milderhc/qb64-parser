@@ -56,6 +56,7 @@ FUNCTION=55
 IDPREFIX=56
 COMMENT=57
 WS=58
+ErrorCharacter=59
 '%'=1
 '&'=2
 '!'=3

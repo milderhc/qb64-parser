@@ -238,3 +238,4 @@ fragment Z: 'z' | 'Z' ;
 IDPREFIX : [a-zA-Z][a-zA-Z0-9_]* ;
 COMMENT  : '\'' ~[\r\n]* -> skip ;
 WS : [ \t\r\n]+ -> skip ;
+ErrorCharacter : . ;
