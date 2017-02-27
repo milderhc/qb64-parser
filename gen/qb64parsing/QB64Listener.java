@@ -358,16 +358,6 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitExpression(QB64Parser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64Parser#call_function}.
-	 * @param ctx the parse tree
-	 */
-	void enterCall_function(QB64Parser.Call_functionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64Parser#call_function}.
-	 * @param ctx the parse tree
-	 */
-	void exitCall_function(QB64Parser.Call_functionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link QB64Parser#value}.
 	 * @param ctx the parse tree
 	 */
@@ -417,6 +407,36 @@ public interface QB64Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunproc(QB64Parser.FunprocContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#call_sub}.
+	 * @param ctx the parse tree
+	 */
+	void enterCall_sub(QB64Parser.Call_subContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#call_sub}.
+	 * @param ctx the parse tree
+	 */
+	void exitCall_sub(QB64Parser.Call_subContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#call_function}.
+	 * @param ctx the parse tree
+	 */
+	void enterCall_function(QB64Parser.Call_functionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#call_function}.
+	 * @param ctx the parse tree
+	 */
+	void exitCall_function(QB64Parser.Call_functionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#parameters_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters_list(QB64Parser.Parameters_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#parameters_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters_list(QB64Parser.Parameters_listContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64Parser#negop}.
 	 * @param ctx the parse tree

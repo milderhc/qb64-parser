@@ -14,6 +14,7 @@ command             : if_
                     | do_while
                     | do_until
                     | for_
+                    | call_sub
                     | declaration
                     | assignment
                     | print
@@ -110,8 +111,6 @@ expression          : value
                     | id
                     ;
 
-call_function       : 'skdjfksdf' ;
-
 value               : numeric_value
                     | string_value
                     ;
@@ -137,10 +136,18 @@ SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
 DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
 STRINGVALUE         : ('"') ~['"']* ('"');
 
-//funproc         : 'skdjf' ;
-funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? END FUNCTION
-                | SUB single_id (LEFTPAR id_list RIGHTPAR)? END SUB
+funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? commands END FUNCTION
+                | SUB single_id (LEFTPAR id_list RIGHTPAR)? commands END SUB
                 ;
+
+
+call_sub            : IDPREFIX parameters_list? ;
+call_function       : single_id (LEFTPAR parameters_list RIGHTPAR)? ;
+
+parameters_list     : (LEFTPAR expression RIGHTPAR) (COMMA parameters_list)*
+                    | expression (COMMA parameters_list)*
+                    ;
+
 
 //Operators
 negop               : NOT ;

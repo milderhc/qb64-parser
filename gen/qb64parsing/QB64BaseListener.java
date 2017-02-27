@@ -436,18 +436,6 @@ public class QB64BaseListener implements QB64Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCall_function(QB64Parser.Call_functionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCall_function(QB64Parser.Call_functionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterValue(QB64Parser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -503,6 +491,42 @@ public class QB64BaseListener implements QB64Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunproc(QB64Parser.FunprocContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCall_sub(QB64Parser.Call_subContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCall_sub(QB64Parser.Call_subContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCall_function(QB64Parser.Call_functionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCall_function(QB64Parser.Call_functionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameters_list(QB64Parser.Parameters_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameters_list(QB64Parser.Parameters_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
