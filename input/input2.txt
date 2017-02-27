@@ -1,17 +1,11 @@
-input a, b
-print a; b
+'comentario
 
-if 7 AND 3 OR 3 AND 5 then else end iF
-while 5 * 10 < 5 - 10 wend
-do loop while 5
-do loop until 5
-for id! = 5 to 5 step 5 next id
+'comentario
 
-print 56; "lskdfj"
-input xd, nothing$
+token_coma
 
-xd = 100
-xd! = 234
-xd$ = 234
+"token_coma"
 
-dim xd(5), a, b(4) as DOUBLE
+,
+
+; ; ;;

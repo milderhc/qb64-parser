@@ -11,8 +11,8 @@ end if
 for i = 10 to 50
 
 next
+random = 1234
 
+next dim input
 
-input
-print
-hola
+printprintprint

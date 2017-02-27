@@ -1,4 +1,4 @@
-
+SUB floyd_warsall (n%)
 FOR k = 1 TO n%
     FOR i = 1 TO n%
         FOR j = 1 TO n%
@@ -6,3 +6,4 @@ FOR k = 1 TO n%
         NEXT
     NEXT
 NEXT
+END SUB

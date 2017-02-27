@@ -1,7 +1,7 @@
 input a, b
 print a; b
 
-if 7 AND 3 OR 3 AND 5 then else end iF
+if 7 AND3 OR 3 AND 5 then else end iF
 while 5 * 10 < 5 - 10 wend
 do loop while 5
 do loop until 5

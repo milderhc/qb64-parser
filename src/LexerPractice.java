@@ -9,6 +9,7 @@ import qb64parsing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -89,13 +90,14 @@ public class LexerPractice {
         other_token.put("IDPREFIX", "id");
     }
 
-    private String getToken(String str) {
+    private String getToken(String str) throws Exception {
         if (other_token.containsKey(str))
             return other_token.get(str);
-        return "UNDEFINED";
+
+        throw new Exception("Undefined token, impossible to parse " + str);
     }
 
-    private String identify(int type, Map<String, Integer> tokenType) {
+    private String identify(int type, Map<String, Integer> tokenType) throws Exception {
         for (Map.Entry<String, Integer> e : tokenType.entrySet()) {
             if (type == e.getValue())
                 return getToken(e.getKey());
@@ -103,15 +105,18 @@ public class LexerPractice {
         return "eof";
     }
 
-    public LexerPractice(String inputFilename, String outputFilename) {
+    public void setNewFiles (String inputFilename, String outputFilename) {
         this.inputFilename = inputFilename;
         this.outputFilename = outputFilename;
+    }
+
+    public LexerPractice() {
         fillKeywords();
         fillOperators();
         fillExtratokens();
     }
 
-    public void generateOutput() throws IOException {
+    public void generateOutput() throws Exception {
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(inputFilename));
         QB64Lexer lexer = new QB64Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -128,27 +133,52 @@ public class LexerPractice {
             if (token.getType() == -1)
                 break;
 
-            String lexema = token.getText().toLowerCase();
-            output.append("<");
-            if (keywords.contains(lexema))
-                output.append(lexema);
-            else if (operators.containsKey(lexema))
-                output.append(operators.get(lexema));
+            String lexema = token.getText();
+            String lexemaLower = lexema.toLowerCase();
+            if (keywords.contains(lexemaLower))
+                output.append("<" + lexemaLower);
+            else if (operators.containsKey(lexemaLower))
+                output.append("<" + operators.get(lexemaLower));
             else {
                 String tokenType = identify(token.getType(), parser.getTokenTypeMap());
-                output.append(tokenType + "," +
-                        (tokenType.equals("token_string") ? lexema : lexema.toLowerCase()));
+                try {
+                    output.append("<" + tokenType + "," +
+                            (tokenType.equals("token_string") ? lexema.replaceAll("\"", "") : lexemaLower));
+                } catch (Exception e) {
+                    output.append(">>> Error lexico " +
+                            "(linea: " + token.getLine() + ", posicion: " + (token.getCharPositionInLine() + 1) + ")");
+
+                    PrintWriter writer = new PrintWriter(outputFilename, "UTF-8");
+                    writer.print(output);
+                    writer.close();
+
+                    //Abort analysis
+                    return;
+                }
             }
 
             output.append("," + token.getLine() + "," + (token.getCharPositionInLine() + 1) + ">");
             output.append("\n");
         }
 
-        System.out.println(output);
+        PrintWriter writer = new PrintWriter(outputFilename, "UTF-8");
+        writer.print(output);
+        writer.close();
+//        System.out.println(output);
     }
 
+    private final static int SAMPLES = 8;
+    private final static String directory = "input";
+    private final static String inputPrefix = "input";
+    private final static String outputPrefix = "output";
+    private final static String extension = ".txt";
 
-    public static void main(String[] args) throws IOException {
-        new LexerPractice("input/input5.txt", "input/output5.txt").generateOutput();
+    public static void main(String[] args) throws Exception {
+        LexerPractice lexerPractice = new LexerPractice();
+        for (int i = 1; i <= SAMPLES; ++i) {
+            lexerPractice.setNewFiles(directory + "/" + inputPrefix + i + extension,
+                                      directory + "/" + outputPrefix + i + extension );
+            lexerPractice.generateOutput();
+        }
     }
 }
