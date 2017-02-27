@@ -16,7 +16,12 @@ command             : if_
                     | for_
                     | declaration
                     | assignment
+                    | print
+                    | input
                     ;
+
+input               : INPUT id_list ;
+print               : PRINT print_list ;
 
 if_                 : IF expression THEN commands (ELSE commands)? ENDIF ;
 while_              : WHILE expression commands WEND ;
@@ -30,12 +35,14 @@ for_                : FOR single_numeric_assignment
 
 declaration         : DIM id_list AS type ;
 id_list             : id (COMMA id_list)* ;
+print_list          : (expression | id) (SEMICOLON print_list)* ;
 
-assignment          : id OPEQUAL expression
+
+assignment          : id EQUALOP expression
                     ;
 
-single_numeric_assignment : single_numeric_id OPEQUAL expression ;
-array_numeric_assignment  : array_numeric_id OPEQUAL expression ;
+single_numeric_assignment : single_numeric_id EQUALOP expression ;
+array_numeric_assignment  : array_numeric_id EQUALOP expression ;
 
 id                  : single_id
                     | array_id
@@ -84,9 +91,33 @@ single_id_string    : IDPREFIX '$';
 array               : LEFTPAR expression_list RIGHTPAR ;
 expression_list     : expression (COMMA expression_list)* ;
 
-expression          : numeric_value ;
-numeric_value       : INTVALUE ;
+expression          : value
+                    | expression POTOP expression
+                    | expression PROOP expression
+                    | expression SUBOP expression
+                    | expression ADDOP expression
+                    | SUBOP expression
+                    | NEGOP expression
+                    | expression COMPOP expression                                          
+                    | expression BINOP expression
+                    | call_function
+                    | LEFTPAR expression RIGHTPAR
+                    | id
+                    ;
 
+call_function       : 'skdjfksdf' ;
+
+value               : numeric_value
+                    | string_value
+                    ;
+
+numeric_value       : INTEGERVALUE
+                    | LONGVALUE
+                    | SINGLEVALUE
+                    | DOUBLEVALUE
+                    ;
+
+string_value        : STRINGVALUE ;
 
 type                : INTEGER
                     | LONG
@@ -95,24 +126,34 @@ type                : INTEGER
                     | STRING
                     ;
 
-
-INTVALUE            : [0-9]+ ;
+INTEGERVALUE        : [0-9]+ ;
+LONGVALUE           : [0-9]+ ;
+SINGLEVALUE         : [0-9]+[.][0-9]+ ;
+DOUBLEVALUE         : [0-9]+[.][0-9]+ ;
 STRINGVALUE         : ('\'' | '"') ~['\'"']* ('\'' | '"');
 
 //Operators
-OPEQUAL         : '=' ;
+EQUALOP             : '=' ;
 
-OPADD           : ('+');
-OPSUB           : ('-');
+NEGOP               : NOT ;
+COMPOP              : ('<>' | '<' | '<=' | '>' | '>=');
+BINOP               : (OR | AND);
+PROOP               : ('/' | '*' | MOD);
+POTOP               : ('^');
 
-PYC             : ';';
-DOSP            : ':';
-LEFTPAR         : '(';
-RIGHTPAR        : ')';
-COMMA           : ',' ;
+ADDOP               : ('+');
+SUBOP               : ('-');
 
+SEMICOLON           : ';';
+COLON               : ':';
+COMMA               : ',' ;
+LEFTPAR             : '(';
+RIGHTPAR            : ')';
 
 //Keywords
+INPUT           : I N P U T ;
+PRINT           : P R I N T ;
+
 IF              : I F ;
 THEN            : T H E N ;
 ELSE            : E L S E ;
@@ -137,6 +178,12 @@ STRING          : S T R I N G ;
 
 DIM             : D I M ;
 AS              : A S ;
+
+NOT             : N O T ;
+OR              : O R ;
+AND             : A N D ;
+XOR             : X O R ;
+MOD             : M O D ;
 
 funproc         : 'askldfj' ;
 
