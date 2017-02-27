@@ -9,12 +9,13 @@ commands            : command commands
                     |
                     ;
 
-command             :    if_
+command             : if_
                     | while_
                     | do_while
                     | do_until
                     | for_
                     | declaration
+                    | assignment
                     ;
 
 if_                 : IF expression THEN commands (ELSE commands)? ENDIF ;
@@ -30,18 +31,23 @@ for_                : FOR single_numeric_assignment
 declaration         : DIM id_list AS type ;
 id_list             : id (COMMA id_list)* ;
 
-type                : INTEGER
-                    | LONG
-                    | SINGLE
-                    | DOUBLE
-                    | STRING
+assignment          : id OPEQUAL expression
                     ;
 
 single_numeric_assignment : single_numeric_id OPEQUAL expression ;
+array_numeric_assignment  : array_numeric_id OPEQUAL expression ;
 
 id                  : single_id
                     | array_id
                     ;
+
+//numeric_id          : single_numeric_id
+//                    | array_numeric_id
+//                    ;
+//
+//string_id           : single_id_string
+//                    | array_id_string
+//                    ;
 
 single_id           : single_numeric_id
                     | single_id_string
@@ -53,11 +59,14 @@ single_numeric_id   : single_id_int
                     | single_id_double
                     ;
                     
-array_id            : array_id_int
+array_id            : array_numeric_id
+                    | array_id_string
+                    ;
+
+array_numeric_id    : array_id_int
                     | array_id_long
                     | array_id_single
                     | array_id_double
-                    | array_id_string
                     ;
                     
 array_id_int        : single_id_int array*;
@@ -77,8 +86,18 @@ expression_list     : expression (COMMA expression_list)* ;
 
 expression          : numeric_value ;
 numeric_value       : INTVALUE ;
-INTVALUE            : [0-9]+ ;
 
+
+type                : INTEGER
+                    | LONG
+                    | SINGLE
+                    | DOUBLE
+                    | STRING
+                    ;
+
+
+INTVALUE            : [0-9]+ ;
+STRINGVALUE         : ('\'' | '"') ~['\'"']* ('\'' | '"');
 
 //Operators
 OPEQUAL         : '=' ;
