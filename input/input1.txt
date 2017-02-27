@@ -1,9 +1,12 @@
+a% = 3
+5.65656
+5.65656943859
+
 if 5 < 10 then
     input a, b$
 else
 
 end if
-
 
 for i = 10 to 50
 

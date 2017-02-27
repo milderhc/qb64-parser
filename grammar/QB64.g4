@@ -81,11 +81,17 @@ array_id_single     : single_id_single array*;
 array_id_double     : single_id_double array*;
 array_id_string     : single_id_string array*;
 
-single_id_int       : IDPREFIX '%';
-single_id_long      : IDPREFIX '&';
-single_id_single    : IDPREFIX ('!')?;
-single_id_double    : IDPREFIX '#';
-single_id_string    : IDPREFIX '$';
+single_id_int       : IDPREFIX INTEGERSUFFIX;
+single_id_long      : IDPREFIX LONGSUFFIX;
+single_id_single    : IDPREFIX (SINGLESUFFIX)?;
+single_id_double    : IDPREFIX DOUBLESUFFIX;
+single_id_string    : IDPREFIX STRINGSUFFIX;
+
+INTEGERSUFFIX       : '%' ;
+LONGSUFFIX          : '&' ;
+SINGLESUFFIX        : '!' ;
+DOUBLESUFFIX        : '#' ;
+STRINGSUFFIX        : '$' ;
 
 array               : LEFTPAR expression_list RIGHTPAR ;
 expression_list     : expression (COMMA expression_list)* ;
@@ -127,8 +133,8 @@ type                : INTEGER
 
 INTEGERVALUE        : [0-9]+ ;
 LONGVALUE           : [0-9]+ ;
-SINGLEVALUE         : [0-9]+[.][0-9]+ ;
-DOUBLEVALUE         : [0-9]+[.][0-9]+ ;
+SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
+DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
 STRINGVALUE         : ('\'' | '"') ~['\'"']* ('\'' | '"');
 
 //Operators
@@ -161,32 +167,26 @@ RIGHTPAR            : ')';
 //Keywords
 INPUT           : I N P U T ;
 PRINT           : P R I N T ;
-
 IF              : I F ;
 THEN            : T H E N ;
 ELSE            : E L S E ;
 ENDIF           : E N D ~['\'"']+ IF ;
-
 WHILE           : W H I L E ;
 WEND            : W E N D ;
 DO              : D O ;
 LOOP            : L O O P ;
 UNTIL           : U N T I L ;
-
 FOR             : F O R ;
 TO              : T O ;
 STEP            : S T E P ;
 NEXT            : N E X T ;
-
 INTEGER         : I N T E G E R ;
 SINGLE          : S I N G L E ;
 DOUBLE          : D O U B L E ;
 LONG            : L O N G ;
 STRING          : S T R I N G ;
-
 DIM             : D I M ;
 AS              : A S ;
-
 NOT             : N O T ;
 OR              : O R ;
 AND             : A N D ;
