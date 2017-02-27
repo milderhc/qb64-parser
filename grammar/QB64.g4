@@ -23,7 +23,7 @@ command             : if_
 input               : INPUT id_list ;
 print               : PRINT print_list ;
 
-if_                 : IF expression THEN commands (ELSE commands)? ENDIF ;
+if_                 : IF expression THEN commands (ELSE commands)? END IF ;
 while_              : WHILE expression commands WEND ;
 do_while            : DO commands LOOP WHILE expression ;
 do_until            : DO commands LOOP UNTIL expression ;
@@ -135,7 +135,12 @@ INTEGERVALUE        : [0-9]+ ;
 LONGVALUE           : [0-9]+ ;
 SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
 DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
-STRINGVALUE         : ('\'' | '"') ~['\'"']* ('\'' | '"');
+STRINGVALUE         : ('"') ~['"']* ('"');
+
+funproc         : 'skdjf' ;
+//funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? ENDFUNCTION
+//                | SUB single_id (LEFTPAR id_list RIGHTPAR)? ENDSUB
+//                ;
 
 //Operators
 negop               : NOT ;
@@ -164,13 +169,14 @@ COMMA               : ',' ;
 LEFTPAR             : '(';
 RIGHTPAR            : ')';
 
+
 //Keywords
 INPUT           : I N P U T ;
 PRINT           : P R I N T ;
 IF              : I F ;
 THEN            : T H E N ;
 ELSE            : E L S E ;
-ENDIF           : E N D ~['\'"']+ IF ;
+END             : E N D ;
 WHILE           : W H I L E ;
 WEND            : W E N D ;
 DO              : D O ;
@@ -192,8 +198,8 @@ OR              : O R ;
 AND             : A N D ;
 XOR             : X O R ;
 MOD             : M O D ;
-
-funproc         : 'askldfj' ;
+SUB             : S U B ;
+FUNCTION        : F U N C T I O N ;
 
 fragment A: 'a' | 'A' ;
 fragment B: 'b' | 'B' ;
@@ -223,4 +229,5 @@ fragment Y: 'y' | 'Y' ;
 fragment Z: 'z' | 'Z' ;
 
 IDPREFIX : [a-zA-Z][a-zA-Z0-9_]* ;
+COMMENT  : '//' ~[\r\n]* -> skip ;
 WS : [ \t\r\n]+ -> skip ;
