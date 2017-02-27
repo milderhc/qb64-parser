@@ -26,8 +26,18 @@ for_ : FOR numeric_asignment
        NEXT (ID)* ;
 
 
-numeric_asignment : ID OPEQUAL expression ;
+numeric_asignment : numeric_id OPEQUAL expression ;
 
+numeric_id : id_int
+           | id_long
+           | id_single
+           | id_double
+           ;
+
+id_int : ID '%' ;
+id_long : ID '&' ;
+id_single : ID ('!')* ;
+id_double : ID '#' ;
 
 expression : numeric_value ;
 numeric_value : INT ;
