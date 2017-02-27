@@ -137,10 +137,10 @@ SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
 DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
 STRINGVALUE         : ('"') ~['"']* ('"');
 
-funproc         : 'skdjf' ;
-//funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? ENDFUNCTION
-//                | SUB single_id (LEFTPAR id_list RIGHTPAR)? ENDSUB
-//                ;
+//funproc         : 'skdjf' ;
+funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? END FUNCTION
+                | SUB single_id (LEFTPAR id_list RIGHTPAR)? END SUB
+                ;
 
 //Operators
 negop               : NOT ;
