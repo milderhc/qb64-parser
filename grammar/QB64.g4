@@ -1,63 +1,83 @@
 grammar QB64;
 
-qb              : main (funproc)* EOF ;
+qb                  : main (funproc)* EOF ;
 
-main            : commands
-                ;
+main                : commands
+                    ;
 
-commands        : command commands
-                |
-                ;
+commands            : command commands
+                    |
+                    ;
 
-command         : if_
-                | while_
-                | do_while
-                | do_until
-                | for_
-                | declaration
-                ;
+command             :    if_
+                    | while_
+                    | do_while
+                    | do_until
+                    | for_
+                    | declaration
+                    ;
 
-if_             : IF expression THEN commands (ELSE commands)? ENDIF ;
-while_          : WHILE expression commands WEND ;
-do_while        : DO commands LOOP WHILE expression ;
-do_until        : DO commands LOOP UNTIL expression ;
-for_            : FOR numeric_asignment
-                  TO expression commands
-                  (STEP expression)?
-                  NEXT (ID)? ;
+if_                 : IF expression THEN commands (ELSE commands)? ENDIF ;
+while_              : WHILE expression commands WEND ;
+do_while            : DO commands LOOP WHILE expression ;
+do_until            : DO commands LOOP UNTIL expression ;
+for_                : FOR single_numeric_assignment
+                        TO expression commands
+                        (STEP expression)?
+                        NEXT (IDPREFIX)? ;
 
 
-declaration     : DIM id_list AS type ;
-id_list         : ID (COMMA id_list)* ;
+declaration         : DIM id_list AS type ;
+id_list             : id (COMMA id_list)* ;
 
-type            : INTEGER
-                | LONG
-                | SINGLE
-                | DOUBLE
-                | STRING
-                ;
+type                : INTEGER
+                    | LONG
+                    | SINGLE
+                    | DOUBLE
+                    | STRING
+                    ;
 
-numeric_asignment : numeric_id OPEQUAL expression ;
+single_numeric_assignment : single_numeric_id OPEQUAL expression ;
 
-numeric_id      : id_int
-                | id_long
-                | id_single
-                | id_double
-                ;
+id                  : single_id
+                    | array_id
+                    ;
 
-id_int          : ID '%' array*;
-id_long         : ID '&' array*;
-id_single       : ID ('!')* array*;
-id_double       : ID '#' array*;
-id_string       : ID '$' array*;
+single_id           : single_numeric_id
+                    | single_id_string
+                    ;
 
-array           : LEFTPAR expression_list RIGHTPAR ;
+single_numeric_id   : single_id_int
+                    | single_id_long
+                    | single_id_single
+                    | single_id_double
+                    ;
+                    
+array_id            : array_id_int
+                    | array_id_long
+                    | array_id_single
+                    | array_id_double
+                    | array_id_string
+                    ;
+                    
+array_id_int        : single_id_int array*;
+array_id_long       : single_id_long array*;
+array_id_single     : single_id_single array*;
+array_id_double     : single_id_double array*;
+array_id_string     : single_id_string array*;
 
-expression_list : expression (COMMA expression_list)* ;
+single_id_int       : IDPREFIX '%';
+single_id_long      : IDPREFIX '&';
+single_id_single    : IDPREFIX ('!')?;
+single_id_double    : IDPREFIX '#';
+single_id_string    : IDPREFIX '$';
 
-expression      : numeric_value ;
-numeric_value   : INTVALUE ;
-INTVALUE        : [0-9]+ ;
+array               : LEFTPAR expression_list RIGHTPAR ;
+expression_list     : expression (COMMA expression_list)* ;
+
+expression          : numeric_value ;
+numeric_value       : INTVALUE ;
+INTVALUE            : [0-9]+ ;
 
 
 //Operators
@@ -129,5 +149,5 @@ fragment X: 'x' | 'X' ;
 fragment Y: 'y' | 'Y' ;
 fragment Z: 'z' | 'Z' ;
 
-ID : [a-zA-Z][a-zA-Z0-9_]* ;
+IDPREFIX : [a-zA-Z][a-zA-Z0-9_]* ;
 WS : [ \t\r\n]+ -> skip ;
