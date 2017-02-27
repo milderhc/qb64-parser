@@ -14,6 +14,7 @@ command : if_
         | do_while
         | do_until
         | for_
+        | declaration
         ;
 
 if_ : IF expression THEN commands (ELSE commands)? ENDIF ;
@@ -22,9 +23,19 @@ do_while : DO commands LOOP WHILE expression ;
 do_until : DO commands LOOP UNTIL expression ;
 for_ : FOR numeric_asignment
        TO expression commands
-       (STEP expression)*
-       NEXT (ID)* ;
+       (STEP expression)?
+       NEXT (ID)? ;
 
+
+declaration : DIM id_list AS type ;
+id_list : ID (COMMA id_list)* ;
+
+type : INTEGER
+     | LONG
+     | SINGLE
+     | DOUBLE
+     | STRING
+     ;
 
 numeric_asignment : numeric_id OPEQUAL expression ;
 
@@ -45,6 +56,7 @@ INT : [0-9]+ ;
 
 //Operators
 OPEQUAL : '=' ;
+COMMA : ',' ;
 
 //Keywords
 IF : I F ;
@@ -63,6 +75,14 @@ TO : T O ;
 STEP : S T E P ;
 NEXT : N E X T ;
 
+INTEGER : I N T E G E R ;
+SINGLE : S I N G L E ;
+DOUBLE : D O U B L E ;
+LONG : L O N G ;
+STRING : S T R I N G ;
+
+DIM : D I M ;
+AS : A S ;
 
 funproc : 'askldfj' ;
 

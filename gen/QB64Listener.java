@@ -97,6 +97,36 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitFor_(QB64Parser.For_Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64Parser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration(QB64Parser.DeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration(QB64Parser.DeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#id_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterId_list(QB64Parser.Id_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#id_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitId_list(QB64Parser.Id_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(QB64Parser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(QB64Parser.TypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64Parser#numeric_asignment}.
 	 * @param ctx the parse tree
 	 */
@@ -106,6 +136,56 @@ public interface QB64Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumeric_asignment(QB64Parser.Numeric_asignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#numeric_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumeric_id(QB64Parser.Numeric_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#numeric_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumeric_id(QB64Parser.Numeric_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#id_int}.
+	 * @param ctx the parse tree
+	 */
+	void enterId_int(QB64Parser.Id_intContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#id_int}.
+	 * @param ctx the parse tree
+	 */
+	void exitId_int(QB64Parser.Id_intContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#id_long}.
+	 * @param ctx the parse tree
+	 */
+	void enterId_long(QB64Parser.Id_longContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#id_long}.
+	 * @param ctx the parse tree
+	 */
+	void exitId_long(QB64Parser.Id_longContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#id_single}.
+	 * @param ctx the parse tree
+	 */
+	void enterId_single(QB64Parser.Id_singleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#id_single}.
+	 * @param ctx the parse tree
+	 */
+	void exitId_single(QB64Parser.Id_singleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#id_double}.
+	 * @param ctx the parse tree
+	 */
+	void enterId_double(QB64Parser.Id_doubleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#id_double}.
+	 * @param ctx the parse tree
+	 */
+	void exitId_double(QB64Parser.Id_doubleContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64Parser#expression}.
 	 * @param ctx the parse tree
