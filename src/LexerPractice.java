@@ -169,7 +169,7 @@ public class LexerPractice {
     }
 
     private final static int SAMPLES = 8;
-    private final static String directory = "samples";
+    private final static String directory = "input";
     private final static String inputPrefix = "input";
     private final static String outputPrefix = "output";
     private final static String extension = ".txt";

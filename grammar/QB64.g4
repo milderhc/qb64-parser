@@ -14,6 +14,7 @@ command             : if_
                     | do_while
                     | do_until
                     | for_
+                    | select_
                     | call_sub
                     | declaration
                     | assignment
@@ -32,6 +33,8 @@ for_                : FOR single_numeric_assignment
                         TO expression commands
                         (STEP expression)?
                         NEXT (IDPREFIX)? ;
+select_             : SELECT CASE id (cases_list)* (CASE ELSE commands)? END SELECT ;
+cases_list          : CASE expression commands (cases_list)* ;
 
 declaration         : DIM id_list AS type ;
 id_list             : id (COMMA id_list)* ;
@@ -207,6 +210,8 @@ XOR             : X O R ;
 MOD             : M O D ;
 SUB             : S U B ;
 FUNCTION        : F U N C T I O N ;
+SELECT          : S E L E C T ;
+CASE            : C A S E ;
 
 fragment A: 'a' | 'A' ;
 fragment B: 'b' | 'B' ;

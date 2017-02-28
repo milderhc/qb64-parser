@@ -1,0 +1,40 @@
+<input,1,1>
+<id,a,1,7>
+<token_coma,1,8>
+<id,b,1,10>
+<id,output,2,1>
+<id,a,2,8>
+<token_coma,2,9>
+<id,b,2,11>
+<print,3,1>
+<id,a,3,7>
+<token_coma,3,8>
+<id,b,3,10>
+<id,a,5,1>
+<token_ampersand,5,2>
+<token_igual,5,4>
+<token_string,String string,5,6>
+<id,a,6,1>
+<token_pesos,6,2>
+<token_igual,6,4>
+<token_string,askdf,6,6>
+<id,a5,7,1>
+<token_igual,7,4>
+<id,a3,7,6>
+<token_integer,2,8,1>
+<id,a,8,2>
+<token_igual,8,4>
+<token_integer,4,8,6>
+<id,r,8,7>
+<if,10,1>
+<id,a,10,4>
+<token_menor,10,6>
+<token_integer,5,10,8>
+<then,10,10>
+<print,11,5>
+<token_string,a es menor que 5,11,11>
+<else,12,1>
+<print,13,5>
+<token_string,a es no menor que 5 :v,13,11>
+<end,14,1>
+<if,14,5>

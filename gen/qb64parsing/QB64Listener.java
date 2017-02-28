@@ -118,6 +118,26 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitFor_(QB64Parser.For_Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64Parser#select_}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelect_(QB64Parser.Select_Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#select_}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelect_(QB64Parser.Select_Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#cases_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterCases_list(QB64Parser.Cases_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#cases_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitCases_list(QB64Parser.Cases_listContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64Parser#declaration}.
 	 * @param ctx the parse tree
 	 */

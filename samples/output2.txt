@@ -1,0 +1,7 @@
+<id,token_coma,5,1>
+<token_string,token_coma,7,1>
+<token_coma,9,1>
+<token_pyc,11,1>
+<token_pyc,11,3>
+<token_pyc,11,5>
+<token_pyc,11,6>

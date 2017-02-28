@@ -1,0 +1,24 @@
+<token_admiracion,1,1>
+<token_pot,2,1>
+<token_porcentaje,3,1>
+<token_mul,4,1>
+<token_ampersand,5,1>
+<token_y,7,1>
+<token_neg,8,1>
+<token_o,9,1>
+<token_xor,10,1>
+<token_xor,11,1>
+<for,14,1>
+<id,i,14,5>
+<token_pesos,14,6>
+<token_igual,14,8>
+<token_integer,50,14,10>
+<to,14,13>
+<token_string,xd,14,16>
+<step,14,21>
+<token_menos,14,26>
+<token_integer,1,14,27>
+<wend,16,1>
+<if,16,6>
+<print,19,1>
+<token_string,Analisis lexico terminado.,19,7>

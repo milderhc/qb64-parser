@@ -1,0 +1,10 @@
+<if,1,1>
+<id,a,1,4>
+<then,1,6>
+<for,3,1>
+<next,5,1>
+<token_single,1.222,7,1>
+<token_double,1.44444444444,8,1>
+<token_string,holA,9,1>
+<token_single,2.555,11,1>
+<id,abc,11,6>

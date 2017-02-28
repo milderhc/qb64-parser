@@ -1,0 +1,15 @@
+<token_integer,234,1,1>
+<token_single,3.444,2,21>
+<token_string,askdfj,3,1>
+<id,xd3,3,10>
+<token_integer,3,6,13>
+<id,xd3,6,14>
+<id,al,8,13>
+<id,parecer,8,16>
+<id,no,8,24>
+<id,hay,8,27>
+<id,errores,8,31>
+<id,lexicos,8,39>
+<id,o,10,1>
+<id,si,10,3>
+>>> Error lexico (linea: 10, posicion: 5)
