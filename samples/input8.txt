@@ -1,0 +1,19 @@
+!
+^
+%
+*
+&
+
+AND
+NOT
+OR
+XOR
+xOr
+
+
+FOR i$ = 50 to "xd" STEP -1
+
+WeND if
+
+
+print "Analisis lexico terminado."

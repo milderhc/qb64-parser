@@ -147,7 +147,7 @@ public class LexerPractice {
                             (tokenType.equals("token_string") ? lexema.replaceAll("\"", "") : lexemaLower));
                 } catch (Exception e) {
                     output.append(">>> Error lexico " +
-                            "(linea: " + token.getLine() + ", posicion: " + (token.getCharPositionInLine() + 1) + ")");
+                            "(linea: " + token.getLine() + ", posicion: " + (token.getCharPositionInLine() + 1) + ")\n");
 
                     PrintWriter writer = new PrintWriter(outputFilename, "UTF-8");
                     writer.print(output);
@@ -169,14 +169,14 @@ public class LexerPractice {
     }
 
     private final static int SAMPLES = 8;
-    private final static String directory = "input";
+    private final static String directory = "samples";
     private final static String inputPrefix = "input";
     private final static String outputPrefix = "output";
     private final static String extension = ".txt";
 
     public static void main(String[] args) throws Exception {
         LexerPractice lexerPractice = new LexerPractice();
-        for (int i = 8; i <= SAMPLES; ++i) {
+        for (int i = 1; i <= SAMPLES; ++i) {
             lexerPractice.setNewFiles(directory + "/" + inputPrefix + i + extension,
                                       directory + "/" + outputPrefix + i + extension );
             lexerPractice.generateOutput();

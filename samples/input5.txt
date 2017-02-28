@@ -1,0 +1,14 @@
+input a, b
+output a, b
+print a, b
+
+a& = "String string"
+a$ = "askdf"
+a5 = a3
+2a = 4r
+
+if a < 5 then
+    print "a es menor que 5"
+else
+    print "a es no menor que 5 :v"
+end if

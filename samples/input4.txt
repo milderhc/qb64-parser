@@ -1,0 +1,9 @@
+SUB floyd_warsall (n%)
+FOR k = 1 TO n%
+    FOR i = 1 TO n%
+        FOR j = 1 TO n%
+            G(i, j) = min(G(i, j), G(i, k) + G(k, j))
+        NEXT
+    NEXT
+NEXT
+END SUB
