@@ -1,0 +1,65 @@
+"Prueba de strings"
+
+    "skdfjaskdf Adkfj"
+
+
+    "this"
+
+        "programming"
+
+           "nothing"
+
+
+
+    "now Repeat the strings"
+
+    "Prueba de strings"
+
+        "skdfjaskdf Adkfj"
+
+
+        "this"
+
+            "programming"
+
+               "nothing"
+
+
+
+        "now Repeat the strings"
+
+        "Prueba de strings"
+
+            "skdfjaskdf Adkfj"
+
+
+            "this"
+
+                "programming"
+
+                   "nothing"
+
+
+
+            "now Repeat the strings"
+
+            "Prueba de strings"
+
+                "skdfjaskdf Adkfj"
+
+
+                "this"
+
+                    "programming"
+
+                       "nothing"
+
+
+
+                "now Repeat the strings"
+
+ "La estructura de los strings permanece"
+
+
+
+ "Analisis lexico terminado"

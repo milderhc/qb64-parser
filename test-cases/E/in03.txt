@@ -1,0 +1,3 @@
+b$ = "Este es otro error lexico"
+print b$, .1
+print "no imprimir estO"

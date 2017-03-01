@@ -1,0 +1,27 @@
+DIM SHAREd x as STRING
+
+for i = 15<>16 to 17
+    print "Esto es analisis lexico"
+    input "Ingrese algo", h$
+
+    a = 8AND 3*7 + 234*2384389+8.93489384AND 7*19+3.0/AND3 XOR 123234
+end for
+
+while 15
+    print "hasta el infinito y mas alla"
+wend
+
+CONST esto-no-es-idendificador = 60
+
+CONST fg& = "askldfjadsf"
+
+
+print fg
+
+
+
+f
+
+sub f
+    x = 15
+end sub

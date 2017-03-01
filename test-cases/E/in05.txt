@@ -1,0 +1,4 @@
+' Errores lexicos
+a = -13412
+jdhusnf21.32 ' Error luego de completar el identificador
+print "no imprimir estO"

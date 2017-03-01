@@ -1,0 +1,26 @@
+DIM SHARED CONST id-2 = -2
+
+
+select case id-2
+    case "2";
+        print "Esto no tiene forma sintactica, aun asi es valido lexicamente"
+    case 234<>
+        print "alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+
+        case else
+
+end select
+
+
+do
+    print "do anything"
+loop until
+
+
+do
+    print "do anything"; 3NOT3 XOR 3NOT 3
+loop while
+
+
+
+++p_es_igual_a_p++ = "Siempre o solo en ciertos casos?"

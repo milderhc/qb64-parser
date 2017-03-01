@@ -88,6 +88,18 @@ public class QB64BaseListener implements QB64Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrint_list(QB64Parser.Print_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint_list(QB64Parser.Print_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIf_(QB64Parser.If_Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -196,13 +208,25 @@ public class QB64BaseListener implements QB64Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint_list(QB64Parser.Print_listContext ctx) { }
+	@Override public void enterConst_declaration(QB64Parser.Const_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint_list(QB64Parser.Print_listContext ctx) { }
+	@Override public void exitConst_declaration(QB64Parser.Const_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConst_declaration_list(QB64Parser.Const_declaration_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConst_declaration_list(QB64Parser.Const_declaration_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

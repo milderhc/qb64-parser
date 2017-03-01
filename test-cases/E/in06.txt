@@ -1,0 +1,4 @@
+' Doble error lexico, solo debe imprimir el primero
+2.5598055NOT3.88 1.
+
+print "no imprimir estO"

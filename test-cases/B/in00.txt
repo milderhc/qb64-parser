@@ -1,0 +1,11 @@
+a = 1
+if a then
+    print "xd"
+else
+    print 234
+end if
+
+
+for i = 0 to 1000 step 2
+    print "Aumentando i"
+next

@@ -1,0 +1,16 @@
+algunos identificadores
+
+En  QB64 no hay distincion entre
+        mayusculas y minisculas
+
+
+        tanto en palabras reservadas como en identificadores
+
+
+
+        si una variable es llamada VarIable
+
+        la proxima vez que se escriba "variable" en cualquier combinacion de minusculas y mayusculas
+        se volvera a llamar VarIable, asi que para hacer mas facil el analisis
+
+        los identificadores deben ser colocados en minuscula siempre

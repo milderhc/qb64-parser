@@ -68,6 +68,16 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitPrint(QB64Parser.PrintContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64Parser#print_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint_list(QB64Parser.Print_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#print_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint_list(QB64Parser.Print_listContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64Parser#if_}.
 	 * @param ctx the parse tree
 	 */
@@ -158,15 +168,25 @@ public interface QB64Listener extends ParseTreeListener {
 	 */
 	void exitId_list(QB64Parser.Id_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64Parser#print_list}.
+	 * Enter a parse tree produced by {@link QB64Parser#const_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrint_list(QB64Parser.Print_listContext ctx);
+	void enterConst_declaration(QB64Parser.Const_declarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64Parser#print_list}.
+	 * Exit a parse tree produced by {@link QB64Parser#const_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrint_list(QB64Parser.Print_listContext ctx);
+	void exitConst_declaration(QB64Parser.Const_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64Parser#const_declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterConst_declaration_list(QB64Parser.Const_declaration_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64Parser#const_declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitConst_declaration_list(QB64Parser.Const_declaration_listContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64Parser#assignment}.
 	 * @param ctx the parse tree

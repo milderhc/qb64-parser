@@ -1,0 +1,2 @@
+a$ = "Esto es un error lexico
+print "no imprimir estO"

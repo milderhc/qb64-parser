@@ -1,0 +1,11 @@
+int = 10
+for i = 0 to int
+    print i
+next
+
+variable = 2934
+
+' Dividir other en 15
+
+ print variable\15, "Esto no deberia imprimirse"
+

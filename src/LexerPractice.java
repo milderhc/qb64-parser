@@ -10,10 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class LexerPractice {
 
@@ -49,6 +46,9 @@ public class LexerPractice {
         keywords.add("sub");
         keywords.add("function");
         keywords.add("shared");
+        keywords.add("const");
+        keywords.add("select");
+        keywords.add("case");
     }
 
     private void fillOperators() {
@@ -117,6 +117,29 @@ public class LexerPractice {
         fillExtratokens();
     }
 
+    public String generateRandomString () {
+        Random gen = new Random();
+        StringBuilder builder = new StringBuilder();
+        int size = gen.nextInt(50);
+
+        for (int i = 0; i < size; ++i)
+            builder.append(" ");
+        builder.append("\"");
+        size = gen.nextInt(100);
+        for (int i = 0; i < size; ++i) {
+            int r = gen.nextInt(90);
+            if (r != 2 && r != 60)
+                builder.append((char)(r + 32));
+        }
+
+        return builder.toString();
+    }
+
+    public void printRandomStrings (int size) {
+        for (int i = 0; i < size; ++i)
+            System.out.println(generateRandomString() + "\"");
+    }
+
     public void generateOutput() throws Exception {
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(inputFilename));
         QB64Lexer lexer = new QB64Lexer(input);
@@ -168,18 +191,23 @@ public class LexerPractice {
 //        System.out.println(output);
     }
 
-    private final static int SAMPLES = 8;
-    private final static String directory = "input";
-    private final static String inputPrefix = "input";
-    private final static String outputPrefix = "output";
+    private final static int[] SAMPLES = {5, 5, 4, 4, 7};
+    private final static String directory = "test-cases/";
+    private final static String inputPrefix = "in0";
+    private final static String outputPrefix = "out0";
     private final static String extension = ".txt";
 
     public static void main(String[] args) throws Exception {
         LexerPractice lexerPractice = new LexerPractice();
-        for (int i = 1; i <= SAMPLES; ++i) {
-            lexerPractice.setNewFiles(directory + "/" + inputPrefix + i + extension,
-                                      directory + "/" + outputPrefix + i + extension );
-            lexerPractice.generateOutput();
+//        lexerPractice.printRandomStrings(200);
+        for (char c = 'A'; c <= 'E'; ++c) {
+            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
+                lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
+                                + inputPrefix + i + extension,
+                        directory + "/" + String.valueOf(c) + "/"
+                                + outputPrefix + i + extension);
+                lexerPractice.generateOutput();
+            }
         }
     }
 }

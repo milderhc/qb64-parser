@@ -1,0 +1,17 @@
+if AND then
+    print "alksdf";
+
+    DIM a,b,c,d as INTEGER
+
+    a = 13AND 1888 + 3.5555555 + 2893492/13.0AND 18
+
+    a;b;c;d;e;f;g;
+
+
+    ;;;;;;
+
+    for i = 0 to sub step end sub
+
+    wend
+end if
+

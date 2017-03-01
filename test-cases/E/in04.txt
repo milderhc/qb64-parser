@@ -1,0 +1,4 @@
+' Errores lexicos
+a = -13412
+1.AND23948998
+print "no imprimir estO"

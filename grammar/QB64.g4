@@ -17,29 +17,32 @@ command             : if_
                     | select_
                     | call_sub
                     | declaration
+                    | const_declaration
                     | assignment
                     | print
                     | input
                     ;
 
-input               : INPUT id_list ;
+input               : INPUT (STRINGVALUE COMMA)? id_list ;
 print               : PRINT print_list ;
+print_list          : (expression | id) (SEMICOLON print_list)* SEMICOLON? ;
 
 if_                 : IF expression THEN commands (ELSE commands)? END IF ;
 while_              : WHILE expression commands WEND ;
 do_while            : DO commands LOOP WHILE expression ;
 do_until            : DO commands LOOP UNTIL expression ;
 for_                : FOR single_numeric_assignment
-                        TO expression commands
-                        (STEP expression)?
+                        TO expression (STEP expression)?
+                        commands
                         NEXT (IDPREFIX)? ;
 select_             : SELECT CASE id (cases_list)* (CASE ELSE commands)? END SELECT ;
 cases_list          : CASE expression commands (cases_list)* ;
 
-declaration         : DIM id_list AS type ;
+declaration         : DIM SHARED? id_list AS type ;
 id_list             : id (COMMA id_list)* ;
-print_list          : (expression | id) (SEMICOLON print_list)* ;
 
+const_declaration   : CONST const_declaration_list ;
+const_declaration_list : single_id EQUALOP expression (COMMA const_declaration_list)* ;
 
 assignment          : id EQUALOP expression
                     ;
@@ -133,11 +136,38 @@ type                : INTEGER
                     | STRING
                     ;
 
-INTEGERVALUE        : [0-9]+ ;
+//INTEGERVALUE        : SUBOP NEGATIVEINTEGER
+//                    | NONNEGATIVEINTEGER
+//                    ;
+//NONNEGATIVEINTEGER  : [3][2][7][6][0-7]
+//                    | [3][2][7][0-5][0-9]
+//                    | [3][2][0-6][0-9][0-9]
+//                    | [3][0-1][0-9][0-9][0-9]
+//                    | [1-2][0-9][0-9][0-9][0-9]
+//                    | [0]?[0-9]?[0-9]?[0-9]?[0-9]
+//                    ;
+//NEGATIVEINTEGER     : [3][2][7][6][0-8]
+//                    | [3][2][7][0-5][0-9]
+//                    | [3][2][0-6][0-9][0-9]
+//                    | [3][0-1][0-9][0-9][0-9]
+//                    | [1-2][0-9][0-9][0-9][0-9]
+//                    | [0]?[0-9]?[0-9]?[0-9]?[0-9]
+//                    ;
+//
+//LONGVALUE           : SUBOP? [0-9]+ ;
+
+INTEGERVALUE        : [3][2][7][6][0-7]
+                    | [3][2][7][0-5][0-9]
+                    | [3][2][0-6][0-9][0-9]
+                    | [3][0-1][0-9][0-9][0-9]
+                    | [1-2][0-9][0-9][0-9][0-9]
+                    | [0]?[0-9]?[0-9]?[0-9]?[0-9]
+                    ;
+
 LONGVALUE           : [0-9]+ ;
 SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
 DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
-STRINGVALUE         : ('"') ~['"']* ('"');
+STRINGVALUE         : ('"') ~[\n"]* ('"');
 
 funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? commands END FUNCTION
                 | SUB single_id (LEFTPAR id_list RIGHTPAR)? commands END SUB
@@ -155,7 +185,7 @@ parameters_list     : (LEFTPAR expression RIGHTPAR) (COMMA parameters_list)*
 //Operators
 negop               : NOT ;
 compop              : (DIFFOP | LESSOP | LESSOREQUALOP | GREATER | GREATEROREQUAL);
-binop               : (OR | AND);
+binop               : (OR | AND | XOR | EQUALOP);
 proop               : (DIVOP | PRODUCTOP | MOD);
 
 EQUALOP             : '=' ;
@@ -212,6 +242,8 @@ SUB             : S U B ;
 FUNCTION        : F U N C T I O N ;
 SELECT          : S E L E C T ;
 CASE            : C A S E ;
+SHARED          : S H A R E D ;
+CONST           : C O N S T ;
 
 fragment A: 'a' | 'A' ;
 fragment B: 'b' | 'B' ;

@@ -1,0 +1,81 @@
+' Floyd Warsall Algorithm
+'
+
+PRINT "This is the Floyd Warsall algorithm"
+
+' n - number of nodes of the graph
+' m - number of edges of the graph
+DIM n, m AS INTEGER
+INPUT "Enter the number of nodes of your graph ", n
+INPUT "Enter the number of edges of your graph ", m
+
+DIM SHARED G(n, n) AS LONG
+CONST INFINITY& = 1000000000
+initialize n
+
+PRINT "Now, enter"; m; "edges with 3 three numbers in each line"
+PRINT "1 <= u, v <= n and w <= 1000000"
+PRINT "Indicating there is an edge between u and v and its weight is w"
+
+FOR i = 1 TO m
+    INPUT u%, v%, w&
+    G(u%, v%) = w&
+NEXT
+
+floyd_warsall (n)
+PRINT "Floyd Warsall in your graph of"; n; "nodes has been executed"
+PRINT "The matrix of distances is"
+show_distances n
+
+
+' ---------- SUBS AND FUNCTIONS -------------
+
+' prepares the Floyd Warsall matrix
+SUB initialize (n)
+FOR i = 1 TO n
+    FOR j = 1 TO n
+        IF i <> j THEN
+            G(i, j) = INFINITY
+        ELSE
+            G(i, j) = 0
+        END IF
+    NEXT j
+NEXT
+END SUB
+
+'executes Floyd Warsall algorithm
+SUB floyd_warsall (n%)
+FOR k = 1 TO n%
+    FOR i = 1 TO n%
+        FOR j = 1 TO n%
+            G(i, j) = min(G(i, j), G(i, k) + G(k, j))
+        NEXT
+    NEXT
+NEXT
+
+'Note here how n is changed in the subproc but not
+'in the main module because of the way floyd_warsall was called
+n% = -50
+END SUB
+
+'returns the minimum between a pair of long-integer numbers
+FUNCTION min& (a&, b&)
+IF a& < b& THEN
+    min = a&
+ELSE
+    min = b&
+END IF
+END FUNCTION
+
+SUB show_distances (n)
+FOR i = 1 TO n
+    FOR j = 1 TO n
+        IF G(i, j) = INFINITY THEN
+            PRINT " - ";
+        ELSE
+            PRINT G(i, j);
+        END IF
+    NEXT
+    PRINT ""
+NEXT
+END SUB

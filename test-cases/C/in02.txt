@@ -1,0 +1,20 @@
+for i = -1 to -77777 step -23
+    print -i
+next i
+
+
+--385745
+
+not-145
+
+print 12AND-234 + 12AND234 XOR 1234XOR 1234 -845
+
+
+print "hola";
+
+aNOTb = aMODb
+x = b%NOT>=0.7
+
+function a$(c&, b)
+    a = "Return"
+end function

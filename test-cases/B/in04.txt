@@ -1,0 +1,14 @@
+int = 10
+
+for i = 0 to int step 1
+    modulo = i mod 2
+    select case modulo
+        case 1
+            print "impar"
+        case 0
+            print "par"
+    end select
+
+    print "Random things"
+    print 8/5/6*4*5+g*(7/6*(5+4)*13*55+28+4.028934009+123)*5+(12)
+next

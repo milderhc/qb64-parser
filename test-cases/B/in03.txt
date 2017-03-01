@@ -1,0 +1,15 @@
+' Comentarios
+
+
+' Los comentarios no deben ser tomados en cuenta
+
+' O bueno si, pero solo para contar el numero de lineas
+
+
+' No son ningun token
+
+comentarios
+
+sub comentarios
+    print "Comentarios pasados _9*&* $$"
+end sub
