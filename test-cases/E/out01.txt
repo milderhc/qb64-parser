@@ -1,0 +1,4 @@
+<id,a,1,1>
+<token_pesos,1,2>
+<token_igual,1,4>
+>>> Error lexico (linea: 1, posicion: 6)

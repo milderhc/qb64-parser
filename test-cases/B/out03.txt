@@ -1,0 +1,7 @@
+<id,comentarios,11,1>
+<sub,13,1>
+<id,comentarios,13,5>
+<print,14,5>
+<token_string,Comentarios pasados _9*&* $$,14,11>
+<end,15,1>
+<sub,15,5>

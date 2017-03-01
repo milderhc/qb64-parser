@@ -1,0 +1,26 @@
+<token_string,Prueba de strings,1,1>
+<token_string,skdfjaskdf Adkfj,3,5>
+<token_string,this,6,5>
+<token_string,programming,8,9>
+<token_string,nothing,10,12>
+<token_string,now Repeat the strings,14,5>
+<token_string,Prueba de strings,16,5>
+<token_string,skdfjaskdf Adkfj,18,9>
+<token_string,this,21,9>
+<token_string,programming,23,13>
+<token_string,nothing,25,16>
+<token_string,now Repeat the strings,29,9>
+<token_string,Prueba de strings,31,9>
+<token_string,skdfjaskdf Adkfj,33,13>
+<token_string,this,36,13>
+<token_string,programming,38,17>
+<token_string,nothing,40,20>
+<token_string,now Repeat the strings,44,13>
+<token_string,Prueba de strings,46,13>
+<token_string,skdfjaskdf Adkfj,48,17>
+<token_string,this,51,17>
+<token_string,programming,53,21>
+<token_string,nothing,55,24>
+<token_string,now Repeat the strings,59,17>
+<token_string,La estructura de los strings permanece,61,2>
+<token_string,Analisis lexico terminado,65,2>

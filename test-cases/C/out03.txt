@@ -1,0 +1,52 @@
+<dim,1,1>
+<shared,1,5>
+<const,1,12>
+<id,id,1,18>
+<token_menos,1,20>
+<token_integer,2,1,21>
+<token_igual,1,23>
+<token_menos,1,25>
+<token_integer,2,1,26>
+<select,4,1>
+<case,4,8>
+<id,id,4,13>
+<token_menos,4,15>
+<token_integer,2,4,16>
+<case,5,5>
+<token_string,2,5,10>
+<token_pyc,5,13>
+<print,6,9>
+<token_string,Esto no tiene forma sintactica, aun asi es valido lexicamente,6,15>
+<case,7,5>
+<token_integer,234,7,10>
+<token_dif,7,13>
+<print,8,9>
+<token_string,alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\,8,15>
+<case,10,9>
+<else,10,14>
+<end,12,1>
+<select,12,5>
+<do,15,1>
+<print,16,5>
+<token_string,do anything,16,11>
+<loop,17,1>
+<until,17,6>
+<do,20,1>
+<print,21,5>
+<token_string,do anything,21,11>
+<token_pyc,21,24>
+<token_integer,3,21,26>
+<id,not3,21,27>
+<token_xor,21,32>
+<token_integer,3,21,36>
+<token_neg,21,37>
+<token_integer,3,21,41>
+<loop,22,1>
+<while,22,6>
+<token_mas,26,1>
+<token_mas,26,2>
+<id,p_es_igual_a_p,26,3>
+<token_mas,26,17>
+<token_mas,26,18>
+<token_igual,26,20>
+<token_string,Siempre o solo en ciertos casos?,26,22>

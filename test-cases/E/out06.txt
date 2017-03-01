@@ -1,0 +1,3 @@
+<token_double,2.5598055,2,1>
+<id,not3,2,10>
+>>> Error lexico (linea: 2, posicion: 14)

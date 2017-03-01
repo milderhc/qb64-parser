@@ -1,0 +1,9 @@
+<id,b,1,1>
+<token_pesos,1,2>
+<token_igual,1,4>
+<token_string,Este es otro error lexico,1,6>
+<print,2,1>
+<id,b,2,7>
+<token_pesos,2,8>
+<token_coma,2,9>
+>>> Error lexico (linea: 2, posicion: 11)
