@@ -61,6 +61,7 @@ IDPREFIX=60
 COMMENT=61
 WS=62
 ErrorCharacter=63
+ELSEIF=64
 '%'=1
 '&'=2
 '!'=3

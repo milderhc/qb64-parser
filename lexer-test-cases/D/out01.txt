@@ -84,46 +84,26 @@
 <id,lc,16,14>
 <token_mas,16,17>
 <id,tc,16,19>
-<id,elseif,17,5>
-<id,asc,17,12>
-<token_par_izq,17,15>
-<id,tc,17,16>
-<token_par_der,17,18>
-<token_mayor,17,20>
-<token_integer,47,17,22>
-<token_y,17,25>
-<id,asc,17,29>
-<token_par_izq,17,32>
-<id,tc,17,33>
-<token_par_der,17,35>
-<token_menor,17,37>
-<token_integer,58,17,39>
-<then,17,42>
-<id,nc,18,9>
+<else,17,5>
+<id,oc,18,9>
 <token_igual,18,12>
-<id,nc,18,14>
+<id,oc,18,14>
 <token_mas,18,17>
 <id,tc,18,19>
-<else,19,5>
-<id,oc,20,9>
-<token_igual,20,12>
-<id,oc,20,14>
-<token_mas,20,17>
-<id,tc,20,19>
-<end,21,5>
-<if,21,9>
-<next,22,1>
-<id,x,22,6>
+<end,19,5>
+<if,19,9>
+<next,20,1>
+<id,x,20,6>
+<print,22,1>
+<print,23,1>
+<token_string,Letters: ,23,7>
+<token_pyc,23,18>
+<id,lc,23,20>
 <print,24,1>
+<token_string,Numbers: ,24,7>
+<token_pyc,24,18>
+<id,nc,24,20>
 <print,25,1>
-<token_string,Letters: ,25,7>
-<token_pyc,25,18>
-<id,lc,25,20>
-<print,26,1>
-<token_string,Numbers: ,26,7>
-<token_pyc,26,18>
-<id,nc,26,20>
-<print,27,1>
-<token_string,Other: ,27,7>
-<token_pyc,27,16>
-<id,oc,27,18>
+<token_string,Other: ,25,7>
+<token_pyc,25,16>
+<id,oc,25,18>

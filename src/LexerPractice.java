@@ -4,7 +4,7 @@
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-import qb64parsing.*;
+//import qb64parsing.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +49,7 @@ public class LexerPractice {
         keywords.add("const");
         keywords.add("select");
         keywords.add("case");
+        keywords.add("elseif");
     }
 
     private void fillOperators() {
@@ -192,22 +193,22 @@ public class LexerPractice {
     }
 
     private final static int[] SAMPLES = {5, 5, 4, 4, 7};
-    private final static String directory = "test-cases/";
+    private final static String directory = "lexer-test-cases/";
     private final static String inputPrefix = "in0";
     private final static String outputPrefix = "out0";
     private final static String extension = ".txt";
 
-    public static void main(String[] args) throws Exception {
-        LexerPractice lexerPractice = new LexerPractice();
-//        lexerPractice.printRandomStrings(200);
-        for (char c = 'A'; c <= 'E'; ++c) {
-            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
-                lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
-                                + inputPrefix + i + extension,
-                        directory + "/" + String.valueOf(c) + "/"
-                                + outputPrefix + i + extension);
-                lexerPractice.generateOutput();
-            }
-        }
-    }
+//    public static void main(String[] args) throws Exception {
+//        LexerPractice lexerPractice = new LexerPractice();
+////        lexerPractice.printRandomStrings(200);
+//        for (char c = 'A'; c <= 'E'; ++c) {
+//            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
+//                lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
+//                                + inputPrefix + i + extension,
+//                        directory + "/" + String.valueOf(c) + "/"
+//                                + outputPrefix + i + extension);
+//                lexerPractice.generateOutput();
+//            }
+//        }
+//    }
 }

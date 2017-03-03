@@ -1,5 +1,4 @@
 // Generated from /home/milderhc/Documents/lenguajes/ta/antlr/qb64-parser/grammar/QB64.g4 by ANTLR 4.6
-package qb64parsing;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -26,7 +25,7 @@ public class QB64Parser extends Parser {
 		FOR=38, TO=39, STEP=40, NEXT=41, INTEGER=42, SINGLE=43, DOUBLE=44, LONG=45, 
 		STRING=46, DIM=47, AS=48, NOT=49, OR=50, AND=51, XOR=52, MOD=53, SUB=54, 
 		FUNCTION=55, SELECT=56, CASE=57, SHARED=58, CONST=59, IDPREFIX=60, COMMENT=61, 
-		WS=62, ErrorCharacter=63;
+		WS=62, ErrorCharacter=63, ELSEIF=64;
 	public static final int
 		RULE_qb = 0, RULE_main = 1, RULE_commands = 2, RULE_command = 3, RULE_input = 4, 
 		RULE_print = 5, RULE_print_list = 6, RULE_if_ = 7, RULE_while_ = 8, RULE_do_while = 9, 
@@ -70,7 +69,7 @@ public class QB64Parser extends Parser {
 		"END", "WHILE", "WEND", "DO", "LOOP", "UNTIL", "FOR", "TO", "STEP", "NEXT", 
 		"INTEGER", "SINGLE", "DOUBLE", "LONG", "STRING", "DIM", "AS", "NOT", "OR", 
 		"AND", "XOR", "MOD", "SUB", "FUNCTION", "SELECT", "CASE", "SHARED", "CONST", 
-		"IDPREFIX", "COMMENT", "WS", "ErrorCharacter"
+		"IDPREFIX", "COMMENT", "WS", "ErrorCharacter", "ELSEIF"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -144,6 +143,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitQb(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitQb(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final QbContext qb() throws RecognitionException {
@@ -200,6 +204,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitMain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitMain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MainContext main() throws RecognitionException {
@@ -242,6 +251,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCommands(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCommands(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CommandsContext commands() throws RecognitionException {
@@ -278,6 +292,7 @@ public class QB64Parser extends Parser {
 			case SUB:
 			case FUNCTION:
 			case CASE:
+			case ELSEIF:
 				enterOuterAlt(_localctx, 2);
 				{
 				}
@@ -345,6 +360,11 @@ public class QB64Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCommand(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCommand(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -471,6 +491,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitInput(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitInput(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final InputContext input() throws RecognitionException {
@@ -526,6 +551,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitPrint(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitPrint(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PrintContext print() throws RecognitionException {
@@ -579,6 +609,11 @@ public class QB64Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitPrint_list(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitPrint_list(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -662,6 +697,10 @@ public class QB64Parser extends Parser {
 			return getRuleContext(CommandsContext.class,i);
 		}
 		public TerminalNode END() { return getToken(QB64Parser.END, 0); }
+		public List<TerminalNode> ELSEIF() { return getTokens(QB64Parser.ELSEIF); }
+		public TerminalNode ELSEIF(int i) {
+			return getToken(QB64Parser.ELSEIF, i);
+		}
 		public TerminalNode ELSE() { return getToken(QB64Parser.ELSE, 0); }
 		public If_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -674,6 +713,11 @@ public class QB64Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitIf_(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitIf_(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -692,21 +736,37 @@ public class QB64Parser extends Parser {
 			match(THEN);
 			setState(160);
 			commands();
-			setState(163);
+			setState(165);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==ELSEIF) {
+				{
+				{
+				setState(161);
+				match(ELSEIF);
+				setState(162);
+				commands();
+				}
+				}
+				setState(167);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(170);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ELSE) {
 				{
-				setState(161);
+				setState(168);
 				match(ELSE);
-				setState(162);
+				setState(169);
 				commands();
 				}
 			}
 
-			setState(165);
+			setState(172);
 			match(END);
-			setState(166);
+			setState(173);
 			match(IF);
 			}
 		}
@@ -742,6 +802,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitWhile_(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitWhile_(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final While_Context while_() throws RecognitionException {
@@ -750,13 +815,13 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(168);
+			setState(175);
 			match(WHILE);
-			setState(169);
+			setState(176);
 			expression(0);
-			setState(170);
+			setState(177);
 			commands();
-			setState(171);
+			setState(178);
 			match(WEND);
 			}
 		}
@@ -793,6 +858,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDo_while(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDo_while(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Do_whileContext do_while() throws RecognitionException {
@@ -801,15 +871,15 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(173);
+			setState(180);
 			match(DO);
-			setState(174);
+			setState(181);
 			commands();
-			setState(175);
+			setState(182);
 			match(LOOP);
-			setState(176);
+			setState(183);
 			match(WHILE);
-			setState(177);
+			setState(184);
 			expression(0);
 			}
 		}
@@ -846,6 +916,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDo_until(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDo_until(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Do_untilContext do_until() throws RecognitionException {
@@ -854,15 +929,15 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(179);
+			setState(186);
 			match(DO);
-			setState(180);
+			setState(187);
 			commands();
-			setState(181);
+			setState(188);
 			match(LOOP);
-			setState(182);
+			setState(189);
 			match(UNTIL);
-			setState(183);
+			setState(190);
 			expression(0);
 			}
 		}
@@ -907,6 +982,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFor_(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitFor_(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final For_Context for_() throws RecognitionException {
@@ -916,36 +996,36 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(185);
+			setState(192);
 			match(FOR);
-			setState(186);
+			setState(193);
 			single_numeric_assignment();
-			setState(187);
+			setState(194);
 			match(TO);
-			setState(188);
+			setState(195);
 			expression(0);
-			setState(191);
+			setState(198);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==STEP) {
 				{
-				setState(189);
+				setState(196);
 				match(STEP);
-				setState(190);
+				setState(197);
 				expression(0);
 				}
 			}
 
-			setState(193);
+			setState(200);
 			commands();
-			setState(194);
+			setState(201);
 			match(NEXT);
-			setState(196);
+			setState(203);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				{
-				setState(195);
+				setState(202);
 				match(IDPREFIX);
 				}
 				break;
@@ -998,6 +1078,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSelect_(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSelect_(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Select_Context select_() throws RecognitionException {
@@ -1008,45 +1093,45 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(198);
+			setState(205);
 			match(SELECT);
-			setState(199);
+			setState(206);
 			match(CASE);
-			setState(200);
+			setState(207);
 			id();
-			setState(204);
+			setState(211);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(201);
+					setState(208);
 					cases_list();
 					}
 					} 
 				}
-				setState(206);
+				setState(213);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			}
-			setState(210);
+			setState(217);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==CASE) {
 				{
-				setState(207);
+				setState(214);
 				match(CASE);
-				setState(208);
+				setState(215);
 				match(ELSE);
-				setState(209);
+				setState(216);
 				commands();
 				}
 			}
 
-			setState(212);
+			setState(219);
 			match(END);
-			setState(213);
+			setState(220);
 			match(SELECT);
 			}
 		}
@@ -1087,6 +1172,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCases_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCases_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Cases_listContext cases_list() throws RecognitionException {
@@ -1096,27 +1186,27 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(215);
+			setState(222);
 			match(CASE);
-			setState(216);
+			setState(223);
 			expression(0);
-			setState(217);
+			setState(224);
 			commands();
-			setState(221);
+			setState(228);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(218);
+					setState(225);
 					cases_list();
 					}
 					} 
 				}
-				setState(223);
+				setState(230);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
 			}
 			}
 		}
@@ -1153,6 +1243,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDeclaration(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDeclaration(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DeclarationContext declaration() throws RecognitionException {
@@ -1162,23 +1257,23 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(224);
+			setState(231);
 			match(DIM);
-			setState(226);
+			setState(233);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SHARED) {
 				{
-				setState(225);
+				setState(232);
 				match(SHARED);
 				}
 			}
 
-			setState(228);
+			setState(235);
 			id_list();
-			setState(229);
+			setState(236);
 			match(AS);
-			setState(230);
+			setState(237);
 			type();
 			}
 		}
@@ -1219,6 +1314,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitId_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitId_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Id_listContext id_list() throws RecognitionException {
@@ -1228,25 +1328,25 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(232);
+			setState(239);
 			id();
-			setState(237);
+			setState(244);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(233);
+					setState(240);
 					match(COMMA);
-					setState(234);
+					setState(241);
 					id_list();
 					}
 					} 
 				}
-				setState(239);
+				setState(246);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			}
 			}
 		}
@@ -1278,6 +1378,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitConst_declaration(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitConst_declaration(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Const_declarationContext const_declaration() throws RecognitionException {
@@ -1286,9 +1391,9 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(240);
+			setState(247);
 			match(CONST);
-			setState(241);
+			setState(248);
 			const_declaration_list();
 			}
 		}
@@ -1333,6 +1438,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitConst_declaration_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitConst_declaration_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Const_declaration_listContext const_declaration_list() throws RecognitionException {
@@ -1342,29 +1452,29 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(243);
-			single_id();
-			setState(244);
-			match(EQUALOP);
-			setState(245);
-			expression(0);
 			setState(250);
+			single_id();
+			setState(251);
+			match(EQUALOP);
+			setState(252);
+			expression(0);
+			setState(257);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(246);
+					setState(253);
 					match(COMMA);
-					setState(247);
+					setState(254);
 					const_declaration_list();
 					}
 					} 
 				}
-				setState(252);
+				setState(259);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			}
 			}
 		}
@@ -1399,6 +1509,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitAssignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitAssignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AssignmentContext assignment() throws RecognitionException {
@@ -1407,11 +1522,11 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(253);
+			setState(260);
 			id();
-			setState(254);
+			setState(261);
 			match(EQUALOP);
-			setState(255);
+			setState(262);
 			expression(0);
 			}
 		}
@@ -1446,6 +1561,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_numeric_assignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_numeric_assignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_numeric_assignmentContext single_numeric_assignment() throws RecognitionException {
@@ -1454,11 +1574,11 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(257);
+			setState(264);
 			single_numeric_id();
-			setState(258);
+			setState(265);
 			match(EQUALOP);
-			setState(259);
+			setState(266);
 			expression(0);
 			}
 		}
@@ -1493,6 +1613,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_numeric_assignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_numeric_assignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_numeric_assignmentContext array_numeric_assignment() throws RecognitionException {
@@ -1501,11 +1626,11 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(261);
+			setState(268);
 			array_numeric_id();
-			setState(262);
+			setState(269);
 			match(EQUALOP);
-			setState(263);
+			setState(270);
 			expression(0);
 			}
 		}
@@ -1539,26 +1664,31 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitId(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitId(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IdContext id() throws RecognitionException {
 		IdContext _localctx = new IdContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_id);
 		try {
-			setState(267);
+			setState(274);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(265);
+				setState(272);
 				single_id();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(266);
+				setState(273);
 				array_id();
 				}
 				break;
@@ -1594,26 +1724,31 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_idContext single_id() throws RecognitionException {
 		Single_idContext _localctx = new Single_idContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_single_id);
 		try {
-			setState(271);
+			setState(278);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(269);
+				setState(276);
 				single_numeric_id();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(270);
+				setState(277);
 				single_id_string();
 				}
 				break;
@@ -1655,40 +1790,45 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_numeric_id(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_numeric_id(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_numeric_idContext single_numeric_id() throws RecognitionException {
 		Single_numeric_idContext _localctx = new Single_numeric_idContext(_ctx, getState());
 		enterRule(_localctx, 46, RULE_single_numeric_id);
 		try {
-			setState(277);
+			setState(284);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(273);
+				setState(280);
 				single_id_int();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(274);
+				setState(281);
 				single_id_long();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(275);
+				setState(282);
 				single_id_single();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(276);
+				setState(283);
 				single_id_double();
 				}
 				break;
@@ -1724,26 +1864,31 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_idContext array_id() throws RecognitionException {
 		Array_idContext _localctx = new Array_idContext(_ctx, getState());
 		enterRule(_localctx, 48, RULE_array_id);
 		try {
-			setState(281);
+			setState(288);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(279);
+				setState(286);
 				array_numeric_id();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(280);
+				setState(287);
 				array_id_string();
 				}
 				break;
@@ -1785,40 +1930,45 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_numeric_id(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_numeric_id(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_numeric_idContext array_numeric_id() throws RecognitionException {
 		Array_numeric_idContext _localctx = new Array_numeric_idContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_array_numeric_id);
 		try {
-			setState(287);
+			setState(294);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(283);
+				setState(290);
 				array_id_int();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(284);
+				setState(291);
 				array_id_long();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(285);
+				setState(292);
 				array_id_single();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(286);
+				setState(293);
 				array_id_double();
 				}
 				break;
@@ -1857,6 +2007,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_int(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_int(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_id_intContext array_id_int() throws RecognitionException {
@@ -1866,23 +2021,23 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(289);
+			setState(296);
 			single_id_int();
-			setState(293);
+			setState(300);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,21,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(290);
+					setState(297);
 					array();
 					}
 					} 
 				}
-				setState(295);
+				setState(302);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,21,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
 			}
 			}
 		}
@@ -1919,6 +2074,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_long(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_long(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_id_longContext array_id_long() throws RecognitionException {
@@ -1928,23 +2088,23 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(296);
+			setState(303);
 			single_id_long();
-			setState(300);
+			setState(307);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,23,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(297);
+					setState(304);
 					array();
 					}
 					} 
 				}
-				setState(302);
+				setState(309);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,23,_ctx);
 			}
 			}
 		}
@@ -1981,6 +2141,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_single(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_single(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_id_singleContext array_id_single() throws RecognitionException {
@@ -1990,23 +2155,23 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(303);
+			setState(310);
 			single_id_single();
-			setState(307);
+			setState(314);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,23,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,24,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(304);
+					setState(311);
 					array();
 					}
 					} 
 				}
-				setState(309);
+				setState(316);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,23,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,24,_ctx);
 			}
 			}
 		}
@@ -2043,6 +2208,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_double(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_double(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_id_doubleContext array_id_double() throws RecognitionException {
@@ -2052,23 +2222,23 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(310);
+			setState(317);
 			single_id_double();
-			setState(314);
+			setState(321);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,24,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(311);
+					setState(318);
 					array();
 					}
 					} 
 				}
-				setState(316);
+				setState(323);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,24,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
 			}
 			}
 		}
@@ -2105,6 +2275,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_string(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_string(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Array_id_stringContext array_id_string() throws RecognitionException {
@@ -2114,23 +2289,23 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(317);
+			setState(324);
 			single_id_string();
-			setState(321);
+			setState(328);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,26,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(318);
+					setState(325);
 					array();
 					}
 					} 
 				}
-				setState(323);
+				setState(330);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,26,_ctx);
 			}
 			}
 		}
@@ -2160,6 +2335,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_int(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_int(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_id_intContext single_id_int() throws RecognitionException {
@@ -2168,9 +2348,9 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(324);
+			setState(331);
 			match(IDPREFIX);
-			setState(325);
+			setState(332);
 			match(INTEGERSUFFIX);
 			}
 		}
@@ -2200,6 +2380,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_long(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_long(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_id_longContext single_id_long() throws RecognitionException {
@@ -2208,9 +2393,9 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(327);
+			setState(334);
 			match(IDPREFIX);
-			setState(328);
+			setState(335);
 			match(LONGSUFFIX);
 			}
 		}
@@ -2240,6 +2425,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_single(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_single(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_id_singleContext single_id_single() throws RecognitionException {
@@ -2248,14 +2438,14 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(330);
+			setState(337);
 			match(IDPREFIX);
-			setState(332);
+			setState(339);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
 			case 1:
 				{
-				setState(331);
+				setState(338);
 				match(SINGLESUFFIX);
 				}
 				break;
@@ -2288,6 +2478,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_double(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_double(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_id_doubleContext single_id_double() throws RecognitionException {
@@ -2296,9 +2491,9 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(334);
+			setState(341);
 			match(IDPREFIX);
-			setState(335);
+			setState(342);
 			match(DOUBLESUFFIX);
 			}
 		}
@@ -2328,6 +2523,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_string(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_string(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Single_id_stringContext single_id_string() throws RecognitionException {
@@ -2336,9 +2536,9 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(337);
+			setState(344);
 			match(IDPREFIX);
-			setState(338);
+			setState(345);
 			match(STRINGSUFFIX);
 			}
 		}
@@ -2371,6 +2571,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArrayContext array() throws RecognitionException {
@@ -2379,11 +2584,11 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(340);
+			setState(347);
 			match(LEFTPAR);
-			setState(341);
+			setState(348);
 			expression_list();
-			setState(342);
+			setState(349);
 			match(RIGHTPAR);
 			}
 		}
@@ -2424,6 +2629,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitExpression_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitExpression_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Expression_listContext expression_list() throws RecognitionException {
@@ -2433,25 +2643,25 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(344);
+			setState(351);
 			expression(0);
-			setState(349);
+			setState(356);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,28,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(345);
+					setState(352);
 					match(COMMA);
-					setState(346);
+					setState(353);
 					expression_list();
 					}
 					} 
 				}
-				setState(351);
+				setState(358);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,28,_ctx);
 			}
 			}
 		}
@@ -2511,6 +2721,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -2528,75 +2743,75 @@ public class QB64Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(365);
+			setState(372);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
 			case 1:
 				{
-				setState(353);
+				setState(360);
 				value();
 				}
 				break;
 			case 2:
 				{
-				setState(354);
+				setState(361);
 				match(SUBOP);
-				setState(355);
+				setState(362);
 				expression(7);
 				}
 				break;
 			case 3:
 				{
-				setState(356);
+				setState(363);
 				negop();
-				setState(357);
+				setState(364);
 				expression(6);
 				}
 				break;
 			case 4:
 				{
-				setState(359);
+				setState(366);
 				call_function();
 				}
 				break;
 			case 5:
 				{
-				setState(360);
+				setState(367);
 				match(LEFTPAR);
-				setState(361);
+				setState(368);
 				expression(0);
-				setState(362);
+				setState(369);
 				match(RIGHTPAR);
 				}
 				break;
 			case 6:
 				{
-				setState(364);
+				setState(371);
 				id();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(390);
+			setState(397);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(388);
+					setState(395);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,30,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(367);
+						setState(374);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(368);
+						setState(375);
 						match(POTOP);
-						setState(369);
+						setState(376);
 						expression(12);
 						}
 						break;
@@ -2604,11 +2819,11 @@ public class QB64Parser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(370);
+						setState(377);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(371);
+						setState(378);
 						proop();
-						setState(372);
+						setState(379);
 						expression(11);
 						}
 						break;
@@ -2616,11 +2831,11 @@ public class QB64Parser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(374);
+						setState(381);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(375);
+						setState(382);
 						match(SUBOP);
-						setState(376);
+						setState(383);
 						expression(10);
 						}
 						break;
@@ -2628,11 +2843,11 @@ public class QB64Parser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(377);
+						setState(384);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(378);
+						setState(385);
 						match(ADDOP);
-						setState(379);
+						setState(386);
 						expression(9);
 						}
 						break;
@@ -2640,11 +2855,11 @@ public class QB64Parser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(380);
+						setState(387);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(381);
+						setState(388);
 						compop();
-						setState(382);
+						setState(389);
 						expression(6);
 						}
 						break;
@@ -2652,20 +2867,20 @@ public class QB64Parser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(384);
+						setState(391);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(385);
+						setState(392);
 						binop();
-						setState(386);
+						setState(393);
 						expression(5);
 						}
 						break;
 					}
 					} 
 				}
-				setState(392);
+				setState(399);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
 			}
 			}
 		}
@@ -2699,13 +2914,18 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitValue(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitValue(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 78, RULE_value);
 		try {
-			setState(395);
+			setState(402);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INTEGERVALUE:
@@ -2714,14 +2934,14 @@ public class QB64Parser extends Parser {
 			case DOUBLEVALUE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(393);
+				setState(400);
 				numeric_value();
 				}
 				break;
 			case STRINGVALUE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(394);
+				setState(401);
 				string_value();
 				}
 				break;
@@ -2757,6 +2977,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitNumeric_value(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitNumeric_value(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Numeric_valueContext numeric_value() throws RecognitionException {
@@ -2766,7 +2991,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(397);
+			setState(404);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INTEGERVALUE) | (1L << LONGVALUE) | (1L << SINGLEVALUE) | (1L << DOUBLEVALUE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2803,6 +3028,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitString_value(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitString_value(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final String_valueContext string_value() throws RecognitionException {
@@ -2811,7 +3041,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(399);
+			setState(406);
 			match(STRINGVALUE);
 			}
 		}
@@ -2844,6 +3074,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitType(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TypeContext type() throws RecognitionException {
@@ -2853,7 +3088,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(401);
+			setState(408);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INTEGER) | (1L << SINGLE) | (1L << DOUBLE) | (1L << LONG) | (1L << STRING))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2909,6 +3144,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFunproc(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitFunproc(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunprocContext funproc() throws RecognitionException {
@@ -2916,64 +3156,64 @@ public class QB64Parser extends Parser {
 		enterRule(_localctx, 86, RULE_funproc);
 		int _la;
 		try {
-			setState(427);
+			setState(434);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case FUNCTION:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(403);
+				setState(410);
 				match(FUNCTION);
-				setState(404);
+				setState(411);
 				single_id();
-				setState(409);
+				setState(416);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==LEFTPAR) {
 					{
-					setState(405);
+					setState(412);
 					match(LEFTPAR);
-					setState(406);
+					setState(413);
 					id_list();
-					setState(407);
+					setState(414);
 					match(RIGHTPAR);
 					}
 				}
 
-				setState(411);
+				setState(418);
 				commands();
-				setState(412);
+				setState(419);
 				match(END);
-				setState(413);
+				setState(420);
 				match(FUNCTION);
 				}
 				break;
 			case SUB:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(415);
+				setState(422);
 				match(SUB);
-				setState(416);
+				setState(423);
 				single_id();
-				setState(421);
+				setState(428);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==LEFTPAR) {
 					{
-					setState(417);
+					setState(424);
 					match(LEFTPAR);
-					setState(418);
+					setState(425);
 					id_list();
-					setState(419);
+					setState(426);
 					match(RIGHTPAR);
 					}
 				}
 
-				setState(423);
+				setState(430);
 				commands();
-				setState(424);
+				setState(431);
 				match(END);
-				setState(425);
+				setState(432);
 				match(SUB);
 				}
 				break;
@@ -3009,6 +3249,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCall_sub(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCall_sub(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Call_subContext call_sub() throws RecognitionException {
@@ -3017,14 +3262,14 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(429);
+			setState(436);
 			match(IDPREFIX);
-			setState(431);
+			setState(438);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,36,_ctx) ) {
 			case 1:
 				{
-				setState(430);
+				setState(437);
 				parameters_list();
 				}
 				break;
@@ -3063,6 +3308,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCall_function(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCall_function(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Call_functionContext call_function() throws RecognitionException {
@@ -3071,18 +3321,18 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(433);
+			setState(440);
 			single_id();
-			setState(438);
+			setState(445);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,36,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,37,_ctx) ) {
 			case 1:
 				{
-				setState(434);
+				setState(441);
 				match(LEFTPAR);
-				setState(435);
+				setState(442);
 				parameters_list();
-				setState(436);
+				setState(443);
 				match(RIGHTPAR);
 				}
 				break;
@@ -3128,6 +3378,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitParameters_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitParameters_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Parameters_listContext parameters_list() throws RecognitionException {
@@ -3135,62 +3390,62 @@ public class QB64Parser extends Parser {
 		enterRule(_localctx, 92, RULE_parameters_list);
 		try {
 			int _alt;
-			setState(459);
+			setState(466);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,39,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,40,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(440);
+				setState(447);
 				match(LEFTPAR);
-				setState(441);
+				setState(448);
 				expression(0);
-				setState(442);
+				setState(449);
 				match(RIGHTPAR);
 				}
-				setState(448);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,37,_ctx);
-				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-					if ( _alt==1 ) {
-						{
-						{
-						setState(444);
-						match(COMMA);
-						setState(445);
-						parameters_list();
-						}
-						} 
-					}
-					setState(450);
-					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,37,_ctx);
-				}
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(451);
-				expression(0);
-				setState(456);
+				setState(455);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,38,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(452);
+						setState(451);
 						match(COMMA);
-						setState(453);
+						setState(452);
 						parameters_list();
 						}
 						} 
 					}
-					setState(458);
+					setState(457);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,38,_ctx);
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(458);
+				expression(0);
+				setState(463);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,39,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(459);
+						match(COMMA);
+						setState(460);
+						parameters_list();
+						}
+						} 
+					}
+					setState(465);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,39,_ctx);
 				}
 				}
 				break;
@@ -3221,6 +3476,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitNegop(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitNegop(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final NegopContext negop() throws RecognitionException {
@@ -3229,7 +3489,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(461);
+			setState(468);
 			match(NOT);
 			}
 		}
@@ -3262,6 +3522,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCompop(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCompop(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CompopContext compop() throws RecognitionException {
@@ -3271,7 +3536,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(463);
+			setState(470);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIFFOP) | (1L << LESSOP) | (1L << LESSOREQUALOP) | (1L << GREATER) | (1L << GREATEROREQUAL))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3311,6 +3576,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitBinop(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitBinop(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final BinopContext binop() throws RecognitionException {
@@ -3320,7 +3590,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(465);
+			setState(472);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQUALOP) | (1L << OR) | (1L << AND) | (1L << XOR))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3359,6 +3629,11 @@ public class QB64Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitProop(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitProop(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProopContext proop() throws RecognitionException {
@@ -3368,7 +3643,7 @@ public class QB64Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(467);
+			setState(474);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIVOP) | (1L << PRODUCTOP) | (1L << MOD))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3417,7 +3692,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3A\u01d8\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3B\u01df\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3428,159 +3703,162 @@ public class QB64Parser extends Parser {
 		"\4x\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5\u0086\n\5"+
 		"\3\6\3\6\3\6\5\6\u008b\n\6\3\6\3\6\3\7\3\7\3\7\3\b\3\b\5\b\u0094\n\b\3"+
 		"\b\3\b\7\b\u0098\n\b\f\b\16\b\u009b\13\b\3\b\5\b\u009e\n\b\3\t\3\t\3\t"+
-		"\3\t\3\t\3\t\5\t\u00a6\n\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3"+
-		"\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\5\r"+
-		"\u00c2\n\r\3\r\3\r\3\r\5\r\u00c7\n\r\3\16\3\16\3\16\3\16\7\16\u00cd\n"+
-		"\16\f\16\16\16\u00d0\13\16\3\16\3\16\3\16\5\16\u00d5\n\16\3\16\3\16\3"+
-		"\16\3\17\3\17\3\17\3\17\7\17\u00de\n\17\f\17\16\17\u00e1\13\17\3\20\3"+
-		"\20\5\20\u00e5\n\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\7\21\u00ee\n\21"+
-		"\f\21\16\21\u00f1\13\21\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\23\7\23\u00fb"+
-		"\n\23\f\23\16\23\u00fe\13\23\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3"+
-		"\26\3\26\3\26\3\26\3\27\3\27\5\27\u010e\n\27\3\30\3\30\5\30\u0112\n\30"+
-		"\3\31\3\31\3\31\3\31\5\31\u0118\n\31\3\32\3\32\5\32\u011c\n\32\3\33\3"+
-		"\33\3\33\3\33\5\33\u0122\n\33\3\34\3\34\7\34\u0126\n\34\f\34\16\34\u0129"+
-		"\13\34\3\35\3\35\7\35\u012d\n\35\f\35\16\35\u0130\13\35\3\36\3\36\7\36"+
-		"\u0134\n\36\f\36\16\36\u0137\13\36\3\37\3\37\7\37\u013b\n\37\f\37\16\37"+
-		"\u013e\13\37\3 \3 \7 \u0142\n \f \16 \u0145\13 \3!\3!\3!\3\"\3\"\3\"\3"+
-		"#\3#\5#\u014f\n#\3$\3$\3$\3%\3%\3%\3&\3&\3&\3&\3\'\3\'\3\'\7\'\u015e\n"+
-		"\'\f\'\16\'\u0161\13\'\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\5(\u0170"+
-		"\n(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\7("+
-		"\u0187\n(\f(\16(\u018a\13(\3)\3)\5)\u018e\n)\3*\3*\3+\3+\3,\3,\3-\3-\3"+
-		"-\3-\3-\3-\5-\u019c\n-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u01a8\n-\3-\3"+
-		"-\3-\3-\5-\u01ae\n-\3.\3.\5.\u01b2\n.\3/\3/\3/\3/\3/\5/\u01b9\n/\3\60"+
-		"\3\60\3\60\3\60\3\60\3\60\7\60\u01c1\n\60\f\60\16\60\u01c4\13\60\3\60"+
-		"\3\60\3\60\7\60\u01c9\n\60\f\60\16\60\u01cc\13\60\5\60\u01ce\n\60\3\61"+
-		"\3\61\3\62\3\62\3\63\3\63\3\64\3\64\3\64\2\3N\65\2\4\6\b\n\f\16\20\22"+
-		"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdf\2\7\3"+
-		"\2\b\13\3\2,\60\3\2\23\27\4\2\r\r\64\66\4\2\17\20\67\67\u01e2\2h\3\2\2"+
-		"\2\4q\3\2\2\2\6w\3\2\2\2\b\u0085\3\2\2\2\n\u0087\3\2\2\2\f\u008e\3\2\2"+
-		"\2\16\u0093\3\2\2\2\20\u009f\3\2\2\2\22\u00aa\3\2\2\2\24\u00af\3\2\2\2"+
-		"\26\u00b5\3\2\2\2\30\u00bb\3\2\2\2\32\u00c8\3\2\2\2\34\u00d9\3\2\2\2\36"+
-		"\u00e2\3\2\2\2 \u00ea\3\2\2\2\"\u00f2\3\2\2\2$\u00f5\3\2\2\2&\u00ff\3"+
-		"\2\2\2(\u0103\3\2\2\2*\u0107\3\2\2\2,\u010d\3\2\2\2.\u0111\3\2\2\2\60"+
-		"\u0117\3\2\2\2\62\u011b\3\2\2\2\64\u0121\3\2\2\2\66\u0123\3\2\2\28\u012a"+
-		"\3\2\2\2:\u0131\3\2\2\2<\u0138\3\2\2\2>\u013f\3\2\2\2@\u0146\3\2\2\2B"+
-		"\u0149\3\2\2\2D\u014c\3\2\2\2F\u0150\3\2\2\2H\u0153\3\2\2\2J\u0156\3\2"+
-		"\2\2L\u015a\3\2\2\2N\u016f\3\2\2\2P\u018d\3\2\2\2R\u018f\3\2\2\2T\u0191"+
-		"\3\2\2\2V\u0193\3\2\2\2X\u01ad\3\2\2\2Z\u01af\3\2\2\2\\\u01b3\3\2\2\2"+
-		"^\u01cd\3\2\2\2`\u01cf\3\2\2\2b\u01d1\3\2\2\2d\u01d3\3\2\2\2f\u01d5\3"+
-		"\2\2\2hl\5\4\3\2ik\5X-\2ji\3\2\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2"+
-		"\2\2nl\3\2\2\2op\7\2\2\3p\3\3\2\2\2qr\5\6\4\2r\5\3\2\2\2st\5\b\5\2tu\5"+
-		"\6\4\2ux\3\2\2\2vx\3\2\2\2ws\3\2\2\2wv\3\2\2\2x\7\3\2\2\2y\u0086\5\20"+
-		"\t\2z\u0086\5\22\n\2{\u0086\5\24\13\2|\u0086\5\26\f\2}\u0086\5\30\r\2"+
-		"~\u0086\5\32\16\2\177\u0086\5Z.\2\u0080\u0086\5\36\20\2\u0081\u0086\5"+
-		"\"\22\2\u0082\u0086\5&\24\2\u0083\u0086\5\f\7\2\u0084\u0086\5\n\6\2\u0085"+
-		"y\3\2\2\2\u0085z\3\2\2\2\u0085{\3\2\2\2\u0085|\3\2\2\2\u0085}\3\2\2\2"+
-		"\u0085~\3\2\2\2\u0085\177\3\2\2\2\u0085\u0080\3\2\2\2\u0085\u0081\3\2"+
-		"\2\2\u0085\u0082\3\2\2\2\u0085\u0083\3\2\2\2\u0085\u0084\3\2\2\2\u0086"+
-		"\t\3\2\2\2\u0087\u008a\7\35\2\2\u0088\u0089\7\f\2\2\u0089\u008b\7\32\2"+
-		"\2\u008a\u0088\3\2\2\2\u008a\u008b\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d"+
-		"\5 \21\2\u008d\13\3\2\2\2\u008e\u008f\7\36\2\2\u008f\u0090\5\16\b\2\u0090"+
-		"\r\3\2\2\2\u0091\u0094\5N(\2\u0092\u0094\5,\27\2\u0093\u0091\3\2\2\2\u0093"+
-		"\u0092\3\2\2\2\u0094\u0099\3\2\2\2\u0095\u0096\7\30\2\2\u0096\u0098\5"+
-		"\16\b\2\u0097\u0095\3\2\2\2\u0098\u009b\3\2\2\2\u0099\u0097\3\2\2\2\u0099"+
-		"\u009a\3\2\2\2\u009a\u009d\3\2\2\2\u009b\u0099\3\2\2\2\u009c\u009e\7\30"+
-		"\2\2\u009d\u009c\3\2\2\2\u009d\u009e\3\2\2\2\u009e\17\3\2\2\2\u009f\u00a0"+
-		"\7\37\2\2\u00a0\u00a1\5N(\2\u00a1\u00a2\7 \2\2\u00a2\u00a5\5\6\4\2\u00a3"+
-		"\u00a4\7!\2\2\u00a4\u00a6\5\6\4\2\u00a5\u00a3\3\2\2\2\u00a5\u00a6\3\2"+
-		"\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\7\"\2\2\u00a8\u00a9\7\37\2\2\u00a9"+
-		"\21\3\2\2\2\u00aa\u00ab\7#\2\2\u00ab\u00ac\5N(\2\u00ac\u00ad\5\6\4\2\u00ad"+
-		"\u00ae\7$\2\2\u00ae\23\3\2\2\2\u00af\u00b0\7%\2\2\u00b0\u00b1\5\6\4\2"+
-		"\u00b1\u00b2\7&\2\2\u00b2\u00b3\7#\2\2\u00b3\u00b4\5N(\2\u00b4\25\3\2"+
-		"\2\2\u00b5\u00b6\7%\2\2\u00b6\u00b7\5\6\4\2\u00b7\u00b8\7&\2\2\u00b8\u00b9"+
-		"\7\'\2\2\u00b9\u00ba\5N(\2\u00ba\27\3\2\2\2\u00bb\u00bc\7(\2\2\u00bc\u00bd"+
-		"\5(\25\2\u00bd\u00be\7)\2\2\u00be\u00c1\5N(\2\u00bf\u00c0\7*\2\2\u00c0"+
-		"\u00c2\5N(\2\u00c1\u00bf\3\2\2\2\u00c1\u00c2\3\2\2\2\u00c2\u00c3\3\2\2"+
-		"\2\u00c3\u00c4\5\6\4\2\u00c4\u00c6\7+\2\2\u00c5\u00c7\7>\2\2\u00c6\u00c5"+
-		"\3\2\2\2\u00c6\u00c7\3\2\2\2\u00c7\31\3\2\2\2\u00c8\u00c9\7:\2\2\u00c9"+
-		"\u00ca\7;\2\2\u00ca\u00ce\5,\27\2\u00cb\u00cd\5\34\17\2\u00cc\u00cb\3"+
-		"\2\2\2\u00cd\u00d0\3\2\2\2\u00ce\u00cc\3\2\2\2\u00ce\u00cf\3\2\2\2\u00cf"+
-		"\u00d4\3\2\2\2\u00d0\u00ce\3\2\2\2\u00d1\u00d2\7;\2\2\u00d2\u00d3\7!\2"+
-		"\2\u00d3\u00d5\5\6\4\2\u00d4\u00d1\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5\u00d6"+
-		"\3\2\2\2\u00d6\u00d7\7\"\2\2\u00d7\u00d8\7:\2\2\u00d8\33\3\2\2\2\u00d9"+
-		"\u00da\7;\2\2\u00da\u00db\5N(\2\u00db\u00df\5\6\4\2\u00dc\u00de\5\34\17"+
-		"\2\u00dd\u00dc\3\2\2\2\u00de\u00e1\3\2\2\2\u00df\u00dd\3\2\2\2\u00df\u00e0"+
-		"\3\2\2\2\u00e0\35\3\2\2\2\u00e1\u00df\3\2\2\2\u00e2\u00e4\7\61\2\2\u00e3"+
-		"\u00e5\7<\2\2\u00e4\u00e3\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5\u00e6\3\2"+
-		"\2\2\u00e6\u00e7\5 \21\2\u00e7\u00e8\7\62\2\2\u00e8\u00e9\5V,\2\u00e9"+
-		"\37\3\2\2\2\u00ea\u00ef\5,\27\2\u00eb\u00ec\7\32\2\2\u00ec\u00ee\5 \21"+
-		"\2\u00ed\u00eb\3\2\2\2\u00ee\u00f1\3\2\2\2\u00ef\u00ed\3\2\2\2\u00ef\u00f0"+
-		"\3\2\2\2\u00f0!\3\2\2\2\u00f1\u00ef\3\2\2\2\u00f2\u00f3\7=\2\2\u00f3\u00f4"+
-		"\5$\23\2\u00f4#\3\2\2\2\u00f5\u00f6\5.\30\2\u00f6\u00f7\7\r\2\2\u00f7"+
-		"\u00fc\5N(\2\u00f8\u00f9\7\32\2\2\u00f9\u00fb\5$\23\2\u00fa\u00f8\3\2"+
-		"\2\2\u00fb\u00fe\3\2\2\2\u00fc\u00fa\3\2\2\2\u00fc\u00fd\3\2\2\2\u00fd"+
-		"%\3\2\2\2\u00fe\u00fc\3\2\2\2\u00ff\u0100\5,\27\2\u0100\u0101\7\r\2\2"+
-		"\u0101\u0102\5N(\2\u0102\'\3\2\2\2\u0103\u0104\5\60\31\2\u0104\u0105\7"+
-		"\r\2\2\u0105\u0106\5N(\2\u0106)\3\2\2\2\u0107\u0108\5\64\33\2\u0108\u0109"+
-		"\7\r\2\2\u0109\u010a\5N(\2\u010a+\3\2\2\2\u010b\u010e\5.\30\2\u010c\u010e"+
-		"\5\62\32\2\u010d\u010b\3\2\2\2\u010d\u010c\3\2\2\2\u010e-\3\2\2\2\u010f"+
-		"\u0112\5\60\31\2\u0110\u0112\5H%\2\u0111\u010f\3\2\2\2\u0111\u0110\3\2"+
-		"\2\2\u0112/\3\2\2\2\u0113\u0118\5@!\2\u0114\u0118\5B\"\2\u0115\u0118\5"+
-		"D#\2\u0116\u0118\5F$\2\u0117\u0113\3\2\2\2\u0117\u0114\3\2\2\2\u0117\u0115"+
-		"\3\2\2\2\u0117\u0116\3\2\2\2\u0118\61\3\2\2\2\u0119\u011c\5\64\33\2\u011a"+
-		"\u011c\5> \2\u011b\u0119\3\2\2\2\u011b\u011a\3\2\2\2\u011c\63\3\2\2\2"+
-		"\u011d\u0122\5\66\34\2\u011e\u0122\58\35\2\u011f\u0122\5:\36\2\u0120\u0122"+
-		"\5<\37\2\u0121\u011d\3\2\2\2\u0121\u011e\3\2\2\2\u0121\u011f\3\2\2\2\u0121"+
-		"\u0120\3\2\2\2\u0122\65\3\2\2\2\u0123\u0127\5@!\2\u0124\u0126\5J&\2\u0125"+
-		"\u0124\3\2\2\2\u0126\u0129\3\2\2\2\u0127\u0125\3\2\2\2\u0127\u0128\3\2"+
-		"\2\2\u0128\67\3\2\2\2\u0129\u0127\3\2\2\2\u012a\u012e\5B\"\2\u012b\u012d"+
-		"\5J&\2\u012c\u012b\3\2\2\2\u012d\u0130\3\2\2\2\u012e\u012c\3\2\2\2\u012e"+
-		"\u012f\3\2\2\2\u012f9\3\2\2\2\u0130\u012e\3\2\2\2\u0131\u0135\5D#\2\u0132"+
-		"\u0134\5J&\2\u0133\u0132\3\2\2\2\u0134\u0137\3\2\2\2\u0135\u0133\3\2\2"+
-		"\2\u0135\u0136\3\2\2\2\u0136;\3\2\2\2\u0137\u0135\3\2\2\2\u0138\u013c"+
-		"\5F$\2\u0139\u013b\5J&\2\u013a\u0139\3\2\2\2\u013b\u013e\3\2\2\2\u013c"+
-		"\u013a\3\2\2\2\u013c\u013d\3\2\2\2\u013d=\3\2\2\2\u013e\u013c\3\2\2\2"+
-		"\u013f\u0143\5H%\2\u0140\u0142\5J&\2\u0141\u0140\3\2\2\2\u0142\u0145\3"+
-		"\2\2\2\u0143\u0141\3\2\2\2\u0143\u0144\3\2\2\2\u0144?\3\2\2\2\u0145\u0143"+
-		"\3\2\2\2\u0146\u0147\7>\2\2\u0147\u0148\7\3\2\2\u0148A\3\2\2\2\u0149\u014a"+
-		"\7>\2\2\u014a\u014b\7\4\2\2\u014bC\3\2\2\2\u014c\u014e\7>\2\2\u014d\u014f"+
-		"\7\5\2\2\u014e\u014d\3\2\2\2\u014e\u014f\3\2\2\2\u014fE\3\2\2\2\u0150"+
-		"\u0151\7>\2\2\u0151\u0152\7\6\2\2\u0152G\3\2\2\2\u0153\u0154\7>\2\2\u0154"+
-		"\u0155\7\7\2\2\u0155I\3\2\2\2\u0156\u0157\7\33\2\2\u0157\u0158\5L\'\2"+
-		"\u0158\u0159\7\34\2\2\u0159K\3\2\2\2\u015a\u015f\5N(\2\u015b\u015c\7\32"+
-		"\2\2\u015c\u015e\5L\'\2\u015d\u015b\3\2\2\2\u015e\u0161\3\2\2\2\u015f"+
-		"\u015d\3\2\2\2\u015f\u0160\3\2\2\2\u0160M\3\2\2\2\u0161\u015f\3\2\2\2"+
-		"\u0162\u0163\b(\1\2\u0163\u0170\5P)\2\u0164\u0165\7\22\2\2\u0165\u0170"+
-		"\5N(\t\u0166\u0167\5`\61\2\u0167\u0168\5N(\b\u0168\u0170\3\2\2\2\u0169"+
-		"\u0170\5\\/\2\u016a\u016b\7\33\2\2\u016b\u016c\5N(\2\u016c\u016d\7\34"+
-		"\2\2\u016d\u0170\3\2\2\2\u016e\u0170\5,\27\2\u016f\u0162\3\2\2\2\u016f"+
-		"\u0164\3\2\2\2\u016f\u0166\3\2\2\2\u016f\u0169\3\2\2\2\u016f\u016a\3\2"+
-		"\2\2\u016f\u016e\3\2\2\2\u0170\u0188\3\2\2\2\u0171\u0172\f\r\2\2\u0172"+
-		"\u0173\7\16\2\2\u0173\u0187\5N(\16\u0174\u0175\f\f\2\2\u0175\u0176\5f"+
-		"\64\2\u0176\u0177\5N(\r\u0177\u0187\3\2\2\2\u0178\u0179\f\13\2\2\u0179"+
-		"\u017a\7\22\2\2\u017a\u0187\5N(\f\u017b\u017c\f\n\2\2\u017c\u017d\7\21"+
-		"\2\2\u017d\u0187\5N(\13\u017e\u017f\f\7\2\2\u017f\u0180\5b\62\2\u0180"+
-		"\u0181\5N(\b\u0181\u0187\3\2\2\2\u0182\u0183\f\6\2\2\u0183\u0184\5d\63"+
-		"\2\u0184\u0185\5N(\7\u0185\u0187\3\2\2\2\u0186\u0171\3\2\2\2\u0186\u0174"+
-		"\3\2\2\2\u0186\u0178\3\2\2\2\u0186\u017b\3\2\2\2\u0186\u017e\3\2\2\2\u0186"+
-		"\u0182\3\2\2\2\u0187\u018a\3\2\2\2\u0188\u0186\3\2\2\2\u0188\u0189\3\2"+
-		"\2\2\u0189O\3\2\2\2\u018a\u0188\3\2\2\2\u018b\u018e\5R*\2\u018c\u018e"+
-		"\5T+\2\u018d\u018b\3\2\2\2\u018d\u018c\3\2\2\2\u018eQ\3\2\2\2\u018f\u0190"+
-		"\t\2\2\2\u0190S\3\2\2\2\u0191\u0192\7\f\2\2\u0192U\3\2\2\2\u0193\u0194"+
-		"\t\3\2\2\u0194W\3\2\2\2\u0195\u0196\79\2\2\u0196\u019b\5.\30\2\u0197\u0198"+
-		"\7\33\2\2\u0198\u0199\5 \21\2\u0199\u019a\7\34\2\2\u019a\u019c\3\2\2\2"+
-		"\u019b\u0197\3\2\2\2\u019b\u019c\3\2\2\2\u019c\u019d\3\2\2\2\u019d\u019e"+
-		"\5\6\4\2\u019e\u019f\7\"\2\2\u019f\u01a0\79\2\2\u01a0\u01ae\3\2\2\2\u01a1"+
-		"\u01a2\78\2\2\u01a2\u01a7\5.\30\2\u01a3\u01a4\7\33\2\2\u01a4\u01a5\5 "+
-		"\21\2\u01a5\u01a6\7\34\2\2\u01a6\u01a8\3\2\2\2\u01a7\u01a3\3\2\2\2\u01a7"+
-		"\u01a8\3\2\2\2\u01a8\u01a9\3\2\2\2\u01a9\u01aa\5\6\4\2\u01aa\u01ab\7\""+
-		"\2\2\u01ab\u01ac\78\2\2\u01ac\u01ae\3\2\2\2\u01ad\u0195\3\2\2\2\u01ad"+
-		"\u01a1\3\2\2\2\u01aeY\3\2\2\2\u01af\u01b1\7>\2\2\u01b0\u01b2\5^\60\2\u01b1"+
-		"\u01b0\3\2\2\2\u01b1\u01b2\3\2\2\2\u01b2[\3\2\2\2\u01b3\u01b8\5.\30\2"+
-		"\u01b4\u01b5\7\33\2\2\u01b5\u01b6\5^\60\2\u01b6\u01b7\7\34\2\2\u01b7\u01b9"+
-		"\3\2\2\2\u01b8\u01b4\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9]\3\2\2\2\u01ba"+
-		"\u01bb\7\33\2\2\u01bb\u01bc\5N(\2\u01bc\u01bd\7\34\2\2\u01bd\u01c2\3\2"+
-		"\2\2\u01be\u01bf\7\32\2\2\u01bf\u01c1\5^\60\2\u01c0\u01be\3\2\2\2\u01c1"+
-		"\u01c4\3\2\2\2\u01c2\u01c0\3\2\2\2\u01c2\u01c3\3\2\2\2\u01c3\u01ce\3\2"+
-		"\2\2\u01c4\u01c2\3\2\2\2\u01c5\u01ca\5N(\2\u01c6\u01c7\7\32\2\2\u01c7"+
-		"\u01c9\5^\60\2\u01c8\u01c6\3\2\2\2\u01c9\u01cc\3\2\2\2\u01ca\u01c8\3\2"+
-		"\2\2\u01ca\u01cb\3\2\2\2\u01cb\u01ce\3\2\2\2\u01cc\u01ca\3\2\2\2\u01cd"+
-		"\u01ba\3\2\2\2\u01cd\u01c5\3\2\2\2\u01ce_\3\2\2\2\u01cf\u01d0\7\63\2\2"+
-		"\u01d0a\3\2\2\2\u01d1\u01d2\t\4\2\2\u01d2c\3\2\2\2\u01d3\u01d4\t\5\2\2"+
-		"\u01d4e\3\2\2\2\u01d5\u01d6\t\6\2\2\u01d6g\3\2\2\2*lw\u0085\u008a\u0093"+
-		"\u0099\u009d\u00a5\u00c1\u00c6\u00ce\u00d4\u00df\u00e4\u00ef\u00fc\u010d"+
-		"\u0111\u0117\u011b\u0121\u0127\u012e\u0135\u013c\u0143\u014e\u015f\u016f"+
-		"\u0186\u0188\u018d\u019b\u01a7\u01ad\u01b1\u01b8\u01c2\u01ca\u01cd";
+		"\3\t\3\t\3\t\7\t\u00a6\n\t\f\t\16\t\u00a9\13\t\3\t\3\t\5\t\u00ad\n\t\3"+
+		"\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3"+
+		"\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\5\r\u00c9\n\r\3\r\3\r\3\r\5\r\u00ce"+
+		"\n\r\3\16\3\16\3\16\3\16\7\16\u00d4\n\16\f\16\16\16\u00d7\13\16\3\16\3"+
+		"\16\3\16\5\16\u00dc\n\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\7\17\u00e5"+
+		"\n\17\f\17\16\17\u00e8\13\17\3\20\3\20\5\20\u00ec\n\20\3\20\3\20\3\20"+
+		"\3\20\3\21\3\21\3\21\7\21\u00f5\n\21\f\21\16\21\u00f8\13\21\3\22\3\22"+
+		"\3\22\3\23\3\23\3\23\3\23\3\23\7\23\u0102\n\23\f\23\16\23\u0105\13\23"+
+		"\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3\26\3\26\3\26\3\26\3\27\3\27"+
+		"\5\27\u0115\n\27\3\30\3\30\5\30\u0119\n\30\3\31\3\31\3\31\3\31\5\31\u011f"+
+		"\n\31\3\32\3\32\5\32\u0123\n\32\3\33\3\33\3\33\3\33\5\33\u0129\n\33\3"+
+		"\34\3\34\7\34\u012d\n\34\f\34\16\34\u0130\13\34\3\35\3\35\7\35\u0134\n"+
+		"\35\f\35\16\35\u0137\13\35\3\36\3\36\7\36\u013b\n\36\f\36\16\36\u013e"+
+		"\13\36\3\37\3\37\7\37\u0142\n\37\f\37\16\37\u0145\13\37\3 \3 \7 \u0149"+
+		"\n \f \16 \u014c\13 \3!\3!\3!\3\"\3\"\3\"\3#\3#\5#\u0156\n#\3$\3$\3$\3"+
+		"%\3%\3%\3&\3&\3&\3&\3\'\3\'\3\'\7\'\u0165\n\'\f\'\16\'\u0168\13\'\3(\3"+
+		"(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\5(\u0177\n(\3(\3(\3(\3(\3(\3(\3(\3"+
+		"(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\3(\7(\u018e\n(\f(\16(\u0191\13("+
+		"\3)\3)\5)\u0195\n)\3*\3*\3+\3+\3,\3,\3-\3-\3-\3-\3-\3-\5-\u01a3\n-\3-"+
+		"\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u01af\n-\3-\3-\3-\3-\5-\u01b5\n-\3.\3."+
+		"\5.\u01b9\n.\3/\3/\3/\3/\3/\5/\u01c0\n/\3\60\3\60\3\60\3\60\3\60\3\60"+
+		"\7\60\u01c8\n\60\f\60\16\60\u01cb\13\60\3\60\3\60\3\60\7\60\u01d0\n\60"+
+		"\f\60\16\60\u01d3\13\60\5\60\u01d5\n\60\3\61\3\61\3\62\3\62\3\63\3\63"+
+		"\3\64\3\64\3\64\2\3N\65\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*"+
+		",.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdf\2\7\3\2\b\13\3\2,\60\3\2\23\27"+
+		"\4\2\r\r\64\66\4\2\17\20\67\67\u01ea\2h\3\2\2\2\4q\3\2\2\2\6w\3\2\2\2"+
+		"\b\u0085\3\2\2\2\n\u0087\3\2\2\2\f\u008e\3\2\2\2\16\u0093\3\2\2\2\20\u009f"+
+		"\3\2\2\2\22\u00b1\3\2\2\2\24\u00b6\3\2\2\2\26\u00bc\3\2\2\2\30\u00c2\3"+
+		"\2\2\2\32\u00cf\3\2\2\2\34\u00e0\3\2\2\2\36\u00e9\3\2\2\2 \u00f1\3\2\2"+
+		"\2\"\u00f9\3\2\2\2$\u00fc\3\2\2\2&\u0106\3\2\2\2(\u010a\3\2\2\2*\u010e"+
+		"\3\2\2\2,\u0114\3\2\2\2.\u0118\3\2\2\2\60\u011e\3\2\2\2\62\u0122\3\2\2"+
+		"\2\64\u0128\3\2\2\2\66\u012a\3\2\2\28\u0131\3\2\2\2:\u0138\3\2\2\2<\u013f"+
+		"\3\2\2\2>\u0146\3\2\2\2@\u014d\3\2\2\2B\u0150\3\2\2\2D\u0153\3\2\2\2F"+
+		"\u0157\3\2\2\2H\u015a\3\2\2\2J\u015d\3\2\2\2L\u0161\3\2\2\2N\u0176\3\2"+
+		"\2\2P\u0194\3\2\2\2R\u0196\3\2\2\2T\u0198\3\2\2\2V\u019a\3\2\2\2X\u01b4"+
+		"\3\2\2\2Z\u01b6\3\2\2\2\\\u01ba\3\2\2\2^\u01d4\3\2\2\2`\u01d6\3\2\2\2"+
+		"b\u01d8\3\2\2\2d\u01da\3\2\2\2f\u01dc\3\2\2\2hl\5\4\3\2ik\5X-\2ji\3\2"+
+		"\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2nl\3\2\2\2op\7\2\2\3p\3\3"+
+		"\2\2\2qr\5\6\4\2r\5\3\2\2\2st\5\b\5\2tu\5\6\4\2ux\3\2\2\2vx\3\2\2\2ws"+
+		"\3\2\2\2wv\3\2\2\2x\7\3\2\2\2y\u0086\5\20\t\2z\u0086\5\22\n\2{\u0086\5"+
+		"\24\13\2|\u0086\5\26\f\2}\u0086\5\30\r\2~\u0086\5\32\16\2\177\u0086\5"+
+		"Z.\2\u0080\u0086\5\36\20\2\u0081\u0086\5\"\22\2\u0082\u0086\5&\24\2\u0083"+
+		"\u0086\5\f\7\2\u0084\u0086\5\n\6\2\u0085y\3\2\2\2\u0085z\3\2\2\2\u0085"+
+		"{\3\2\2\2\u0085|\3\2\2\2\u0085}\3\2\2\2\u0085~\3\2\2\2\u0085\177\3\2\2"+
+		"\2\u0085\u0080\3\2\2\2\u0085\u0081\3\2\2\2\u0085\u0082\3\2\2\2\u0085\u0083"+
+		"\3\2\2\2\u0085\u0084\3\2\2\2\u0086\t\3\2\2\2\u0087\u008a\7\35\2\2\u0088"+
+		"\u0089\7\f\2\2\u0089\u008b\7\32\2\2\u008a\u0088\3\2\2\2\u008a\u008b\3"+
+		"\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\5 \21\2\u008d\13\3\2\2\2\u008e"+
+		"\u008f\7\36\2\2\u008f\u0090\5\16\b\2\u0090\r\3\2\2\2\u0091\u0094\5N(\2"+
+		"\u0092\u0094\5,\27\2\u0093\u0091\3\2\2\2\u0093\u0092\3\2\2\2\u0094\u0099"+
+		"\3\2\2\2\u0095\u0096\7\30\2\2\u0096\u0098\5\16\b\2\u0097\u0095\3\2\2\2"+
+		"\u0098\u009b\3\2\2\2\u0099\u0097\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009d"+
+		"\3\2\2\2\u009b\u0099\3\2\2\2\u009c\u009e\7\30\2\2\u009d\u009c\3\2\2\2"+
+		"\u009d\u009e\3\2\2\2\u009e\17\3\2\2\2\u009f\u00a0\7\37\2\2\u00a0\u00a1"+
+		"\5N(\2\u00a1\u00a2\7 \2\2\u00a2\u00a7\5\6\4\2\u00a3\u00a4\7B\2\2\u00a4"+
+		"\u00a6\5\6\4\2\u00a5\u00a3\3\2\2\2\u00a6\u00a9\3\2\2\2\u00a7\u00a5\3\2"+
+		"\2\2\u00a7\u00a8\3\2\2\2\u00a8\u00ac\3\2\2\2\u00a9\u00a7\3\2\2\2\u00aa"+
+		"\u00ab\7!\2\2\u00ab\u00ad\5\6\4\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2"+
+		"\2\2\u00ad\u00ae\3\2\2\2\u00ae\u00af\7\"\2\2\u00af\u00b0\7\37\2\2\u00b0"+
+		"\21\3\2\2\2\u00b1\u00b2\7#\2\2\u00b2\u00b3\5N(\2\u00b3\u00b4\5\6\4\2\u00b4"+
+		"\u00b5\7$\2\2\u00b5\23\3\2\2\2\u00b6\u00b7\7%\2\2\u00b7\u00b8\5\6\4\2"+
+		"\u00b8\u00b9\7&\2\2\u00b9\u00ba\7#\2\2\u00ba\u00bb\5N(\2\u00bb\25\3\2"+
+		"\2\2\u00bc\u00bd\7%\2\2\u00bd\u00be\5\6\4\2\u00be\u00bf\7&\2\2\u00bf\u00c0"+
+		"\7\'\2\2\u00c0\u00c1\5N(\2\u00c1\27\3\2\2\2\u00c2\u00c3\7(\2\2\u00c3\u00c4"+
+		"\5(\25\2\u00c4\u00c5\7)\2\2\u00c5\u00c8\5N(\2\u00c6\u00c7\7*\2\2\u00c7"+
+		"\u00c9\5N(\2\u00c8\u00c6\3\2\2\2\u00c8\u00c9\3\2\2\2\u00c9\u00ca\3\2\2"+
+		"\2\u00ca\u00cb\5\6\4\2\u00cb\u00cd\7+\2\2\u00cc\u00ce\7>\2\2\u00cd\u00cc"+
+		"\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce\31\3\2\2\2\u00cf\u00d0\7:\2\2\u00d0"+
+		"\u00d1\7;\2\2\u00d1\u00d5\5,\27\2\u00d2\u00d4\5\34\17\2\u00d3\u00d2\3"+
+		"\2\2\2\u00d4\u00d7\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d5\u00d6\3\2\2\2\u00d6"+
+		"\u00db\3\2\2\2\u00d7\u00d5\3\2\2\2\u00d8\u00d9\7;\2\2\u00d9\u00da\7!\2"+
+		"\2\u00da\u00dc\5\6\4\2\u00db\u00d8\3\2\2\2\u00db\u00dc\3\2\2\2\u00dc\u00dd"+
+		"\3\2\2\2\u00dd\u00de\7\"\2\2\u00de\u00df\7:\2\2\u00df\33\3\2\2\2\u00e0"+
+		"\u00e1\7;\2\2\u00e1\u00e2\5N(\2\u00e2\u00e6\5\6\4\2\u00e3\u00e5\5\34\17"+
+		"\2\u00e4\u00e3\3\2\2\2\u00e5\u00e8\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e6\u00e7"+
+		"\3\2\2\2\u00e7\35\3\2\2\2\u00e8\u00e6\3\2\2\2\u00e9\u00eb\7\61\2\2\u00ea"+
+		"\u00ec\7<\2\2\u00eb\u00ea\3\2\2\2\u00eb\u00ec\3\2\2\2\u00ec\u00ed\3\2"+
+		"\2\2\u00ed\u00ee\5 \21\2\u00ee\u00ef\7\62\2\2\u00ef\u00f0\5V,\2\u00f0"+
+		"\37\3\2\2\2\u00f1\u00f6\5,\27\2\u00f2\u00f3\7\32\2\2\u00f3\u00f5\5 \21"+
+		"\2\u00f4\u00f2\3\2\2\2\u00f5\u00f8\3\2\2\2\u00f6\u00f4\3\2\2\2\u00f6\u00f7"+
+		"\3\2\2\2\u00f7!\3\2\2\2\u00f8\u00f6\3\2\2\2\u00f9\u00fa\7=\2\2\u00fa\u00fb"+
+		"\5$\23\2\u00fb#\3\2\2\2\u00fc\u00fd\5.\30\2\u00fd\u00fe\7\r\2\2\u00fe"+
+		"\u0103\5N(\2\u00ff\u0100\7\32\2\2\u0100\u0102\5$\23\2\u0101\u00ff\3\2"+
+		"\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104"+
+		"%\3\2\2\2\u0105\u0103\3\2\2\2\u0106\u0107\5,\27\2\u0107\u0108\7\r\2\2"+
+		"\u0108\u0109\5N(\2\u0109\'\3\2\2\2\u010a\u010b\5\60\31\2\u010b\u010c\7"+
+		"\r\2\2\u010c\u010d\5N(\2\u010d)\3\2\2\2\u010e\u010f\5\64\33\2\u010f\u0110"+
+		"\7\r\2\2\u0110\u0111\5N(\2\u0111+\3\2\2\2\u0112\u0115\5.\30\2\u0113\u0115"+
+		"\5\62\32\2\u0114\u0112\3\2\2\2\u0114\u0113\3\2\2\2\u0115-\3\2\2\2\u0116"+
+		"\u0119\5\60\31\2\u0117\u0119\5H%\2\u0118\u0116\3\2\2\2\u0118\u0117\3\2"+
+		"\2\2\u0119/\3\2\2\2\u011a\u011f\5@!\2\u011b\u011f\5B\"\2\u011c\u011f\5"+
+		"D#\2\u011d\u011f\5F$\2\u011e\u011a\3\2\2\2\u011e\u011b\3\2\2\2\u011e\u011c"+
+		"\3\2\2\2\u011e\u011d\3\2\2\2\u011f\61\3\2\2\2\u0120\u0123\5\64\33\2\u0121"+
+		"\u0123\5> \2\u0122\u0120\3\2\2\2\u0122\u0121\3\2\2\2\u0123\63\3\2\2\2"+
+		"\u0124\u0129\5\66\34\2\u0125\u0129\58\35\2\u0126\u0129\5:\36\2\u0127\u0129"+
+		"\5<\37\2\u0128\u0124\3\2\2\2\u0128\u0125\3\2\2\2\u0128\u0126\3\2\2\2\u0128"+
+		"\u0127\3\2\2\2\u0129\65\3\2\2\2\u012a\u012e\5@!\2\u012b\u012d\5J&\2\u012c"+
+		"\u012b\3\2\2\2\u012d\u0130\3\2\2\2\u012e\u012c\3\2\2\2\u012e\u012f\3\2"+
+		"\2\2\u012f\67\3\2\2\2\u0130\u012e\3\2\2\2\u0131\u0135\5B\"\2\u0132\u0134"+
+		"\5J&\2\u0133\u0132\3\2\2\2\u0134\u0137\3\2\2\2\u0135\u0133\3\2\2\2\u0135"+
+		"\u0136\3\2\2\2\u01369\3\2\2\2\u0137\u0135\3\2\2\2\u0138\u013c\5D#\2\u0139"+
+		"\u013b\5J&\2\u013a\u0139\3\2\2\2\u013b\u013e\3\2\2\2\u013c\u013a\3\2\2"+
+		"\2\u013c\u013d\3\2\2\2\u013d;\3\2\2\2\u013e\u013c\3\2\2\2\u013f\u0143"+
+		"\5F$\2\u0140\u0142\5J&\2\u0141\u0140\3\2\2\2\u0142\u0145\3\2\2\2\u0143"+
+		"\u0141\3\2\2\2\u0143\u0144\3\2\2\2\u0144=\3\2\2\2\u0145\u0143\3\2\2\2"+
+		"\u0146\u014a\5H%\2\u0147\u0149\5J&\2\u0148\u0147\3\2\2\2\u0149\u014c\3"+
+		"\2\2\2\u014a\u0148\3\2\2\2\u014a\u014b\3\2\2\2\u014b?\3\2\2\2\u014c\u014a"+
+		"\3\2\2\2\u014d\u014e\7>\2\2\u014e\u014f\7\3\2\2\u014fA\3\2\2\2\u0150\u0151"+
+		"\7>\2\2\u0151\u0152\7\4\2\2\u0152C\3\2\2\2\u0153\u0155\7>\2\2\u0154\u0156"+
+		"\7\5\2\2\u0155\u0154\3\2\2\2\u0155\u0156\3\2\2\2\u0156E\3\2\2\2\u0157"+
+		"\u0158\7>\2\2\u0158\u0159\7\6\2\2\u0159G\3\2\2\2\u015a\u015b\7>\2\2\u015b"+
+		"\u015c\7\7\2\2\u015cI\3\2\2\2\u015d\u015e\7\33\2\2\u015e\u015f\5L\'\2"+
+		"\u015f\u0160\7\34\2\2\u0160K\3\2\2\2\u0161\u0166\5N(\2\u0162\u0163\7\32"+
+		"\2\2\u0163\u0165\5L\'\2\u0164\u0162\3\2\2\2\u0165\u0168\3\2\2\2\u0166"+
+		"\u0164\3\2\2\2\u0166\u0167\3\2\2\2\u0167M\3\2\2\2\u0168\u0166\3\2\2\2"+
+		"\u0169\u016a\b(\1\2\u016a\u0177\5P)\2\u016b\u016c\7\22\2\2\u016c\u0177"+
+		"\5N(\t\u016d\u016e\5`\61\2\u016e\u016f\5N(\b\u016f\u0177\3\2\2\2\u0170"+
+		"\u0177\5\\/\2\u0171\u0172\7\33\2\2\u0172\u0173\5N(\2\u0173\u0174\7\34"+
+		"\2\2\u0174\u0177\3\2\2\2\u0175\u0177\5,\27\2\u0176\u0169\3\2\2\2\u0176"+
+		"\u016b\3\2\2\2\u0176\u016d\3\2\2\2\u0176\u0170\3\2\2\2\u0176\u0171\3\2"+
+		"\2\2\u0176\u0175\3\2\2\2\u0177\u018f\3\2\2\2\u0178\u0179\f\r\2\2\u0179"+
+		"\u017a\7\16\2\2\u017a\u018e\5N(\16\u017b\u017c\f\f\2\2\u017c\u017d\5f"+
+		"\64\2\u017d\u017e\5N(\r\u017e\u018e\3\2\2\2\u017f\u0180\f\13\2\2\u0180"+
+		"\u0181\7\22\2\2\u0181\u018e\5N(\f\u0182\u0183\f\n\2\2\u0183\u0184\7\21"+
+		"\2\2\u0184\u018e\5N(\13\u0185\u0186\f\7\2\2\u0186\u0187\5b\62\2\u0187"+
+		"\u0188\5N(\b\u0188\u018e\3\2\2\2\u0189\u018a\f\6\2\2\u018a\u018b\5d\63"+
+		"\2\u018b\u018c\5N(\7\u018c\u018e\3\2\2\2\u018d\u0178\3\2\2\2\u018d\u017b"+
+		"\3\2\2\2\u018d\u017f\3\2\2\2\u018d\u0182\3\2\2\2\u018d\u0185\3\2\2\2\u018d"+
+		"\u0189\3\2\2\2\u018e\u0191\3\2\2\2\u018f\u018d\3\2\2\2\u018f\u0190\3\2"+
+		"\2\2\u0190O\3\2\2\2\u0191\u018f\3\2\2\2\u0192\u0195\5R*\2\u0193\u0195"+
+		"\5T+\2\u0194\u0192\3\2\2\2\u0194\u0193\3\2\2\2\u0195Q\3\2\2\2\u0196\u0197"+
+		"\t\2\2\2\u0197S\3\2\2\2\u0198\u0199\7\f\2\2\u0199U\3\2\2\2\u019a\u019b"+
+		"\t\3\2\2\u019bW\3\2\2\2\u019c\u019d\79\2\2\u019d\u01a2\5.\30\2\u019e\u019f"+
+		"\7\33\2\2\u019f\u01a0\5 \21\2\u01a0\u01a1\7\34\2\2\u01a1\u01a3\3\2\2\2"+
+		"\u01a2\u019e\3\2\2\2\u01a2\u01a3\3\2\2\2\u01a3\u01a4\3\2\2\2\u01a4\u01a5"+
+		"\5\6\4\2\u01a5\u01a6\7\"\2\2\u01a6\u01a7\79\2\2\u01a7\u01b5\3\2\2\2\u01a8"+
+		"\u01a9\78\2\2\u01a9\u01ae\5.\30\2\u01aa\u01ab\7\33\2\2\u01ab\u01ac\5 "+
+		"\21\2\u01ac\u01ad\7\34\2\2\u01ad\u01af\3\2\2\2\u01ae\u01aa\3\2\2\2\u01ae"+
+		"\u01af\3\2\2\2\u01af\u01b0\3\2\2\2\u01b0\u01b1\5\6\4\2\u01b1\u01b2\7\""+
+		"\2\2\u01b2\u01b3\78\2\2\u01b3\u01b5\3\2\2\2\u01b4\u019c\3\2\2\2\u01b4"+
+		"\u01a8\3\2\2\2\u01b5Y\3\2\2\2\u01b6\u01b8\7>\2\2\u01b7\u01b9\5^\60\2\u01b8"+
+		"\u01b7\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9[\3\2\2\2\u01ba\u01bf\5.\30\2"+
+		"\u01bb\u01bc\7\33\2\2\u01bc\u01bd\5^\60\2\u01bd\u01be\7\34\2\2\u01be\u01c0"+
+		"\3\2\2\2\u01bf\u01bb\3\2\2\2\u01bf\u01c0\3\2\2\2\u01c0]\3\2\2\2\u01c1"+
+		"\u01c2\7\33\2\2\u01c2\u01c3\5N(\2\u01c3\u01c4\7\34\2\2\u01c4\u01c9\3\2"+
+		"\2\2\u01c5\u01c6\7\32\2\2\u01c6\u01c8\5^\60\2\u01c7\u01c5\3\2\2\2\u01c8"+
+		"\u01cb\3\2\2\2\u01c9\u01c7\3\2\2\2\u01c9\u01ca\3\2\2\2\u01ca\u01d5\3\2"+
+		"\2\2\u01cb\u01c9\3\2\2\2\u01cc\u01d1\5N(\2\u01cd\u01ce\7\32\2\2\u01ce"+
+		"\u01d0\5^\60\2\u01cf\u01cd\3\2\2\2\u01d0\u01d3\3\2\2\2\u01d1\u01cf\3\2"+
+		"\2\2\u01d1\u01d2\3\2\2\2\u01d2\u01d5\3\2\2\2\u01d3\u01d1\3\2\2\2\u01d4"+
+		"\u01c1\3\2\2\2\u01d4\u01cc\3\2\2\2\u01d5_\3\2\2\2\u01d6\u01d7\7\63\2\2"+
+		"\u01d7a\3\2\2\2\u01d8\u01d9\t\4\2\2\u01d9c\3\2\2\2\u01da\u01db\t\5\2\2"+
+		"\u01dbe\3\2\2\2\u01dc\u01dd\t\6\2\2\u01ddg\3\2\2\2+lw\u0085\u008a\u0093"+
+		"\u0099\u009d\u00a7\u00ac\u00c8\u00cd\u00d5\u00db\u00e6\u00eb\u00f6\u0103"+
+		"\u0114\u0118\u011e\u0122\u0128\u012e\u0135\u013c\u0143\u014a\u0155\u0166"+
+		"\u0176\u018d\u018f\u0194\u01a2\u01ae\u01b4\u01b8\u01bf\u01c9\u01d1\u01d4";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

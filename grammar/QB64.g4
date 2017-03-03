@@ -27,7 +27,7 @@ input               : INPUT (STRINGVALUE COMMA)? id_list ;
 print               : PRINT print_list ;
 print_list          : (expression | id) (SEMICOLON print_list)* SEMICOLON? ;
 
-if_                 : IF expression THEN commands (ELSE commands)? END IF ;
+if_                 : IF expression THEN commands (ELSEIF commands)* (ELSE commands)? END IF ;
 while_              : WHILE expression commands WEND ;
 do_while            : DO commands LOOP WHILE expression ;
 do_until            : DO commands LOOP UNTIL expression ;
@@ -35,6 +35,7 @@ for_                : FOR single_numeric_assignment
                         TO expression (STEP expression)?
                         commands
                         NEXT (IDPREFIX)? ;
+
 select_             : SELECT CASE id (cases_list)* (CASE ELSE commands)? END SELECT ;
 cases_list          : CASE expression commands (cases_list)* ;
 
@@ -53,14 +54,6 @@ array_numeric_assignment  : array_numeric_id EQUALOP expression ;
 id                  : single_id
                     | array_id
                     ;
-
-//numeric_id          : single_numeric_id
-//                    | array_numeric_id
-//                    ;
-//
-//string_id           : single_id_string
-//                    | array_id_string
-//                    ;
 
 single_id           : single_numeric_id
                     | single_id_string
@@ -136,26 +129,6 @@ type                : INTEGER
                     | STRING
                     ;
 
-//INTEGERVALUE        : SUBOP NEGATIVEINTEGER
-//                    | NONNEGATIVEINTEGER
-//                    ;
-//NONNEGATIVEINTEGER  : [3][2][7][6][0-7]
-//                    | [3][2][7][0-5][0-9]
-//                    | [3][2][0-6][0-9][0-9]
-//                    | [3][0-1][0-9][0-9][0-9]
-//                    | [1-2][0-9][0-9][0-9][0-9]
-//                    | [0]?[0-9]?[0-9]?[0-9]?[0-9]
-//                    ;
-//NEGATIVEINTEGER     : [3][2][7][6][0-8]
-//                    | [3][2][7][0-5][0-9]
-//                    | [3][2][0-6][0-9][0-9]
-//                    | [3][0-1][0-9][0-9][0-9]
-//                    | [1-2][0-9][0-9][0-9][0-9]
-//                    | [0]?[0-9]?[0-9]?[0-9]?[0-9]
-//                    ;
-//
-//LONGVALUE           : SUBOP? [0-9]+ ;
-
 INTEGERVALUE        : [3][2][7][6][0-7]
                     | [3][2][7][0-5][0-9]
                     | [3][2][0-6][0-9][0-9]
@@ -169,9 +142,9 @@ SINGLEVALUE         : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
 DOUBLEVALUE         : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
 STRINGVALUE         : ('"') ~[\n"]* ('"');
 
-funproc         : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? commands END FUNCTION
-                | SUB single_id (LEFTPAR id_list RIGHTPAR)? commands END SUB
-                ;
+funproc             : FUNCTION single_id (LEFTPAR id_list RIGHTPAR)? commands END FUNCTION
+                    | SUB single_id (LEFTPAR id_list RIGHTPAR)? commands END SUB
+                    ;
 
 
 call_sub            : IDPREFIX parameters_list? ;
@@ -216,6 +189,7 @@ PRINT           : P R I N T ;
 IF              : I F ;
 THEN            : T H E N ;
 ELSE            : E L S E ;
+ELSEIF          : E L S E I F ;
 END             : E N D ;
 WHILE           : W H I L E ;
 WEND            : W E N D ;
