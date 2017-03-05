@@ -17,9 +17,9 @@ public class SyntaxPractice {
 
     public void generateOutput() throws Exception {
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(inputFilename));
-        QB64Lexer lexer = new QB64Lexer(input);
+        QB64v2Lexer lexer = new QB64v2Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        QB64Parser parser = new QB64Parser(tokens);
+        QB64v2Parser parser = new QB64v2Parser(tokens);
         ParseTree tree = parser.qb();
 
         StringBuilder output = new StringBuilder();
@@ -28,7 +28,6 @@ public class SyntaxPractice {
 //        PrintWriter writer = new PrintWriter(outputFilename, "UTF-8");
 //        writer.print(output);
 //        writer.close();
-
 
         System.out.println(output);
     }
@@ -50,7 +49,15 @@ public class SyntaxPractice {
         SyntaxPractice syntaxPractice = new SyntaxPractice();
         syntaxPractice.setNewFiles(testInput, "");
 
-        syntaxPractice.generateOutput();
+        for (char c = 'D'; c <= 'D'; ++c) {
+            for (int i = 1; i < 2; ++i) {
+                syntaxPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
+                                + inputPrefix + i + extension,
+                        directory + "/" + String.valueOf(c) + "/"
+                                + outputPrefix + i + extension);
+                syntaxPractice.generateOutput();
+            }
+        }
     }
 
 }

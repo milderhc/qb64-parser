@@ -1,4 +1,4 @@
-grammar QB64;
+grammar QB64v1;
 
 qb                  : main (funproc)* EOF ;
 

@@ -1,4 +1,4 @@
-// Generated from /home/milderhc/Documents/lenguajes/ta/antlr/qb64-parser/grammar/QB64.g4 by ANTLR 4.6
+// Generated from /home/milderhc/Documents/lenguajes/ta/antlr/qb64-parser/grammar/QB64v1.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class QB64Lexer extends Lexer {
+public class QB64v1Lexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -94,13 +94,13 @@ public class QB64Lexer extends Lexer {
 	}
 
 
-	public QB64Lexer(CharStream input) {
+	public QB64v1Lexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "QB64.g4"; }
+	public String getGrammarFileName() { return "QB64v1.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

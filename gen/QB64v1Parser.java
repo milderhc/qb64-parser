@@ -1,4 +1,4 @@
-// Generated from /home/milderhc/Documents/lenguajes/ta/antlr/qb64-parser/grammar/QB64.g4 by ANTLR 4.6
+// Generated from /home/milderhc/Documents/lenguajes/ta/antlr/qb64-parser/grammar/QB64v1.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class QB64Parser extends Parser {
+public class QB64v1Parser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -105,7 +105,7 @@ public class QB64Parser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "QB64.g4"; }
+	public String getGrammarFileName() { return "QB64v1.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -116,7 +116,7 @@ public class QB64Parser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public QB64Parser(TokenStream input) {
+	public QB64v1Parser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -124,7 +124,7 @@ public class QB64Parser extends Parser {
 		public MainContext main() {
 			return getRuleContext(MainContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(QB64Parser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(QB64v1Parser.EOF, 0); }
 		public List<FunprocContext> funproc() {
 			return getRuleContexts(FunprocContext.class);
 		}
@@ -137,15 +137,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_qb; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterQb(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterQb(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitQb(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitQb(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitQb(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitQb(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -198,15 +198,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_main; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterMain(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterMain(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitMain(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitMain(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitMain(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitMain(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -245,15 +245,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_commands; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCommands(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCommands(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCommands(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCommands(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCommands(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCommands(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -355,15 +355,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_command; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCommand(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCommand(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCommand(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCommand(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCommand(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCommand(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -473,27 +473,27 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class InputContext extends ParserRuleContext {
-		public TerminalNode INPUT() { return getToken(QB64Parser.INPUT, 0); }
+		public TerminalNode INPUT() { return getToken(QB64v1Parser.INPUT, 0); }
 		public Id_listContext id_list() {
 			return getRuleContext(Id_listContext.class,0);
 		}
-		public TerminalNode STRINGVALUE() { return getToken(QB64Parser.STRINGVALUE, 0); }
-		public TerminalNode COMMA() { return getToken(QB64Parser.COMMA, 0); }
+		public TerminalNode STRINGVALUE() { return getToken(QB64v1Parser.STRINGVALUE, 0); }
+		public TerminalNode COMMA() { return getToken(QB64v1Parser.COMMA, 0); }
 		public InputContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_input; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterInput(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterInput(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitInput(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitInput(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitInput(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitInput(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -535,7 +535,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class PrintContext extends ParserRuleContext {
-		public TerminalNode PRINT() { return getToken(QB64Parser.PRINT, 0); }
+		public TerminalNode PRINT() { return getToken(QB64v1Parser.PRINT, 0); }
 		public Print_listContext print_list() {
 			return getRuleContext(Print_listContext.class,0);
 		}
@@ -545,15 +545,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_print; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterPrint(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterPrint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitPrint(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitPrint(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitPrint(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitPrint(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -588,9 +588,9 @@ public class QB64Parser extends Parser {
 		public IdContext id() {
 			return getRuleContext(IdContext.class,0);
 		}
-		public List<TerminalNode> SEMICOLON() { return getTokens(QB64Parser.SEMICOLON); }
+		public List<TerminalNode> SEMICOLON() { return getTokens(QB64v1Parser.SEMICOLON); }
 		public TerminalNode SEMICOLON(int i) {
-			return getToken(QB64Parser.SEMICOLON, i);
+			return getToken(QB64v1Parser.SEMICOLON, i);
 		}
 		public List<Print_listContext> print_list() {
 			return getRuleContexts(Print_listContext.class);
@@ -604,15 +604,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_print_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterPrint_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterPrint_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitPrint_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitPrint_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitPrint_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitPrint_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -682,41 +682,41 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class If_Context extends ParserRuleContext {
-		public List<TerminalNode> IF() { return getTokens(QB64Parser.IF); }
+		public List<TerminalNode> IF() { return getTokens(QB64v1Parser.IF); }
 		public TerminalNode IF(int i) {
-			return getToken(QB64Parser.IF, i);
+			return getToken(QB64v1Parser.IF, i);
 		}
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode THEN() { return getToken(QB64Parser.THEN, 0); }
+		public TerminalNode THEN() { return getToken(QB64v1Parser.THEN, 0); }
 		public List<CommandsContext> commands() {
 			return getRuleContexts(CommandsContext.class);
 		}
 		public CommandsContext commands(int i) {
 			return getRuleContext(CommandsContext.class,i);
 		}
-		public TerminalNode END() { return getToken(QB64Parser.END, 0); }
-		public List<TerminalNode> ELSEIF() { return getTokens(QB64Parser.ELSEIF); }
+		public TerminalNode END() { return getToken(QB64v1Parser.END, 0); }
+		public List<TerminalNode> ELSEIF() { return getTokens(QB64v1Parser.ELSEIF); }
 		public TerminalNode ELSEIF(int i) {
-			return getToken(QB64Parser.ELSEIF, i);
+			return getToken(QB64v1Parser.ELSEIF, i);
 		}
-		public TerminalNode ELSE() { return getToken(QB64Parser.ELSE, 0); }
+		public TerminalNode ELSE() { return getToken(QB64v1Parser.ELSE, 0); }
 		public If_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_if_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterIf_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterIf_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitIf_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitIf_(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitIf_(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitIf_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -782,29 +782,29 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class While_Context extends ParserRuleContext {
-		public TerminalNode WHILE() { return getToken(QB64Parser.WHILE, 0); }
+		public TerminalNode WHILE() { return getToken(QB64v1Parser.WHILE, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
-		public TerminalNode WEND() { return getToken(QB64Parser.WEND, 0); }
+		public TerminalNode WEND() { return getToken(QB64v1Parser.WEND, 0); }
 		public While_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_while_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterWhile_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterWhile_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitWhile_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitWhile_(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitWhile_(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitWhile_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -837,12 +837,12 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Do_whileContext extends ParserRuleContext {
-		public TerminalNode DO() { return getToken(QB64Parser.DO, 0); }
+		public TerminalNode DO() { return getToken(QB64v1Parser.DO, 0); }
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
-		public TerminalNode LOOP() { return getToken(QB64Parser.LOOP, 0); }
-		public TerminalNode WHILE() { return getToken(QB64Parser.WHILE, 0); }
+		public TerminalNode LOOP() { return getToken(QB64v1Parser.LOOP, 0); }
+		public TerminalNode WHILE() { return getToken(QB64v1Parser.WHILE, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -852,15 +852,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_do_while; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterDo_while(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterDo_while(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDo_while(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitDo_while(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDo_while(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitDo_while(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -895,12 +895,12 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Do_untilContext extends ParserRuleContext {
-		public TerminalNode DO() { return getToken(QB64Parser.DO, 0); }
+		public TerminalNode DO() { return getToken(QB64v1Parser.DO, 0); }
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
-		public TerminalNode LOOP() { return getToken(QB64Parser.LOOP, 0); }
-		public TerminalNode UNTIL() { return getToken(QB64Parser.UNTIL, 0); }
+		public TerminalNode LOOP() { return getToken(QB64v1Parser.LOOP, 0); }
+		public TerminalNode UNTIL() { return getToken(QB64v1Parser.UNTIL, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -910,15 +910,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_do_until; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterDo_until(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterDo_until(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDo_until(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitDo_until(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDo_until(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitDo_until(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -953,11 +953,11 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class For_Context extends ParserRuleContext {
-		public TerminalNode FOR() { return getToken(QB64Parser.FOR, 0); }
+		public TerminalNode FOR() { return getToken(QB64v1Parser.FOR, 0); }
 		public Single_numeric_assignmentContext single_numeric_assignment() {
 			return getRuleContext(Single_numeric_assignmentContext.class,0);
 		}
-		public TerminalNode TO() { return getToken(QB64Parser.TO, 0); }
+		public TerminalNode TO() { return getToken(QB64v1Parser.TO, 0); }
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
@@ -967,24 +967,24 @@ public class QB64Parser extends Parser {
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
-		public TerminalNode NEXT() { return getToken(QB64Parser.NEXT, 0); }
-		public TerminalNode STEP() { return getToken(QB64Parser.STEP, 0); }
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
+		public TerminalNode NEXT() { return getToken(QB64v1Parser.NEXT, 0); }
+		public TerminalNode STEP() { return getToken(QB64v1Parser.STEP, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
 		public For_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_for_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterFor_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterFor_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFor_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitFor_(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitFor_(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitFor_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1044,25 +1044,25 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Select_Context extends ParserRuleContext {
-		public List<TerminalNode> SELECT() { return getTokens(QB64Parser.SELECT); }
+		public List<TerminalNode> SELECT() { return getTokens(QB64v1Parser.SELECT); }
 		public TerminalNode SELECT(int i) {
-			return getToken(QB64Parser.SELECT, i);
+			return getToken(QB64v1Parser.SELECT, i);
 		}
-		public List<TerminalNode> CASE() { return getTokens(QB64Parser.CASE); }
+		public List<TerminalNode> CASE() { return getTokens(QB64v1Parser.CASE); }
 		public TerminalNode CASE(int i) {
-			return getToken(QB64Parser.CASE, i);
+			return getToken(QB64v1Parser.CASE, i);
 		}
 		public IdContext id() {
 			return getRuleContext(IdContext.class,0);
 		}
-		public TerminalNode END() { return getToken(QB64Parser.END, 0); }
+		public TerminalNode END() { return getToken(QB64v1Parser.END, 0); }
 		public List<Cases_listContext> cases_list() {
 			return getRuleContexts(Cases_listContext.class);
 		}
 		public Cases_listContext cases_list(int i) {
 			return getRuleContext(Cases_listContext.class,i);
 		}
-		public TerminalNode ELSE() { return getToken(QB64Parser.ELSE, 0); }
+		public TerminalNode ELSE() { return getToken(QB64v1Parser.ELSE, 0); }
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
@@ -1072,15 +1072,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_select_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSelect_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSelect_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSelect_(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSelect_(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSelect_(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSelect_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1147,7 +1147,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Cases_listContext extends ParserRuleContext {
-		public TerminalNode CASE() { return getToken(QB64Parser.CASE, 0); }
+		public TerminalNode CASE() { return getToken(QB64v1Parser.CASE, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -1166,15 +1166,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_cases_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCases_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCases_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCases_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCases_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCases_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCases_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1222,30 +1222,30 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class DeclarationContext extends ParserRuleContext {
-		public TerminalNode DIM() { return getToken(QB64Parser.DIM, 0); }
+		public TerminalNode DIM() { return getToken(QB64v1Parser.DIM, 0); }
 		public Id_listContext id_list() {
 			return getRuleContext(Id_listContext.class,0);
 		}
-		public TerminalNode AS() { return getToken(QB64Parser.AS, 0); }
+		public TerminalNode AS() { return getToken(QB64v1Parser.AS, 0); }
 		public TypeContext type() {
 			return getRuleContext(TypeContext.class,0);
 		}
-		public TerminalNode SHARED() { return getToken(QB64Parser.SHARED, 0); }
+		public TerminalNode SHARED() { return getToken(QB64v1Parser.SHARED, 0); }
 		public DeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterDeclaration(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterDeclaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitDeclaration(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitDeclaration(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitDeclaration(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitDeclaration(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1292,9 +1292,9 @@ public class QB64Parser extends Parser {
 		public IdContext id() {
 			return getRuleContext(IdContext.class,0);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(QB64Parser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(QB64v1Parser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(QB64Parser.COMMA, i);
+			return getToken(QB64v1Parser.COMMA, i);
 		}
 		public List<Id_listContext> id_list() {
 			return getRuleContexts(Id_listContext.class);
@@ -1308,15 +1308,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_id_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterId_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterId_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitId_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitId_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitId_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitId_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1362,7 +1362,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Const_declarationContext extends ParserRuleContext {
-		public TerminalNode CONST() { return getToken(QB64Parser.CONST, 0); }
+		public TerminalNode CONST() { return getToken(QB64v1Parser.CONST, 0); }
 		public Const_declaration_listContext const_declaration_list() {
 			return getRuleContext(Const_declaration_listContext.class,0);
 		}
@@ -1372,15 +1372,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_const_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterConst_declaration(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterConst_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitConst_declaration(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitConst_declaration(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitConst_declaration(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitConst_declaration(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1412,13 +1412,13 @@ public class QB64Parser extends Parser {
 		public Single_idContext single_id() {
 			return getRuleContext(Single_idContext.class,0);
 		}
-		public TerminalNode EQUALOP() { return getToken(QB64Parser.EQUALOP, 0); }
+		public TerminalNode EQUALOP() { return getToken(QB64v1Parser.EQUALOP, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(QB64Parser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(QB64v1Parser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(QB64Parser.COMMA, i);
+			return getToken(QB64v1Parser.COMMA, i);
 		}
 		public List<Const_declaration_listContext> const_declaration_list() {
 			return getRuleContexts(Const_declaration_listContext.class);
@@ -1432,15 +1432,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_const_declaration_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterConst_declaration_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterConst_declaration_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitConst_declaration_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitConst_declaration_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitConst_declaration_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitConst_declaration_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1493,7 +1493,7 @@ public class QB64Parser extends Parser {
 		public IdContext id() {
 			return getRuleContext(IdContext.class,0);
 		}
-		public TerminalNode EQUALOP() { return getToken(QB64Parser.EQUALOP, 0); }
+		public TerminalNode EQUALOP() { return getToken(QB64v1Parser.EQUALOP, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -1503,15 +1503,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_assignment; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterAssignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterAssignment(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitAssignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitAssignment(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitAssignment(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitAssignment(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1545,7 +1545,7 @@ public class QB64Parser extends Parser {
 		public Single_numeric_idContext single_numeric_id() {
 			return getRuleContext(Single_numeric_idContext.class,0);
 		}
-		public TerminalNode EQUALOP() { return getToken(QB64Parser.EQUALOP, 0); }
+		public TerminalNode EQUALOP() { return getToken(QB64v1Parser.EQUALOP, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -1555,15 +1555,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_single_numeric_assignment; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_numeric_assignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_numeric_assignment(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_numeric_assignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_numeric_assignment(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_numeric_assignment(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_numeric_assignment(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1597,7 +1597,7 @@ public class QB64Parser extends Parser {
 		public Array_numeric_idContext array_numeric_id() {
 			return getRuleContext(Array_numeric_idContext.class,0);
 		}
-		public TerminalNode EQUALOP() { return getToken(QB64Parser.EQUALOP, 0); }
+		public TerminalNode EQUALOP() { return getToken(QB64v1Parser.EQUALOP, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -1607,15 +1607,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_numeric_assignment; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_numeric_assignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_numeric_assignment(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_numeric_assignment(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_numeric_assignment(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_numeric_assignment(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_numeric_assignment(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1658,15 +1658,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterId(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterId(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitId(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitId(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitId(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitId(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1718,15 +1718,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_single_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1784,15 +1784,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_single_numeric_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_numeric_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_numeric_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_numeric_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_numeric_id(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_numeric_id(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_numeric_id(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1858,15 +1858,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1924,15 +1924,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_numeric_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_numeric_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_numeric_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_numeric_id(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_numeric_id(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_numeric_id(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_numeric_id(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2001,15 +2001,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id_int; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id_int(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id_int(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_int(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id_int(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_int(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id_int(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2068,15 +2068,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id_long; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id_long(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id_long(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_long(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id_long(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_long(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id_long(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2135,15 +2135,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id_single; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id_single(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id_single(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_single(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id_single(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_single(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id_single(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2202,15 +2202,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id_double; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id_double(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id_double(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_double(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id_double(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_double(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id_double(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2269,15 +2269,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_array_id_string; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray_id_string(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray_id_string(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray_id_string(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray_id_string(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray_id_string(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray_id_string(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2321,23 +2321,23 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Single_id_intContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
-		public TerminalNode INTEGERSUFFIX() { return getToken(QB64Parser.INTEGERSUFFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
+		public TerminalNode INTEGERSUFFIX() { return getToken(QB64v1Parser.INTEGERSUFFIX, 0); }
 		public Single_id_intContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_single_id_int; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id_int(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id_int(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_int(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id_int(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_int(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id_int(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2366,23 +2366,23 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Single_id_longContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
-		public TerminalNode LONGSUFFIX() { return getToken(QB64Parser.LONGSUFFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
+		public TerminalNode LONGSUFFIX() { return getToken(QB64v1Parser.LONGSUFFIX, 0); }
 		public Single_id_longContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_single_id_long; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id_long(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id_long(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_long(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id_long(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_long(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id_long(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2411,23 +2411,23 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Single_id_singleContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
-		public TerminalNode SINGLESUFFIX() { return getToken(QB64Parser.SINGLESUFFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
+		public TerminalNode SINGLESUFFIX() { return getToken(QB64v1Parser.SINGLESUFFIX, 0); }
 		public Single_id_singleContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_single_id_single; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id_single(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id_single(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_single(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id_single(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_single(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id_single(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2464,23 +2464,23 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Single_id_doubleContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
-		public TerminalNode DOUBLESUFFIX() { return getToken(QB64Parser.DOUBLESUFFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
+		public TerminalNode DOUBLESUFFIX() { return getToken(QB64v1Parser.DOUBLESUFFIX, 0); }
 		public Single_id_doubleContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_single_id_double; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id_double(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id_double(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_double(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id_double(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_double(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id_double(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2509,23 +2509,23 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Single_id_stringContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
-		public TerminalNode STRINGSUFFIX() { return getToken(QB64Parser.STRINGSUFFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
+		public TerminalNode STRINGSUFFIX() { return getToken(QB64v1Parser.STRINGSUFFIX, 0); }
 		public Single_id_stringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_single_id_string; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterSingle_id_string(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterSingle_id_string(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitSingle_id_string(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitSingle_id_string(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitSingle_id_string(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitSingle_id_string(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2554,26 +2554,26 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class ArrayContext extends ParserRuleContext {
-		public TerminalNode LEFTPAR() { return getToken(QB64Parser.LEFTPAR, 0); }
+		public TerminalNode LEFTPAR() { return getToken(QB64v1Parser.LEFTPAR, 0); }
 		public Expression_listContext expression_list() {
 			return getRuleContext(Expression_listContext.class,0);
 		}
-		public TerminalNode RIGHTPAR() { return getToken(QB64Parser.RIGHTPAR, 0); }
+		public TerminalNode RIGHTPAR() { return getToken(QB64v1Parser.RIGHTPAR, 0); }
 		public ArrayContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_array; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterArray(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterArray(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitArray(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitArray(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitArray(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitArray(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2607,9 +2607,9 @@ public class QB64Parser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(QB64Parser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(QB64v1Parser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(QB64Parser.COMMA, i);
+			return getToken(QB64v1Parser.COMMA, i);
 		}
 		public List<Expression_listContext> expression_list() {
 			return getRuleContexts(Expression_listContext.class);
@@ -2623,15 +2623,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expression_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterExpression_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterExpression_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitExpression_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitExpression_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitExpression_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitExpression_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2680,7 +2680,7 @@ public class QB64Parser extends Parser {
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
 		}
-		public TerminalNode SUBOP() { return getToken(QB64Parser.SUBOP, 0); }
+		public TerminalNode SUBOP() { return getToken(QB64v1Parser.SUBOP, 0); }
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
@@ -2693,16 +2693,16 @@ public class QB64Parser extends Parser {
 		public Call_functionContext call_function() {
 			return getRuleContext(Call_functionContext.class,0);
 		}
-		public TerminalNode LEFTPAR() { return getToken(QB64Parser.LEFTPAR, 0); }
-		public TerminalNode RIGHTPAR() { return getToken(QB64Parser.RIGHTPAR, 0); }
+		public TerminalNode LEFTPAR() { return getToken(QB64v1Parser.LEFTPAR, 0); }
+		public TerminalNode RIGHTPAR() { return getToken(QB64v1Parser.RIGHTPAR, 0); }
 		public IdContext id() {
 			return getRuleContext(IdContext.class,0);
 		}
-		public TerminalNode POTOP() { return getToken(QB64Parser.POTOP, 0); }
+		public TerminalNode POTOP() { return getToken(QB64v1Parser.POTOP, 0); }
 		public ProopContext proop() {
 			return getRuleContext(ProopContext.class,0);
 		}
-		public TerminalNode ADDOP() { return getToken(QB64Parser.ADDOP, 0); }
+		public TerminalNode ADDOP() { return getToken(QB64v1Parser.ADDOP, 0); }
 		public CompopContext compop() {
 			return getRuleContext(CompopContext.class,0);
 		}
@@ -2715,15 +2715,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterExpression(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitExpression(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitExpression(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2908,15 +2908,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_value; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterValue(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterValue(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitValue(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitValue(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitValue(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2961,25 +2961,25 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Numeric_valueContext extends ParserRuleContext {
-		public TerminalNode INTEGERVALUE() { return getToken(QB64Parser.INTEGERVALUE, 0); }
-		public TerminalNode LONGVALUE() { return getToken(QB64Parser.LONGVALUE, 0); }
-		public TerminalNode SINGLEVALUE() { return getToken(QB64Parser.SINGLEVALUE, 0); }
-		public TerminalNode DOUBLEVALUE() { return getToken(QB64Parser.DOUBLEVALUE, 0); }
+		public TerminalNode INTEGERVALUE() { return getToken(QB64v1Parser.INTEGERVALUE, 0); }
+		public TerminalNode LONGVALUE() { return getToken(QB64v1Parser.LONGVALUE, 0); }
+		public TerminalNode SINGLEVALUE() { return getToken(QB64v1Parser.SINGLEVALUE, 0); }
+		public TerminalNode DOUBLEVALUE() { return getToken(QB64v1Parser.DOUBLEVALUE, 0); }
 		public Numeric_valueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_numeric_value; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterNumeric_value(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterNumeric_value(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitNumeric_value(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitNumeric_value(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitNumeric_value(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitNumeric_value(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3015,22 +3015,22 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class String_valueContext extends ParserRuleContext {
-		public TerminalNode STRINGVALUE() { return getToken(QB64Parser.STRINGVALUE, 0); }
+		public TerminalNode STRINGVALUE() { return getToken(QB64v1Parser.STRINGVALUE, 0); }
 		public String_valueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_string_value; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterString_value(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterString_value(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitString_value(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitString_value(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitString_value(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitString_value(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3057,26 +3057,26 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class TypeContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(QB64Parser.INTEGER, 0); }
-		public TerminalNode LONG() { return getToken(QB64Parser.LONG, 0); }
-		public TerminalNode SINGLE() { return getToken(QB64Parser.SINGLE, 0); }
-		public TerminalNode DOUBLE() { return getToken(QB64Parser.DOUBLE, 0); }
-		public TerminalNode STRING() { return getToken(QB64Parser.STRING, 0); }
+		public TerminalNode INTEGER() { return getToken(QB64v1Parser.INTEGER, 0); }
+		public TerminalNode LONG() { return getToken(QB64v1Parser.LONG, 0); }
+		public TerminalNode SINGLE() { return getToken(QB64v1Parser.SINGLE, 0); }
+		public TerminalNode DOUBLE() { return getToken(QB64v1Parser.DOUBLE, 0); }
+		public TerminalNode STRING() { return getToken(QB64v1Parser.STRING, 0); }
 		public TypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_type; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterType(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterType(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitType(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitType(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitType(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitType(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3112,9 +3112,9 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class FunprocContext extends ParserRuleContext {
-		public List<TerminalNode> FUNCTION() { return getTokens(QB64Parser.FUNCTION); }
+		public List<TerminalNode> FUNCTION() { return getTokens(QB64v1Parser.FUNCTION); }
 		public TerminalNode FUNCTION(int i) {
-			return getToken(QB64Parser.FUNCTION, i);
+			return getToken(QB64v1Parser.FUNCTION, i);
 		}
 		public Single_idContext single_id() {
 			return getRuleContext(Single_idContext.class,0);
@@ -3122,15 +3122,15 @@ public class QB64Parser extends Parser {
 		public CommandsContext commands() {
 			return getRuleContext(CommandsContext.class,0);
 		}
-		public TerminalNode END() { return getToken(QB64Parser.END, 0); }
-		public TerminalNode LEFTPAR() { return getToken(QB64Parser.LEFTPAR, 0); }
+		public TerminalNode END() { return getToken(QB64v1Parser.END, 0); }
+		public TerminalNode LEFTPAR() { return getToken(QB64v1Parser.LEFTPAR, 0); }
 		public Id_listContext id_list() {
 			return getRuleContext(Id_listContext.class,0);
 		}
-		public TerminalNode RIGHTPAR() { return getToken(QB64Parser.RIGHTPAR, 0); }
-		public List<TerminalNode> SUB() { return getTokens(QB64Parser.SUB); }
+		public TerminalNode RIGHTPAR() { return getToken(QB64v1Parser.RIGHTPAR, 0); }
+		public List<TerminalNode> SUB() { return getTokens(QB64v1Parser.SUB); }
 		public TerminalNode SUB(int i) {
-			return getToken(QB64Parser.SUB, i);
+			return getToken(QB64v1Parser.SUB, i);
 		}
 		public FunprocContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3138,15 +3138,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_funproc; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterFunproc(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterFunproc(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitFunproc(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitFunproc(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitFunproc(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitFunproc(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3233,7 +3233,7 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Call_subContext extends ParserRuleContext {
-		public TerminalNode IDPREFIX() { return getToken(QB64Parser.IDPREFIX, 0); }
+		public TerminalNode IDPREFIX() { return getToken(QB64v1Parser.IDPREFIX, 0); }
 		public Parameters_listContext parameters_list() {
 			return getRuleContext(Parameters_listContext.class,0);
 		}
@@ -3243,15 +3243,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_call_sub; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCall_sub(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCall_sub(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCall_sub(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCall_sub(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCall_sub(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCall_sub(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3291,26 +3291,26 @@ public class QB64Parser extends Parser {
 		public Single_idContext single_id() {
 			return getRuleContext(Single_idContext.class,0);
 		}
-		public TerminalNode LEFTPAR() { return getToken(QB64Parser.LEFTPAR, 0); }
+		public TerminalNode LEFTPAR() { return getToken(QB64v1Parser.LEFTPAR, 0); }
 		public Parameters_listContext parameters_list() {
 			return getRuleContext(Parameters_listContext.class,0);
 		}
-		public TerminalNode RIGHTPAR() { return getToken(QB64Parser.RIGHTPAR, 0); }
+		public TerminalNode RIGHTPAR() { return getToken(QB64v1Parser.RIGHTPAR, 0); }
 		public Call_functionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_call_function; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCall_function(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCall_function(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCall_function(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCall_function(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCall_function(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCall_function(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3351,14 +3351,14 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class Parameters_listContext extends ParserRuleContext {
-		public TerminalNode LEFTPAR() { return getToken(QB64Parser.LEFTPAR, 0); }
+		public TerminalNode LEFTPAR() { return getToken(QB64v1Parser.LEFTPAR, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RIGHTPAR() { return getToken(QB64Parser.RIGHTPAR, 0); }
-		public List<TerminalNode> COMMA() { return getTokens(QB64Parser.COMMA); }
+		public TerminalNode RIGHTPAR() { return getToken(QB64v1Parser.RIGHTPAR, 0); }
+		public List<TerminalNode> COMMA() { return getTokens(QB64v1Parser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(QB64Parser.COMMA, i);
+			return getToken(QB64v1Parser.COMMA, i);
 		}
 		public List<Parameters_listContext> parameters_list() {
 			return getRuleContexts(Parameters_listContext.class);
@@ -3372,15 +3372,15 @@ public class QB64Parser extends Parser {
 		@Override public int getRuleIndex() { return RULE_parameters_list; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterParameters_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterParameters_list(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitParameters_list(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitParameters_list(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitParameters_list(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitParameters_list(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3463,22 +3463,22 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class NegopContext extends ParserRuleContext {
-		public TerminalNode NOT() { return getToken(QB64Parser.NOT, 0); }
+		public TerminalNode NOT() { return getToken(QB64v1Parser.NOT, 0); }
 		public NegopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_negop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterNegop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterNegop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitNegop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitNegop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitNegop(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitNegop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3505,26 +3505,26 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class CompopContext extends ParserRuleContext {
-		public TerminalNode DIFFOP() { return getToken(QB64Parser.DIFFOP, 0); }
-		public TerminalNode LESSOP() { return getToken(QB64Parser.LESSOP, 0); }
-		public TerminalNode LESSOREQUALOP() { return getToken(QB64Parser.LESSOREQUALOP, 0); }
-		public TerminalNode GREATER() { return getToken(QB64Parser.GREATER, 0); }
-		public TerminalNode GREATEROREQUAL() { return getToken(QB64Parser.GREATEROREQUAL, 0); }
+		public TerminalNode DIFFOP() { return getToken(QB64v1Parser.DIFFOP, 0); }
+		public TerminalNode LESSOP() { return getToken(QB64v1Parser.LESSOP, 0); }
+		public TerminalNode LESSOREQUALOP() { return getToken(QB64v1Parser.LESSOREQUALOP, 0); }
+		public TerminalNode GREATER() { return getToken(QB64v1Parser.GREATER, 0); }
+		public TerminalNode GREATEROREQUAL() { return getToken(QB64v1Parser.GREATEROREQUAL, 0); }
 		public CompopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_compop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterCompop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterCompop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitCompop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitCompop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitCompop(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitCompop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3560,25 +3560,25 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class BinopContext extends ParserRuleContext {
-		public TerminalNode OR() { return getToken(QB64Parser.OR, 0); }
-		public TerminalNode AND() { return getToken(QB64Parser.AND, 0); }
-		public TerminalNode XOR() { return getToken(QB64Parser.XOR, 0); }
-		public TerminalNode EQUALOP() { return getToken(QB64Parser.EQUALOP, 0); }
+		public TerminalNode OR() { return getToken(QB64v1Parser.OR, 0); }
+		public TerminalNode AND() { return getToken(QB64v1Parser.AND, 0); }
+		public TerminalNode XOR() { return getToken(QB64v1Parser.XOR, 0); }
+		public TerminalNode EQUALOP() { return getToken(QB64v1Parser.EQUALOP, 0); }
 		public BinopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_binop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterBinop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterBinop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitBinop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitBinop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitBinop(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitBinop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3614,24 +3614,24 @@ public class QB64Parser extends Parser {
 	}
 
 	public static class ProopContext extends ParserRuleContext {
-		public TerminalNode DIVOP() { return getToken(QB64Parser.DIVOP, 0); }
-		public TerminalNode PRODUCTOP() { return getToken(QB64Parser.PRODUCTOP, 0); }
-		public TerminalNode MOD() { return getToken(QB64Parser.MOD, 0); }
+		public TerminalNode DIVOP() { return getToken(QB64v1Parser.DIVOP, 0); }
+		public TerminalNode PRODUCTOP() { return getToken(QB64v1Parser.PRODUCTOP, 0); }
+		public TerminalNode MOD() { return getToken(QB64v1Parser.MOD, 0); }
 		public ProopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_proop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).enterProop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).enterProop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QB64Listener ) ((QB64Listener)listener).exitProop(this);
+			if ( listener instanceof QB64v1Listener ) ((QB64v1Listener)listener).exitProop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QB64Visitor ) return ((QB64Visitor<? extends T>)visitor).visitProop(this);
+			if ( visitor instanceof QB64v1Visitor ) return ((QB64v1Visitor<? extends T>)visitor).visitProop(this);
 			else return visitor.visitChildren(this);
 		}
 	}

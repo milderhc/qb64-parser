@@ -4,7 +4,7 @@
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-//import qb64parsing.*;
+//import qb64v1parsing.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -143,9 +143,9 @@ public class LexerPractice {
 
     public void generateOutput() throws Exception {
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(inputFilename));
-        QB64Lexer lexer = new QB64Lexer(input);
+        QB64v1Lexer lexer = new QB64v1Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        QB64Parser parser = new QB64Parser(tokens);
+        QB64v1Parser parser = new QB64v1Parser(tokens);
         parser.qb();
 
         StringBuilder output = new StringBuilder();
