@@ -198,17 +198,17 @@ public class LexerPractice {
     private final static String outputPrefix = "out0";
     private final static String extension = ".txt";
 
-//    public static void main(String[] args) throws Exception {
-//        LexerPractice lexerPractice = new LexerPractice();
-////        lexerPractice.printRandomStrings(200);
-//        for (char c = 'A'; c <= 'E'; ++c) {
-//            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
-//                lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
-//                                + inputPrefix + i + extension,
-//                        directory + "/" + String.valueOf(c) + "/"
-//                                + outputPrefix + i + extension);
-//                lexerPractice.generateOutput();
-//            }
-//        }
-//    }
+    public static void main(String[] args) throws Exception {
+        LexerPractice lexerPractice = new LexerPractice();
+//        lexerPractice.printRandomStrings(200);
+        for (char c = 'A'; c <= 'E'; ++c) {
+            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
+                lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
+                                + inputPrefix + i + extension,
+                        directory + "/" + String.valueOf(c) + "/"
+                                + outputPrefix + i + extension);
+                lexerPractice.generateOutput();
+            }
+        }
+    }
 }

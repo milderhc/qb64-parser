@@ -23,7 +23,7 @@ public class SyntaxPractice {
         ParseTree tree = parser.qb();
 
         StringBuilder output = new StringBuilder();
-        output.append(tree.getText());
+        output.append(tree.toStringTree(parser));
 
 //        PrintWriter writer = new PrintWriter(outputFilename, "UTF-8");
 //        writer.print(output);
