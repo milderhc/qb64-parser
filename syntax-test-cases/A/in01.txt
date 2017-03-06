@@ -1,0 +1,6 @@
+' Programa basico
+
+input "Ingrese el nombre", nombre$
+input "Ingrese la edad", edad%
+
+print nombre$; " --> "; edad%

@@ -60,7 +60,7 @@ public class SyntaxPractice {
         syntaxErrorFound = false;
     }
 
-    private final static int[] SAMPLES = {5, 5, 4, 4, 7};
+    private final static int[] SAMPLES = {2, 0, 3, 4, 0};
     private final static String directory = "syntax-test-cases/";
     private final static String inputPrefix = "in0";
     private final static String outputPrefix = "out0";
@@ -72,7 +72,7 @@ public class SyntaxPractice {
         SyntaxPractice syntaxPractice = new SyntaxPractice();
         syntaxPractice.setNewFiles(testInput, "");
 
-        for (char c = 'D'; c <= 'D'; ++c) {
+        for (char c = 'A'; c <= 'E'; ++c) {
             for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
                 syntaxPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
                                 + inputPrefix + i + extension,
