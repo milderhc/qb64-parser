@@ -1,0 +1,3 @@
+<print,1,1>
+<token_string,Ultimo caso,1,7>
+>>> Error lexico (linea: 2, posicion: 1)

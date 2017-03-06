@@ -87,6 +87,30 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDim_id_list(QB64v2Parser.Dim_id_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDim_id_list(QB64v2Parser.Dim_id_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDim_id_list1(QB64v2Parser.Dim_id_list1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDim_id_list1(QB64v2Parser.Dim_id_list1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSingle_id(QB64v2Parser.Single_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -622,18 +646,6 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPrint1(QB64v2Parser.Print1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPrint2(QB64v2Parser.Print2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrint2(QB64v2Parser.Print2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

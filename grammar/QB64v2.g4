@@ -1,5 +1,7 @@
 grammar QB64v2;
 
+@members {}
+
 qb                      : instruction function_sub EOF ;
 
 instruction             : declaration instruction

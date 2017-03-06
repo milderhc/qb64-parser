@@ -192,7 +192,7 @@ public class LexerPractice {
 //        System.out.println(output);
     }
 
-    private final static int[] SAMPLES = {5, 5, 4, 4, 7};
+    private final static int[] SAMPLES = {5, 5, 4, 4, 8};
     private final static String directory = "lexer-test-cases/";
     private final static String inputPrefix = "in0";
     private final static String outputPrefix = "out0";

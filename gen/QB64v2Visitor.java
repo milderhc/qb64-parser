@@ -46,6 +46,18 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArray(QB64v2Parser.ArrayContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#dim_id_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDim_id_list(QB64v2Parser.Dim_id_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#dim_id_list1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDim_id_list1(QB64v2Parser.Dim_id_list1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#single_id}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -315,12 +327,6 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPrint1(QB64v2Parser.Print1Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#print2}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrint2(QB64v2Parser.Print2Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#value}.
 	 * @param ctx the parse tree

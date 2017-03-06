@@ -67,6 +67,26 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitArray(QB64v2Parser.ArrayContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#dim_id_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterDim_id_list(QB64v2Parser.Dim_id_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#dim_id_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitDim_id_list(QB64v2Parser.Dim_id_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#dim_id_list1}.
+	 * @param ctx the parse tree
+	 */
+	void enterDim_id_list1(QB64v2Parser.Dim_id_list1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#dim_id_list1}.
+	 * @param ctx the parse tree
+	 */
+	void exitDim_id_list1(QB64v2Parser.Dim_id_list1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#single_id}.
 	 * @param ctx the parse tree
 	 */
@@ -516,16 +536,6 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint1(QB64v2Parser.Print1Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#print2}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrint2(QB64v2Parser.Print2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#print2}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrint2(QB64v2Parser.Print2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#value}.
 	 * @param ctx the parse tree
