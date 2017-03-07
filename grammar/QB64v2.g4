@@ -44,8 +44,10 @@ expression_list1        : ',' expression_list
                         |
                         ;
 
-constdeclaration        : 'const' single_id '=' expression ;
-
+constdeclaration        : 'const' single_id '=' expression constdeclaration1 ;
+constdeclaration1       : ',' single_id '=' expression constdeclaration1
+                        |
+                        ;
 
 idblock                 : ID idblock1 ;
 idblock1                : non_empty_suffix idblock2
