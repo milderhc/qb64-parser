@@ -200,7 +200,10 @@ public class LexerPractice {
 
     public static void main(String[] args) throws Exception {
         LexerPractice lexerPractice = new LexerPractice();
-//        lexerPractice.printRandomStrings(200);
+
+        lexerPractice.setNewFiles("lexer-test-cases/single-input.txt", "lexer-test-cases/output.txt");
+        lexerPractice.generateOutput();
+        lexerPractice.printRandomStrings(200);
         for (char c = 'A'; c <= 'E'; ++c) {
             for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
                 lexerPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"

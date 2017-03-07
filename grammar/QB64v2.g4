@@ -1,7 +1,5 @@
 grammar QB64v2;
 
-@members {}
-
 qb                      : instruction function_sub EOF ;
 
 instruction             : declaration instruction
@@ -53,7 +51,6 @@ idblock                 : ID idblock1 ;
 idblock1                : non_empty_suffix idblock2
                         | '(' idblock3
                         | '=' expression
-                        | expression idblock8
                         ;
 idblock2                : '(' expression_list ')' '=' expression
                         | '=' expression
@@ -166,7 +163,7 @@ value                   : INTEGER
                         | STRING
                         ;
 
-binary_operator         : 'and' | 'or' | 'xor' | '+' | '-' | '*' | '/' | '=' | '<>' | '<' | '>' | '<=' | '>=' ;
+binary_operator         : 'and' | 'or' | 'xor' | '+' | '-' | '*' | '/' | '=' | '<>' | '<' | '>' | '<=' | '>=' | '^' ;
 unary_operator          : 'not' | '-' ;
 
 type                    : 'integer'
