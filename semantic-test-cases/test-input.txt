@@ -1,0 +1,4 @@
+dim a, b, c, b(4, 5), a(4, 4, 4) as integer
+
+
+dim x, y  as double
