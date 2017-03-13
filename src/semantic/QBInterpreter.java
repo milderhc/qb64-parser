@@ -31,9 +31,11 @@ public class QBInterpreter {
         visitor.functions.forEach((k, v) -> System.out.println(k));
         visitor.subs.forEach((k, v) -> System.out.println(k));
 
-
         for (Object v : visitor.staticMemory) {
             System.out.println(((Variable) v).getName());
+            if (v instanceof ArrayQB) {
+                System.out.println(((ArrayQB)v).getDimensions());
+            }
         }
     }
 }

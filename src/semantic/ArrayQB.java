@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class ArrayQB<T> extends Variable<T> {
     private List<Integer> dimensions;
-    Map<String, T> values;
+    private Map<String, T> values;
 
     public ArrayQB(String name, Type type, List<Integer> dimensions) {
         super(name, type);
@@ -49,5 +49,13 @@ public class ArrayQB<T> extends Variable<T> {
         StringBuilder build = new StringBuilder();
         pos.forEach(p -> build.append(pos + "@"));
         return build.toString();
+    }
+
+    public List<Integer> getDimensions() {
+        return dimensions;
+    }
+
+    public Map<String, T> getValues() {
+        return values;
     }
 }

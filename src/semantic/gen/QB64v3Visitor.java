@@ -233,12 +233,6 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSub(QB64v3Parser.SubContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v3Parser#value}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValue(QB64v3Parser.ValueContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link QB64v3Parser#suffix}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

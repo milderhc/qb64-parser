@@ -17,11 +17,16 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     public Set<Variable> dynamicMemory, staticMemory;
 
+
+    private SemanticErrorHandler errorHandler;
+
     public QBVisitor() {
         subs = new TreeMap<>();
         functions = new TreeMap<>();
         dynamicMemory = new TreeSet<>();
         staticMemory = new TreeSet<>();
+
+        errorHandler = new SemanticErrorHandler();
     }
 
     @Override
@@ -47,6 +52,12 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         return null;
     }
 
+    @Override
+    public T visitConstDeclaration (QB64v3Parser.ConstDeclarationContext ctx) {
+
+        return null;
+    }
+
     private void createDimVariable (QB64v3Parser.DimIdContext ctx, int type) {
         String name = ctx.ID().getText();
 
@@ -55,19 +66,19 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             List<Integer> dimensions = (List<Integer>) visit(ctx.array());
             switch (type) {
                 case QB64v3Lexer.INTEGER:
-                    addNewStaticVariable(new ArrayQB<Short>(name, Variable.Type.INTEGER, dimensions));
+                    addNewStaticVariable(new ArrayQB<Short>(name, Value.Type.INTEGER, dimensions));
                     break;
                 case QB64v3Lexer.LONG:
-                    addNewStaticVariable(new ArrayQB<Integer>(name, Variable.Type.LONG, dimensions));
+                    addNewStaticVariable(new ArrayQB<Integer>(name, Value.Type.LONG, dimensions));
                     break;
                 case QB64v3Lexer.SINGLE:
-                    addNewStaticVariable(new ArrayQB<Float>(name, Variable.Type.SINGLE, dimensions));
+                    addNewStaticVariable(new ArrayQB<Float>(name, Value.Type.SINGLE, dimensions));
                     break;
                 case QB64v3Lexer.DOUBLE:
-                    addNewStaticVariable(new ArrayQB<Double>(name, Variable.Type.DOUBLE, dimensions));
+                    addNewStaticVariable(new ArrayQB<Double>(name, Value.Type.DOUBLE, dimensions));
                     break;
                 case QB64v3Lexer.STRING:
-                    addNewStaticVariable(new ArrayQB<String>(name, Variable.Type.STRING, dimensions));
+                    addNewStaticVariable(new ArrayQB<String>(name, Value.Type.STRING, dimensions));
                     break;
             }
         } else {
@@ -93,22 +104,67 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     private void addNewStaticVariable (Variable v) {
         if (staticMemory.contains(v)) {
-            System.err.println("This variable is already created");
-            System.exit(0);
+            errorHandler.error("La variable " + v.getName() + " ya ha sido declarada");
         }
         staticMemory.add(v);
     }
 
     @Override
     public T visitArray (QB64v3Parser.ArrayContext ctx) {
-        List<QB64v3Parser.ExpressionContext> expression = ctx.expression();
-
+        List<QB64v3Parser.ExpressionContext> expressions = ctx.expression();
         List<Integer> dim = new ArrayList<>();
-
-        //@TODO FIX THIS
-        expression.forEach(expr -> dim.add(5));
+        expressions.forEach(expr -> {
+            semantic.Value value = (Value) visit(expr);
+            if (value.getType() == Value.Type.STRING) {
+                errorHandler.error("Se esparaba valor numerico, se encontro string");
+            }
+            if (value.getValue() instanceof Integer)
+                dim.add((Integer)value.getValue());
+            else
+                dim.add((int)(double)value.getValue());
+        });
         return (T) dim;
     }
+
+    @Override
+    public T visitMulExpr (QB64v3Parser.MulExprContext ctx) {
+
+        return null;
+    }
+    @Override
+    public T visitAddExpr (QB64v3Parser.AddExprContext ctx) {
+        return null;
+    }
+    @Override
+    public T visitUnaryExpr (QB64v3Parser.UnaryExprContext ctx) {
+        return null;
+    }
+    @Override
+    public T visitParenExpr (QB64v3Parser.ParenExprContext ctx) {
+        return null;
+    }
+    @Override
+    public T visitCallFunctionExpr (QB64v3Parser.CallFunctionExprContext ctx) {
+        return null;
+    }
+    @Override
+    public T visitCallId (QB64v3Parser.CallIdContext ctx) {
+        return null;
+    }
+    @Override
+    public T visitPutValue (QB64v3Parser.PutValueContext ctx) {
+        int type = ctx.value.getType();
+        switch (type) {
+            case QB64v3Lexer.INTEGERV:
+                return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
+            case QB64v3Lexer.DOUBLEV:
+                return (T) new Value(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
+            default:
+                return (T) new Value(ctx.value.getText(), Value.Type.STRING);
+        }
+    }
+
+
 
     @Override
     public T visitAssignment (QB64v3Parser.AssignmentContext ctx) {

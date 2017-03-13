@@ -38,7 +38,7 @@ expression              : expression op=('/' | '*' | MOD | '^') expression      
                         | '(' expression ')'                                       # parenExpr
                         | callFunction                                             # callFunctionExpr
                         | id                                                       # callId
-                        | value                                                    # putValue
+                        | value=(INTEGERV | DOUBLEV | STRINGV)                     # putValue
                         ;
 
 callSub                 : ID parametersList? ;
@@ -79,5 +79,4 @@ funproc                 : FUNCTION singleId ('(' funprocPar (',' funprocPar)* ')
                           instruction* END SUB                                          # sub
                         ;
 
-value                   : INTEGERV | DOUBLEV | STRINGV ;
 suffix                  : suffixType=('%' | '&' | '!' | '#' | '$');
