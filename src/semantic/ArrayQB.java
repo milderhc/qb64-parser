@@ -9,31 +9,35 @@ import java.util.Map;
  */
 public class ArrayQB<T> extends Variable<T> {
     private List<Integer> dimensions;
-    private Map<String, T> values;
+    private Map<String, Variable<T>> values;
 
     public ArrayQB(String name, Type type, List<Integer> dimensions) {
         super(name, type);
         this.dimensions = dimensions;
     }
 
-    public T get (List<Integer> pos) {
+    public Variable<T> get (List<Integer> pos) {
         if (check(pos)) {
             String stringPos = posAlias(pos);
             if (!values.containsKey(stringPos)) {
-                System.err.println("Fix this");
-                return null;
+                switch (this.type) {
+                    case INTEGER: set(pos, (T) Value.INTEGER_DEFAULT); break;
+                    case LONG: set(pos, (T) Value.LONG_DEFAULT); break;
+                    case SINGLE: set(pos, (T) Value.SINGLE_DEFAULT); break;
+                    case DOUBLE: set(pos, (T) Value.DOUBLE_DEFAULT); break;
+                    default: set(pos, (T) Value.STRING_DEFAULT);
+                }
             }
             return values.get(stringPos);
         }
         return null;
     }
 
-    public Variable set (List<Integer> pos, T newValue) {
+    public void set (List<Integer> pos, T newValue) {
         if (check(pos)) {
             String stringPos = posAlias(pos);
-            values.put(stringPos, newValue);
+            values.put(stringPos, new Variable<T>(stringPos, this.type, newValue));
         }
-        return null;
     }
 
     private boolean check (List<Integer> pos) {
@@ -45,7 +49,7 @@ public class ArrayQB<T> extends Variable<T> {
         return true;
     }
 
-    private String posAlias (List<Integer> pos) {
+    public static String posAlias (List<Integer> pos) {
         StringBuilder build = new StringBuilder();
         pos.forEach(p -> build.append(pos + "@"));
         return build.toString();
@@ -55,7 +59,11 @@ public class ArrayQB<T> extends Variable<T> {
         return dimensions;
     }
 
-    public Map<String, T> getValues() {
+    public Map<String, Variable<T>> getValues() {
         return values;
+    }
+
+    public static String getArrayId (String id) {
+        return id + "@";
     }
 }

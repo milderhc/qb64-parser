@@ -7,6 +7,13 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     protected String name;
     private boolean constVariable;
 
+    public static String INTEGER_SUFFIX = "%";
+    public static String LONG_SUFFIX = "&";
+    public static String SINGLE_SUFFIX = "!";
+    public static String DOUBLE_SUFFIX = "#";
+    public static String STRING_SUFFIX = "$";
+
+
     public Variable (String name, Type type) {
         this(name, type, false);
     }
@@ -50,6 +57,16 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
 
     public void setConstVariable(boolean constVariable) {
         this.constVariable = constVariable;
+    }
+
+    public void addSuffix () {
+        switch (this.type) {
+            case INTEGER: name += INTEGER_SUFFIX; break;
+            case LONG: name += LONG_SUFFIX; break;
+            case SINGLE: name += SINGLE_SUFFIX; break;
+            case DOUBLE: name += DOUBLE_SUFFIX; break;
+            default: name += STRING_SUFFIX;
+        }
     }
 
     @Override

@@ -5,6 +5,12 @@ public class Value<T> {
     protected Type type;
     protected T value;
 
+    public static Integer INTEGER_DEFAULT = 0;
+    public static Integer LONG_DEFAULT = 0;
+    public static Double SINGLE_DEFAULT = 0.0;
+    public static Double DOUBLE_DEFAULT = 0.0;
+    public static String STRING_DEFAULT = "";
+
     public Value () {}
 
     public Value(T value, Type type) {
@@ -27,4 +33,5 @@ public class Value<T> {
     public void setType(Type type) {
         this.type = type;
     }
+
 }
