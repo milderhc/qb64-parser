@@ -94,6 +94,16 @@ public class SyntaxPractice {
                 String msg = reportSyntaxError(e.getOffendingToken(), recognizer);
                 recognizer.notifyErrorListeners(e.getOffendingToken(), msg, e);
             }
+
+            @Override
+            protected void reportMissingToken(Parser recognizer) {
+                if(!this.inErrorRecoveryMode(recognizer)) {
+                    this.beginErrorCondition(recognizer);
+                    Token token = recognizer.getCurrentToken();
+                    String msg = reportSyntaxError(token, recognizer);
+                    recognizer.notifyErrorListeners(token, msg, (RecognitionException)null);
+                }
+            }
         });
 
         parser.qb();
@@ -109,7 +119,7 @@ public class SyntaxPractice {
         syntaxErrorFound = false;
     }
 
-    private final static int[] SAMPLES = {2, 0, 3, 4, 0};
+    private final static int[] SAMPLES = {2, 0, 3, 4, 0, 8};
     private final static String directory = "syntax-test-cases/";
     private final static String inputPrefix = "in0";
     private final static String outputPrefix = "out0";
@@ -122,15 +132,15 @@ public class SyntaxPractice {
         syntaxPractice.generateOutput();
 
 
-//        for (char c = 'A'; c <= 'E'; ++c) {
-//            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
-//                syntaxPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
-//                                + inputPrefix + i + extension,
-//                        directory + "/" + String.valueOf(c) + "/"
-//                                + outputPrefix + i + extension);
-//                syntaxPractice.generateOutput();
-//            }
-//        }
+        for (char c = 'F'; c <= 'F'; ++c) {
+            for (int i = 1; i <= SAMPLES[(int)(c - 'A')]; ++i) {
+                syntaxPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
+                                + inputPrefix + i + extension,
+                        directory + "/" + String.valueOf(c) + "/"
+                                + outputPrefix + i + extension);
+                syntaxPractice.generateOutput();
+            }
+        }
     }
 
 }

@@ -1,0 +1,1 @@
+<2,1> Error sintactico: se encontro: 'else'; se esperaba: '*', '+', '-', '/', '<', '<=', '<>', '=', '>', '>=', '^', 'and', 'or', 'then', 'xor'.

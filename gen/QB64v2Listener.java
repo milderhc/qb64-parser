@@ -177,6 +177,16 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitConstdeclaration(QB64v2Parser.ConstdeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#constdeclaration1}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#constdeclaration1}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#idblock}.
 	 * @param ctx the parse tree
 	 */
@@ -256,16 +266,6 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdblock7(QB64v2Parser.Idblock7Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#idblock8}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdblock8(QB64v2Parser.Idblock8Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#idblock8}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdblock8(QB64v2Parser.Idblock8Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#expression}.
 	 * @param ctx the parse tree
@@ -387,25 +387,25 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitWhileblock(QB64v2Parser.WhileblockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#dowhileblock}.
+	 * Enter a parse tree produced by {@link QB64v2Parser#dosomethingblock}.
 	 * @param ctx the parse tree
 	 */
-	void enterDowhileblock(QB64v2Parser.DowhileblockContext ctx);
+	void enterDosomethingblock(QB64v2Parser.DosomethingblockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#dowhileblock}.
+	 * Exit a parse tree produced by {@link QB64v2Parser#dosomethingblock}.
 	 * @param ctx the parse tree
 	 */
-	void exitDowhileblock(QB64v2Parser.DowhileblockContext ctx);
+	void exitDosomethingblock(QB64v2Parser.DosomethingblockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#dountilblock}.
+	 * Enter a parse tree produced by {@link QB64v2Parser#doblocks}.
 	 * @param ctx the parse tree
 	 */
-	void enterDountilblock(QB64v2Parser.DountilblockContext ctx);
+	void enterDoblocks(QB64v2Parser.DoblocksContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#dountilblock}.
+	 * Exit a parse tree produced by {@link QB64v2Parser#doblocks}.
 	 * @param ctx the parse tree
 	 */
-	void exitDountilblock(QB64v2Parser.DountilblockContext ctx);
+	void exitDoblocks(QB64v2Parser.DoblocksContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#selectblock}.
 	 * @param ctx the parse tree

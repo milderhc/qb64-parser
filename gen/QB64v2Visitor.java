@@ -112,6 +112,12 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConstdeclaration(QB64v2Parser.ConstdeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#constdeclaration1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#idblock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -159,12 +165,6 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIdblock7(QB64v2Parser.Idblock7Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#idblock8}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdblock8(QB64v2Parser.Idblock8Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#expression}.
 	 * @param ctx the parse tree
@@ -238,17 +238,17 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileblock(QB64v2Parser.WhileblockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#dowhileblock}.
+	 * Visit a parse tree produced by {@link QB64v2Parser#dosomethingblock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDowhileblock(QB64v2Parser.DowhileblockContext ctx);
+	T visitDosomethingblock(QB64v2Parser.DosomethingblockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#dountilblock}.
+	 * Visit a parse tree produced by {@link QB64v2Parser#doblocks}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDountilblock(QB64v2Parser.DountilblockContext ctx);
+	T visitDoblocks(QB64v2Parser.DoblocksContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#selectblock}.
 	 * @param ctx the parse tree

@@ -7,8 +7,7 @@ instruction             : declaration instruction
                         | ifblock instruction
                         | forblock instruction
                         | whileblock instruction
-                        | dowhileblock instruction
-                        | dountilblock instruction
+                        | dosomethingblock instruction
                         | selectblock instruction
                         | idblock instruction
                         | input instruction
@@ -53,28 +52,24 @@ idblock                 : ID idblock1 ;
 idblock1                : non_empty_suffix idblock2
                         | '(' idblock3
                         | '=' expression
+                        | expression_list
+                        |
                         ;
 idblock2                : '(' expression_list ')' '=' expression
                         | '=' expression
                         ;
 idblock3                : expression idblock4 ;
-
-idblock4                : ')' idblock6
-                        | idblock5 '=' expression
+idblock4                : ')' idblock5
+                        | ',' idblock6
                         ;
-idblock5                : ',' expression idblock5
-                        | ')'
-                        ;
-
-idblock6                : '=' expression
-                        | ',' idblock7
+idblock5                : '=' expression
+                        | expression_list
                         |
                         ;
-idblock7                : expression idblock8 ;
-idblock8                : ',' idblock7
-                        |
+idblock6                : expression idblock7 ;
+idblock7                : ')' '=' expression
+                        | ',' idblock6
                         ;
-
 
 expression              : value binary_expression
                         | unary_expression
@@ -85,8 +80,8 @@ unary_expression        : unary_operator expression ;
 binary_expression       : binary_operator expression
                         |
                         ;
-expression1             : binary_expression
-                        | '(' arguments_list ')' binary_expression
+expression1             : '(' arguments_list ')' binary_expression
+                        | binary_expression
                         ;
 
 
@@ -110,8 +105,10 @@ nextid                  : id
                         ;
 
 whileblock              : 'while' expression instruction 'wend' ;
-dowhileblock            : 'do' instruction 'loop' 'while' expression ;
-dountilblock            : 'do' instruction 'loop' 'until' expression ;
+dosomethingblock        : 'do' instruction 'loop' doblocks ;
+doblocks                : 'while' expression
+                        | 'until' expression
+                        ;
 
 selectblock             : 'select' 'case' id case_list case_else 'end' 'select' ;
 case_list               : 'case' expression instruction case_list

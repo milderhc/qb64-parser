@@ -135,6 +135,13 @@ public class QB64v2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitIdblock(QB64v2Parser.IdblockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -185,13 +192,6 @@ public class QB64v2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitIdblock7(QB64v2Parser.Idblock7Context ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitIdblock8(QB64v2Parser.Idblock8Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -282,14 +282,14 @@ public class QB64v2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDowhileblock(QB64v2Parser.DowhileblockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDosomethingblock(QB64v2Parser.DosomethingblockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDountilblock(QB64v2Parser.DountilblockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDoblocks(QB64v2Parser.DoblocksContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

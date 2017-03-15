@@ -219,6 +219,18 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstdeclaration1(QB64v2Parser.Constdeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIdblock(QB64v2Parser.IdblockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -310,18 +322,6 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIdblock7(QB64v2Parser.Idblock7Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIdblock8(QB64v2Parser.Idblock8Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdblock8(QB64v2Parser.Idblock8Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -471,25 +471,25 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDowhileblock(QB64v2Parser.DowhileblockContext ctx) { }
+	@Override public void enterDosomethingblock(QB64v2Parser.DosomethingblockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDowhileblock(QB64v2Parser.DowhileblockContext ctx) { }
+	@Override public void exitDosomethingblock(QB64v2Parser.DosomethingblockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDountilblock(QB64v2Parser.DountilblockContext ctx) { }
+	@Override public void enterDoblocks(QB64v2Parser.DoblocksContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDountilblock(QB64v2Parser.DountilblockContext ctx) { }
+	@Override public void exitDoblocks(QB64v2Parser.DoblocksContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

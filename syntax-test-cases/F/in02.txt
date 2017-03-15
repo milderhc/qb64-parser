@@ -1,0 +1,9 @@
+dim shared a as integer
+a = 1
+print a
+increase a
+print a
+
+sub increase (a)
+  a = a + 1
+end sub
