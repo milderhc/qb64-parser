@@ -6,10 +6,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 //import qb64v1parsing.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class LexerPractice {
@@ -213,5 +210,6 @@ public class LexerPractice {
                 lexerPractice.generateOutput();
             }
         }
+
     }
 }

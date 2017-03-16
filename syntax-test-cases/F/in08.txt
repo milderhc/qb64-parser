@@ -1,16 +1,16 @@
 do
-    print
+    print "hola"
 loop until expr
 
 do
-    print
+    print "hola"
 loop while expr
 
 sub sub_name (a, b, c, d)
-
+    print "hola"
 end
 
 
 function function_name (a, b, c, d)
-
+    print "hola"
 end function

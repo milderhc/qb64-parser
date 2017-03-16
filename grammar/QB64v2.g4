@@ -135,7 +135,6 @@ parameters_list2        : ',' parameters_list1
 
 arguments_list          : '(' expression ')' arguments_list1
                         | expression arguments_list1
-                        |
                         ;
 arguments_list1         : ',' arguments_list
                         |
