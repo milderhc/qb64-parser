@@ -38,6 +38,11 @@ suffix                  : '$' | '!' | '%' | '&' | '#' | ;
 non_empty_suffix        : '$' | '!' | '%' | '&' | '#' ;
 numeric_suffix          : '!' | '%' | '&' | '#' | ;
 
+arg_expression_list     : arg_expression arg_expression_list1 ;
+arg_expression_list1    : ',' arg_expression_list
+                        |
+                        ;
+
 expression_list         : expression expression_list1 ;
 expression_list1        : ',' expression_list
                         |
@@ -52,29 +57,40 @@ idblock                 : ID idblock1 ;
 idblock1                : non_empty_suffix idblock2
                         | '(' idblock3
                         | '=' expression
-                        | expression_list
+                        | arg_expression_list
                         |
                         ;
 idblock2                : '(' expression_list ')' '=' expression
                         | '=' expression
                         ;
-idblock3                : expression idblock4 ;
-idblock4                : ')' idblock5
-                        | ',' idblock6
+idblock3                : arg_expression ')' idblock6
+                        | expression idblock7
                         ;
-idblock5                : '=' expression
-                        | expression_list
+
+idblock6                : ',' arg_expression_list
                         |
                         ;
-idblock6                : expression idblock7 ;
 idblock7                : ')' '=' expression
-                        | ',' idblock6
+                        | ',' expression idblock7
+                        ;
+
+arg_expression          : value binary_expression
+                        | unary_expression
+                        | '(' arg_expression ')' binary_expression
+                        | ID arg_expression1
+                        ;
+arg_expression1         : non_empty_suffix '(' arguments_list ')' binary_expression
+                        | '(' arg_expression2
+                        | binary_expression
+                        ;
+arg_expression2         : ')'
+                        | arguments_list ')' binary_expression
                         ;
 
 expression              : value binary_expression
                         | unary_expression
                         | '(' expression ')' binary_expression
-                        | id expression1
+                        | single_id expression1
                         ;
 unary_expression        : unary_operator expression ;
 binary_expression       : binary_operator expression
@@ -100,7 +116,7 @@ step                    : 'step' expression
                         |
                         ;
 next                    : 'next' nextid ;
-nextid                  : id
+nextid                  : single_numeric_id
                         |
                         ;
 
@@ -128,14 +144,19 @@ function_sub            : 'sub' ID parameters_list instruction 'end' 'sub' funct
 parameters_list         : '(' parameters_list1 ')'
                         |
                         ;
-parameters_list1        : id parameters_list2 ;
-parameters_list2        : ',' parameters_list1
+parameters_list1        : ID parameters_list2 ;
+parameters_list2        : non_empty_suffix parameters_list3
+                        | '(' ')' 'as' type parameters_list3
+                        | parameters_list3
+                        ;
+parameters_list3        : ',' parameters_list1
                         |
                         ;
 
-arguments_list          : '(' expression ')' arguments_list1
-                        | expression arguments_list1
+arguments_list          : '(' arg_expression ')' arguments_list1
+                        | arg_expression arguments_list1
                         ;
+
 arguments_list1         : ',' arguments_list
                         |
                         ;
