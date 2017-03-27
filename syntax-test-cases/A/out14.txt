@@ -1,0 +1,1 @@
+<14,10> Error sintactico: se encontro: 'esto_es_un_id'; se esperaba: 'else', 'valor_double', 'valor_entero', 'valor_long', 'valor_single', 'valor_string'.

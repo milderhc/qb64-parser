@@ -1,0 +1,1 @@
+<20,13> Error sintactico: se encontro: '234'; se esperaba: 'identificador'.

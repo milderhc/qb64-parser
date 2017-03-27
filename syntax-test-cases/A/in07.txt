@@ -1,0 +1,10 @@
+dim a(5, 6) as integer
+dim x(5, 6, 7, 8) as integer
+
+a(3, 2) = 10
+
+test (a(  )), x ( ), "alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+
+sub test (a ( ) as integer, b() as integer, x$)
+    print a(3, 2)                 ' Imprime 10
+end sub

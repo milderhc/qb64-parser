@@ -111,12 +111,8 @@ elseblock               : 'else' instruction
                         |
                         ;
 
-forblock                : 'for' single_numeric_id '=' expression 'to' expression step instruction next ;
+forblock                : 'for' single_numeric_id '=' expression 'to' expression step instruction 'next' ;
 step                    : 'step' expression
-                        |
-                        ;
-next                    : 'next' nextid ;
-nextid                  : single_numeric_id
                         |
                         ;
 
@@ -126,12 +122,12 @@ doblocks                : 'while' expression
                         | 'until' expression
                         ;
 
-selectblock             : 'select' 'case' id case_list case_else 'end' 'select' ;
-case_list               : 'case' expression instruction case_list
+selectblock             : 'select' 'case' id case_list 'end' 'select' ;
+case_list               : 'case' case_list1
                         |
                         ;
-case_else               : 'case' 'else' instruction
-                        |
+case_list1              : value instruction case_list
+                        | 'else' instruction
                         ;
 
 /************************************* Functions and Subs ***********************************************/
@@ -162,9 +158,10 @@ arguments_list1         : ',' arguments_list
                         ;
 
 /************************************************* I/O *************************************************/
-input                   : 'input' input1 ;
-input1                  : STRING parameters_list2
-                        | parameters_list1
+input                   : 'input' id id_list ;
+
+id_list                 : ',' id id_list
+                        |
                         ;
 
 print                   : 'print' print1 ;
@@ -175,11 +172,11 @@ print1                  : expression print1
 
 /*******************************************************************************************************/
 
-value                   : INTEGER
-                        | SINGLE
-                        | DOUBLE
-                        | LONG
-                        | STRING
+value                   : VALOR_ENTERO
+                        | VALOR_SINGLE
+                        | VALOR_DOUBLE
+                        | VALOR_LONG
+                        | VALOR_STRING
                         ;
 
 binary_operator         : 'and' | 'or' | 'xor' | '+' | '-' | '*' | '/' | '=' | '<>' | '<' | '>' | '<=' | '>=' | '^' ;
@@ -192,17 +189,17 @@ type                    : 'integer'
                         | 'string'
                         ;
 
-INTEGER                 : [3][2][7][6][0-7]
+VALOR_ENTERO            : [3][2][7][6][0-7]
                         | [3][2][7][0-5][0-9]
                         | [3][2][0-6][0-9][0-9]
                         | [3][0-1][0-9][0-9][0-9]
                         | [1-2][0-9][0-9][0-9][0-9]
                         | [0]?[0-9]?[0-9]?[0-9]?[0-9]
                         ;
-LONG                    : [0-9]+ ;
-SINGLE                  : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
-DOUBLE                  : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
-STRING                  : ('"') ~[\n"]* ('"');
+VALOR_LONG              : [0-9]+ ;
+VALOR_SINGLE                  : [0-9]+[.][0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]? ;
+VALOR_DOUBLE                  : [0-9]+[.][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+ ;
+VALOR_STRING                  : ('"') ~[\n"]* ('"');
 
 ID                      : [a-zA-Z][a-zA-Z0-9_]* ;
 COMMENT                 : '\'' ~[\r\n]* -> skip ;

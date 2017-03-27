@@ -94,6 +94,18 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumeric_suffix(QB64v2Parser.Numeric_suffixContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#arg_expression_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArg_expression_list(QB64v2Parser.Arg_expression_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#arg_expression_list1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArg_expression_list1(QB64v2Parser.Arg_expression_list1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#expression_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -142,18 +154,6 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIdblock3(QB64v2Parser.Idblock3Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#idblock4}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdblock4(QB64v2Parser.Idblock4Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#idblock5}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdblock5(QB64v2Parser.Idblock5Context ctx);
-	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#idblock6}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -165,6 +165,24 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIdblock7(QB64v2Parser.Idblock7Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#arg_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArg_expression(QB64v2Parser.Arg_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#arg_expression1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArg_expression1(QB64v2Parser.Arg_expression1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#arg_expression2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArg_expression2(QB64v2Parser.Arg_expression2Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#expression}.
 	 * @param ctx the parse tree
@@ -220,18 +238,6 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStep(QB64v2Parser.StepContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#next}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNext(QB64v2Parser.NextContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#nextid}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNextid(QB64v2Parser.NextidContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#whileblock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -262,11 +268,11 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCase_list(QB64v2Parser.Case_listContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#case_else}.
+	 * Visit a parse tree produced by {@link QB64v2Parser#case_list1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCase_else(QB64v2Parser.Case_elseContext ctx);
+	T visitCase_list1(QB64v2Parser.Case_list1Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#function_sub}.
 	 * @param ctx the parse tree
@@ -292,6 +298,12 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParameters_list2(QB64v2Parser.Parameters_list2Context ctx);
 	/**
+	 * Visit a parse tree produced by {@link QB64v2Parser#parameters_list3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameters_list3(QB64v2Parser.Parameters_list3Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#arguments_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -310,11 +322,11 @@ public interface QB64v2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInput(QB64v2Parser.InputContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v2Parser#input1}.
+	 * Visit a parse tree produced by {@link QB64v2Parser#id_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInput1(QB64v2Parser.Input1Context ctx);
+	T visitId_list(QB64v2Parser.Id_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v2Parser#print}.
 	 * @param ctx the parse tree

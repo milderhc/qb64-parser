@@ -23,8 +23,8 @@ public class QB64v2Lexer extends Lexer {
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
 		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
 		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, T__50=51, T__51=52, 
-		T__52=53, INTEGER=54, LONG=55, SINGLE=56, DOUBLE=57, STRING=58, ID=59, 
-		COMMENT=60, WS=61;
+		T__52=53, VALOR_ENTERO=54, VALOR_LONG=55, VALOR_SINGLE=56, VALOR_DOUBLE=57, 
+		VALOR_STRING=58, ID=59, COMMENT=60, WS=61;
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
@@ -36,14 +36,14 @@ public class QB64v2Lexer extends Lexer {
 		"T__25", "T__26", "T__27", "T__28", "T__29", "T__30", "T__31", "T__32", 
 		"T__33", "T__34", "T__35", "T__36", "T__37", "T__38", "T__39", "T__40", 
 		"T__41", "T__42", "T__43", "T__44", "T__45", "T__46", "T__47", "T__48", 
-		"T__49", "T__50", "T__51", "T__52", "INTEGER", "LONG", "SINGLE", "DOUBLE", 
-		"STRING", "ID", "COMMENT", "WS"
+		"T__49", "T__50", "T__51", "T__52", "VALOR_ENTERO", "VALOR_LONG", "VALOR_SINGLE", 
+		"VALOR_DOUBLE", "VALOR_STRING", "ID", "COMMENT", "WS"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'dim'", "'as'", "'shared'", "'('", "')'", "','", "'$'", "'!'", 
 		"'%'", "'&'", "'#'", "'const'", "'='", "'if'", "'then'", "'end'", "'elseif'", 
-		"'else'", "'for'", "'to'", "'step'", "'next'", "'while'", "'wend'", "'do'", 
+		"'else'", "'for'", "'to'", "'next'", "'step'", "'while'", "'wend'", "'do'", 
 		"'loop'", "'until'", "'select'", "'case'", "'sub'", "'function'", "'input'", 
 		"'print'", "';'", "'and'", "'or'", "'xor'", "'+'", "'-'", "'*'", "'/'", 
 		"'<>'", "'<'", "'>'", "'<='", "'>='", "'^'", "'not'", "'integer'", "'single'", 
@@ -54,8 +54,8 @@ public class QB64v2Lexer extends Lexer {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, "INTEGER", "LONG", "SINGLE", "DOUBLE", 
-		"STRING", "ID", "COMMENT", "WS"
+		null, null, null, null, null, null, "VALOR_ENTERO", "VALOR_LONG", "VALOR_SINGLE", 
+		"VALOR_DOUBLE", "VALOR_STRING", "ID", "COMMENT", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -189,9 +189,9 @@ public class QB64v2Lexer extends Lexer {
 		"\u00b7\7g\2\2\u00b7\u00b8\7n\2\2\u00b8\u00b9\7u\2\2\u00b9\u00ba\7g\2\2"+
 		"\u00ba&\3\2\2\2\u00bb\u00bc\7h\2\2\u00bc\u00bd\7q\2\2\u00bd\u00be\7t\2"+
 		"\2\u00be(\3\2\2\2\u00bf\u00c0\7v\2\2\u00c0\u00c1\7q\2\2\u00c1*\3\2\2\2"+
-		"\u00c2\u00c3\7u\2\2\u00c3\u00c4\7v\2\2\u00c4\u00c5\7g\2\2\u00c5\u00c6"+
-		"\7r\2\2\u00c6,\3\2\2\2\u00c7\u00c8\7p\2\2\u00c8\u00c9\7g\2\2\u00c9\u00ca"+
-		"\7z\2\2\u00ca\u00cb\7v\2\2\u00cb.\3\2\2\2\u00cc\u00cd\7y\2\2\u00cd\u00ce"+
+		"\u00c2\u00c3\7p\2\2\u00c3\u00c4\7g\2\2\u00c4\u00c5\7z\2\2\u00c5\u00c6"+
+		"\7v\2\2\u00c6,\3\2\2\2\u00c7\u00c8\7u\2\2\u00c8\u00c9\7v\2\2\u00c9\u00ca"+
+		"\7g\2\2\u00ca\u00cb\7r\2\2\u00cb.\3\2\2\2\u00cc\u00cd\7y\2\2\u00cd\u00ce"+
 		"\7j\2\2\u00ce\u00cf\7k\2\2\u00cf\u00d0\7n\2\2\u00d0\u00d1\7g\2\2\u00d1"+
 		"\60\3\2\2\2\u00d2\u00d3\7y\2\2\u00d3\u00d4\7g\2\2\u00d4\u00d5\7p\2\2\u00d5"+
 		"\u00d6\7f\2\2\u00d6\62\3\2\2\2\u00d7\u00d8\7f\2\2\u00d8\u00d9\7q\2\2\u00d9"+

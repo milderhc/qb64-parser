@@ -1,0 +1,24 @@
+'tomado de http://www.schoolfreeware.com
+
+dim ui as string
+dim tc as string
+dim lc as string
+dim nc as string
+dim oc as string
+dim x as integer
+
+input ui
+
+for x = 1 to len(ui)
+    tc = mid$(ui, x, 1)
+
+    if (asc(tc) > 64 and asc(tc) < 91) or (asc(tc) > 96 and asc(tc) < 123) then
+        lc = lc + tc
+    else
+        oc = oc + tc
+    end if
+next
+
+print "letters: "; lc
+print "numbers: "; nc
+print "other: "; oc

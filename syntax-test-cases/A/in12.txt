@@ -1,0 +1,81 @@
+' floyd warsall algorithm
+'
+
+print "this is the floyd warsall algorithm"
+
+' n - number of nodes of the graph
+' m - number of edges of the graph
+dim n, m as integer
+input n
+input m
+
+dim shared g(n, n) as long
+const infinity& = 1000000000
+initialize (n)
+
+print "now, enter"; m; "edges with 3 three numbers in each line"
+print "1 <= u, v <= n and w <= 1000000"
+print "indicating there is an edge between u and v and its weight is w"
+
+for i = 1 to m
+    input u%, v%, w&
+    g(u%, v%) = w&
+next
+
+floyd_warsall (n)
+print "floyd warsall in your graph of"; n; "nodes has been executed"
+print "the matrix of distances is"
+show_distances (n)
+
+
+' ---------- subs and functions -------------
+
+' prepares the floyd warsall matrix
+sub initialize (n)
+for i = 1 to n
+    for j = 1 to n
+        if i <> j then
+            g(i, j) = infinity
+        else
+            g(i, j) = 0
+        end if
+    next
+next
+end sub
+
+'executes floyd warsall algorithm
+sub floyd_warsall (n%)
+for k = 1 to n%
+    for i = 1 to n%
+        for j = 1 to n%
+            g(i, j) = min(g(i, j), g(i, k) + g(k, j))
+        next
+    next
+next
+
+'note here how n is changed in the subproc but not
+'in the main module because of the way floyd_warsall was called
+n% = -50
+end sub
+
+'returns the minimum between a pair of long-integer numbers
+function min& (a&, b&)
+if a& < b& then
+    min = a&
+else
+    min = b&
+end if
+end function
+
+sub show_distances (n)
+for i = 1 to n
+    for j = 1 to n
+        if g(i, j) = infinity then
+            print " - "
+        else
+            print g(i, j)
+        end if
+    next
+    print ""
+next
+end sub

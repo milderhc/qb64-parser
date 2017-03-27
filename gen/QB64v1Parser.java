@@ -67,7 +67,7 @@ public class QB64v1Parser extends Parser {
 		"LESSOP", "LESSOREQUALOP", "GREATER", "GREATEROREQUAL", "SEMICOLON", "COLON", 
 		"COMMA", "LEFTPAR", "RIGHTPAR", "INPUT", "PRINT", "IF", "THEN", "ELSE", 
 		"ELSEIF", "END", "WHILE", "WEND", "DO", "LOOP", "UNTIL", "FOR", "TO", 
-		"STEP", "NEXT", "INTEGER", "SINGLE", "DOUBLE", "LONG", "STRING", "DIM", 
+		"STEP", "NEXT", "VALOR_ENTERO", "SINGLE", "DOUBLE", "LONG", "STRING", "DIM",
 		"AS", "NOT", "OR", "AND", "XOR", "MOD", "SUB", "FUNCTION", "SELECT", "CASE", 
 		"SHARED", "CONST", "IDPREFIX", "COMMENT", "WS", "ErrorCharacter"
 	};

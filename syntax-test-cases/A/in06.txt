@@ -1,0 +1,167 @@
+if a then
+    if b then
+        if c% then
+            for i# = 0 to 15
+
+            next
+        end if
+    else
+
+    end if
+else
+    for int = 10 to variable
+
+    next
+
+    while x
+        for int = 10 to variable
+            print ""
+        next
+    wend
+end if
+
+dim y as long
+dim x(expresion, expresion, expresion) as string
+dim a, b, c(expresion) as single
+dim shared global, g(expresion, expresion) as double
+
+a& = 1000000
+b! = 1.1
+c = 2.0
+d% = "alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+e# = 10.000000042
+
+const inf& = 10000000
+
+input nombre$
+input nombre$, edad
+print nombre$
+print edad; nombre$; 2017
+
+if expresion then
+    ' comandos
+elseif expresion then
+    ' comandos
+else
+    ' comandos
+end if
+
+while expression
+    ' comandos
+wend
+
+do
+    ' comandos
+loop while expression
+
+do
+    ' comandos
+loop until expression
+
+for i = 1 to 10
+    ' comandos
+next
+
+for i = expresion to expresion step expresion
+    for j = expresion to expresion
+        print i + j
+    next
+next
+
+function name (a$, b%, c&, d#, e!)
+    dim y as long
+    dim x(expresion, expresion, expresion) as string
+    dim a, b, c(expresion) as single
+
+    a& = 1000000
+    b! = 1.1
+    c = 2.0
+    d% = 1000
+    e# = 10.000000042
+
+    const inf& = 10000000
+
+    input nombre$
+    input nombre$, edad
+    print nombre$
+    print edad; nombre$; 2017
+
+    if expresion then
+        ' comandos
+    elseif expresion then
+        ' comandos
+    else
+        ' comandos
+    end if
+
+    while expression
+        ' comandos
+    wend
+
+    do
+        ' comandos
+    loop while expression
+
+    do
+        ' comandos
+    loop until expression
+
+    for i = 1 to 10
+        ' comandos
+    next
+
+    for i = expresion to expresion step expresion
+        for j = expresion to expresion
+            print i + j
+        next
+    next
+end function
+
+sub name (a$, b%, c&, d#, e!)
+    dim y as long
+    dim x(expresion, expresion, expresion) as string
+    dim a, b, c(expresion) as single
+
+    a& = 1000000
+    b! = 1.1
+    c = 2.0
+    d% = 1000
+    e# = 10.000000042
+
+    const inf& = 10000000
+
+    input nombre$
+    input nombre$, edad
+    print nombre$
+    print edad; nombre$; 2017
+
+    if expresion then
+        ' comandos
+    elseif expresion then
+        ' comandos
+    else
+        ' comandos
+    end if
+
+    while expression
+        ' comandos
+    wend
+
+    do
+        ' comandos
+    loop while expression
+
+    do
+        ' comandos
+    loop until expression
+
+    for i = 1 to 10
+        ' comandos
+    next
+
+    for i = expresion to expresion step expresion
+        for j = expresion to expresion
+            print i + j
+        next
+    next
+end sub

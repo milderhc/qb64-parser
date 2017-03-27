@@ -1,0 +1,38 @@
+'tomado de http://www.schoolfreeware.com
+
+dim x as integer
+dim y as integer
+dim suit(4) as string
+dim rank(13) as string
+dim cards(4, 13) as string
+
+suit(1) = "d"
+suit(2) = "s"
+suit(3) = "h"
+suit(4) = "c"
+
+rank(1) = "2"
+rank(2) = "3"
+rank(3) = "4"
+rank(4) = "5"
+rank(5) = "6"
+rank(6) = "7"
+rank(7) = "8"
+rank(8) = "9"
+rank(9) = "10"
+rank(10) = "alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+rank(11) = "queen"
+rank(12) = "king"
+rank(13) = "ace"
+
+for x = 1 to 4
+    for y = 1 to 13
+        cards(x, y) = suit(x) + rank(y)
+    next
+next
+
+for x = 1 to 4
+    for y = 1 to 13
+        print cards(x, y) + " "
+    next
+next

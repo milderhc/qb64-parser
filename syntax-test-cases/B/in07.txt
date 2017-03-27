@@ -1,0 +1,20 @@
+if a then
+    print "hola"
+else
+    print "hola"
+end if
+
+for int = 10 to variable
+    print "hola"
+next
+i
+
+while x
+    print "hola"
+wend
+
+rand 5, 10, 10, 20
+
+sub rand
+    print "sdklfj"
+end sub

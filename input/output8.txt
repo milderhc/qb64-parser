@@ -1,4 +1,0 @@
-<id,a,1,1>
-<token_igual,1,3>
-<token_integer,10,1,5>
->>> Error lexico (linea: 2, posicion: 1)

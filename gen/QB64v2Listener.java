@@ -147,6 +147,26 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitNumeric_suffix(QB64v2Parser.Numeric_suffixContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#arg_expression_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterArg_expression_list(QB64v2Parser.Arg_expression_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#arg_expression_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitArg_expression_list(QB64v2Parser.Arg_expression_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#arg_expression_list1}.
+	 * @param ctx the parse tree
+	 */
+	void enterArg_expression_list1(QB64v2Parser.Arg_expression_list1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#arg_expression_list1}.
+	 * @param ctx the parse tree
+	 */
+	void exitArg_expression_list1(QB64v2Parser.Arg_expression_list1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#expression_list}.
 	 * @param ctx the parse tree
 	 */
@@ -227,26 +247,6 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitIdblock3(QB64v2Parser.Idblock3Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#idblock4}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdblock4(QB64v2Parser.Idblock4Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#idblock4}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdblock4(QB64v2Parser.Idblock4Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#idblock5}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdblock5(QB64v2Parser.Idblock5Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#idblock5}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdblock5(QB64v2Parser.Idblock5Context ctx);
-	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#idblock6}.
 	 * @param ctx the parse tree
 	 */
@@ -266,6 +266,36 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdblock7(QB64v2Parser.Idblock7Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#arg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArg_expression(QB64v2Parser.Arg_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#arg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArg_expression(QB64v2Parser.Arg_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#arg_expression1}.
+	 * @param ctx the parse tree
+	 */
+	void enterArg_expression1(QB64v2Parser.Arg_expression1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#arg_expression1}.
+	 * @param ctx the parse tree
+	 */
+	void exitArg_expression1(QB64v2Parser.Arg_expression1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#arg_expression2}.
+	 * @param ctx the parse tree
+	 */
+	void enterArg_expression2(QB64v2Parser.Arg_expression2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#arg_expression2}.
+	 * @param ctx the parse tree
+	 */
+	void exitArg_expression2(QB64v2Parser.Arg_expression2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#expression}.
 	 * @param ctx the parse tree
@@ -357,26 +387,6 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitStep(QB64v2Parser.StepContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#next}.
-	 * @param ctx the parse tree
-	 */
-	void enterNext(QB64v2Parser.NextContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#next}.
-	 * @param ctx the parse tree
-	 */
-	void exitNext(QB64v2Parser.NextContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#nextid}.
-	 * @param ctx the parse tree
-	 */
-	void enterNextid(QB64v2Parser.NextidContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#nextid}.
-	 * @param ctx the parse tree
-	 */
-	void exitNextid(QB64v2Parser.NextidContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#whileblock}.
 	 * @param ctx the parse tree
 	 */
@@ -427,15 +437,15 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitCase_list(QB64v2Parser.Case_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#case_else}.
+	 * Enter a parse tree produced by {@link QB64v2Parser#case_list1}.
 	 * @param ctx the parse tree
 	 */
-	void enterCase_else(QB64v2Parser.Case_elseContext ctx);
+	void enterCase_list1(QB64v2Parser.Case_list1Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#case_else}.
+	 * Exit a parse tree produced by {@link QB64v2Parser#case_list1}.
 	 * @param ctx the parse tree
 	 */
-	void exitCase_else(QB64v2Parser.Case_elseContext ctx);
+	void exitCase_list1(QB64v2Parser.Case_list1Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#function_sub}.
 	 * @param ctx the parse tree
@@ -477,6 +487,16 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitParameters_list2(QB64v2Parser.Parameters_list2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v2Parser#parameters_list3}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters_list3(QB64v2Parser.Parameters_list3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v2Parser#parameters_list3}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters_list3(QB64v2Parser.Parameters_list3Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#arguments_list}.
 	 * @param ctx the parse tree
 	 */
@@ -507,15 +527,15 @@ public interface QB64v2Listener extends ParseTreeListener {
 	 */
 	void exitInput(QB64v2Parser.InputContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v2Parser#input1}.
+	 * Enter a parse tree produced by {@link QB64v2Parser#id_list}.
 	 * @param ctx the parse tree
 	 */
-	void enterInput1(QB64v2Parser.Input1Context ctx);
+	void enterId_list(QB64v2Parser.Id_listContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v2Parser#input1}.
+	 * Exit a parse tree produced by {@link QB64v2Parser#id_list}.
 	 * @param ctx the parse tree
 	 */
-	void exitInput1(QB64v2Parser.Input1Context ctx);
+	void exitId_list(QB64v2Parser.Id_listContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v2Parser#print}.
 	 * @param ctx the parse tree

@@ -1,6 +1,21 @@
-' Programa basico
+dim a as integer
+dim b as double
+dim c as string
+dim d as single
+dim e as long
 
-input "Ingrese el nombre", nombre$
-input "Ingrese la edad", edad%
+dim a, b, c, d, e as integer
+dim a, b, c, d, e as long
+dim a, b, c, d, e as double
+dim a, b, c, d, e as single
+dim a, b, c, d, e as string
 
-print nombre$; " --> "; edad%
+dim shared a, b, c, d, e as integer
+dim shared a, b, c, d, e as double
+dim shared a, b, c, d, e as single
+dim shared a, b, c, d, e as long
+dim shared a, b, c, d, e as string
+
+dim shared a(5, 6, 6, 7) as integer
+dim shared a(5, 6, 6) as integer
+dim shared a(5, 6, 6, 6), a(4, 4, 4) as double

@@ -1,0 +1,1 @@
+<15,1> Error sintactico: se encontro: 'then'; se esperaba: 'const', 'dim', 'do', 'end', 'for', 'identificador', 'if', 'input', 'print', 'select', 'while'.

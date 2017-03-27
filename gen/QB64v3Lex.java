@@ -35,7 +35,7 @@ public class QB64v3Lex extends Lexer {
 		"COLON", "COMMA", "LEFTPAR", "RIGHTPAR", "SINGLESUFFIX", "DOUBLESUFFIX", 
 		"INTEGERSUFFIX", "LONGSUFFIX", "STRINGSUFFIX", "INPUT", "PRINT", "IF", 
 		"THEN", "ELSE", "ELSEIF", "END", "WHILE", "WEND", "DO", "LOOP", "UNTIL", 
-		"FOR", "TO", "STEP", "NEXT", "INTEGER", "SINGLE", "DOUBLE", "LONG", "STRING", 
+		"FOR", "TO", "STEP", "NEXT", "VALOR_ENTERO", "SINGLE", "DOUBLE", "LONG", "STRING",
 		"DIM", "AS", "NOT", "OR", "AND", "XOR", "MOD", "SUB", "FUNCTION", "SELECT", 
 		"CASE", "SHARED", "CONST", "A", "B", "C", "D", "E", "F", "G", "H", "I", 
 		"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", 
@@ -53,7 +53,7 @@ public class QB64v3Lex extends Lexer {
 		"SEMICOLON", "COLON", "COMMA", "LEFTPAR", "RIGHTPAR", "SINGLESUFFIX", 
 		"DOUBLESUFFIX", "INTEGERSUFFIX", "LONGSUFFIX", "STRINGSUFFIX", "INPUT", 
 		"PRINT", "IF", "THEN", "ELSE", "ELSEIF", "END", "WHILE", "WEND", "DO", 
-		"LOOP", "UNTIL", "FOR", "TO", "STEP", "NEXT", "INTEGER", "SINGLE", "DOUBLE", 
+		"LOOP", "UNTIL", "FOR", "TO", "STEP", "NEXT", "VALOR_ENTERO", "SINGLE", "DOUBLE",
 		"LONG", "STRING", "DIM", "AS", "NOT", "OR", "AND", "XOR", "MOD", "SUB", 
 		"FUNCTION", "SELECT", "CASE", "SHARED", "CONST", "ID", "COMMENT", "WS"
 	};

@@ -1,0 +1,25 @@
+fun = fun
+
+function name
+end function
+
+function name
+end function
+
+function name (a, b, c)
+end function
+
+function name (a$, b%, c&, d#, e!)
+end function
+
+sub name
+end sub
+
+sub name
+end sub
+
+sub name (a, b, c)
+end sub
+
+sub name (a$, b%, c&, d#, e!)
+end sub

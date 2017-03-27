@@ -1,14 +1,10 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.IntervalSet;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -31,7 +27,11 @@ public class SyntaxPractice {
         parser.setErrorHandler(new DefaultErrorStrategy(){
 
             protected String elementName(Vocabulary vocabulary, int a) {
-                return a == -1?"<EOF>":(a == -2?"<EPSILON>":vocabulary.getDisplayName(a));
+                return a == -1?"EOF":(a == -2?"EPS":vocabulary.getDisplayName(a));
+            }
+
+            protected String elementName(String name) {
+                return name.equals("\'<EOF>\'") ? "\'EOF\'" : name.toLowerCase();
             }
 
             private String reportSyntaxError (Token token, Parser recognizer) {
@@ -53,7 +53,10 @@ public class SyntaxPractice {
                                     name = "IDENTIFICADOR";
                                 name = "\'" + name + "\'";
                             }
-                            expectedTokens.add(name);
+                            if (name.equals("\'EOF\'"))
+                                expectedTokens.add(name);
+                            else
+                                expectedTokens.add(name.toLowerCase());
                         }
                     }
                 }
@@ -62,12 +65,12 @@ public class SyntaxPractice {
                 boolean comma = false;
                 for (String tokenString : expectedTokens) {
                     if (comma) expectedBuffer.append(", ");
-                    expectedBuffer.append(tokenString.toLowerCase());
+                    expectedBuffer.append(tokenString);
                     comma = true;
                 }
 
                 String msg = "<" + token.getLine() + "," + (token.getCharPositionInLine() + 1) + "> Error sintactico: " +
-                        "se encontro: " + tokenName + "; se esperaba: " +
+                        "se encontro: " + elementName(tokenName) + "; se esperaba: " +
                         expectedBuffer + ".";
 
                 if (!syntaxErrorFound) {
@@ -104,6 +107,12 @@ public class SyntaxPractice {
                     recognizer.notifyErrorListeners(token, msg, (RecognitionException)null);
                 }
             }
+
+            @Override
+            protected void reportNoViableAlternative(Parser recognizer, NoViableAltException e) {
+                String msg = reportSyntaxError(e.getOffendingToken(), recognizer);
+                recognizer.notifyErrorListeners(e.getOffendingToken(), msg, e);
+            }
         });
 
         parser.qb();
@@ -119,10 +128,10 @@ public class SyntaxPractice {
         syntaxErrorFound = false;
     }
 
-    private final static int[] SAMPLES = {2, 0, 3, 4, 0, 8};
+    private final static int[] SAMPLES = {25, 8};
     private final static String directory = "syntax-test-cases/";
-    private final static String inputPrefix = "in0";
-    private final static String outputPrefix = "out0";
+    private final static String inputPrefix = "in";
+    private final static String outputPrefix = "out";
     private final static String extension = ".txt";
 
     public static void main(String[] args) throws Exception {
@@ -132,12 +141,12 @@ public class SyntaxPractice {
         syntaxPractice.generateOutput();
 
 
-        for (char c = 'F'; c <= 'F'; ++c) {
-            for (int i = 1; i <= SAMPLES[(int)(c - 'A')]; ++i) {
+        for (char c = 'A'; c <= 'A'; ++c) {
+            for (int i = 0; i < SAMPLES[(int)(c - 'A')]; ++i) {
                 syntaxPractice.setNewFiles(directory + "/" + String.valueOf(c) + "/"
-                                + inputPrefix + i + extension,
+                                + inputPrefix + (i < 10 ? "0" : "") + i + extension,
                         directory + "/" + String.valueOf(c) + "/"
-                                + outputPrefix + i + extension);
+                                + outputPrefix + (i < 10 ? "0" : "") + i + extension);
                 syntaxPractice.generateOutput();
             }
         }

@@ -1,0 +1,18 @@
+select case var!
+    case 6
+        print ""
+    case 7
+        print ""
+    case "sdklfj"
+        print ""
+    case 4.5555
+        print ""
+    case 5.55555555
+        print ""
+    case 2341234
+        print ""
+    case esto_es_un_id    ' Error
+        print ""
+    case else
+        print ""
+end select

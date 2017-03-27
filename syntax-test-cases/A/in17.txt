@@ -1,0 +1,9 @@
+dim a("askdfja") as integer
+dim a(4.5555599) as long
+dim a(add(5, 6), "asldkfj"), a(add(5, 6), "asldkfj") as long
+
+procedimiento (funcion( - not 1, id( id, 3, "string" ), (( 3 )) )), 4 = 12
+procedimiento (funcion( - not 1, id$( id, 3, "string" ), (( 3 )) )), 4 = 12
+
+id = 4 * - not 2
+dim id(2, -not -4) as integer

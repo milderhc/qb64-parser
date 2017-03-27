@@ -9,10 +9,4 @@ function name (a$, b%, c&, d#, e!)
             print i + j
         next
 
-        for i = 10 to 123949 step 1
-
-        next i
-    next
-
-    final_case = ((f& ^ not xd)^xd^xd(not (not - 234) * not 14) * id not 16
-end function
+        for i = 10 to 123949 step

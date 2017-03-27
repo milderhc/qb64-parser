@@ -1,0 +1,1 @@
+<1,4> Error sintactico: se encontro: 'then'; se esperaba: '(', '-', 'identificador', 'not', 'valor_double', 'valor_entero', 'valor_long', 'valor_single', 'valor_string'.

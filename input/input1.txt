@@ -1,6 +1,0 @@
-SUB
-
-    diM
-    WHILe
- nExt
-END SUB

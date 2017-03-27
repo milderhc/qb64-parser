@@ -1,0 +1,1 @@
+<12,30> Error sintactico: se encontro: 'then'; se esperaba: '*', '+', '-', '/', '<', '<=', '<>', '=', '>', '>=', '^', 'and', 'const', 'dim', 'do', 'for', 'identificador', 'if', 'input', 'next', 'or', 'print', 'select', 'step', 'while', 'xor'.

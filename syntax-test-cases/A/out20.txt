@@ -1,0 +1,1 @@
+<65,1> Error sintactico: se encontro: 'no_ahora_por_favor'; se esperaba: 'EOF', 'function', 'sub'.

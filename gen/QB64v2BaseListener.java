@@ -183,6 +183,30 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArg_expression_list(QB64v2Parser.Arg_expression_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArg_expression_list(QB64v2Parser.Arg_expression_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArg_expression_list1(QB64v2Parser.Arg_expression_list1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArg_expression_list1(QB64v2Parser.Arg_expression_list1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpression_list(QB64v2Parser.Expression_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -279,30 +303,6 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdblock4(QB64v2Parser.Idblock4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdblock4(QB64v2Parser.Idblock4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIdblock5(QB64v2Parser.Idblock5Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdblock5(QB64v2Parser.Idblock5Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIdblock6(QB64v2Parser.Idblock6Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -322,6 +322,42 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIdblock7(QB64v2Parser.Idblock7Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArg_expression(QB64v2Parser.Arg_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArg_expression(QB64v2Parser.Arg_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArg_expression1(QB64v2Parser.Arg_expression1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArg_expression1(QB64v2Parser.Arg_expression1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArg_expression2(QB64v2Parser.Arg_expression2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArg_expression2(QB64v2Parser.Arg_expression2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -435,30 +471,6 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNext(QB64v2Parser.NextContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNext(QB64v2Parser.NextContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNextid(QB64v2Parser.NextidContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNextid(QB64v2Parser.NextidContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterWhileblock(QB64v2Parser.WhileblockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -519,13 +531,13 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCase_else(QB64v2Parser.Case_elseContext ctx) { }
+	@Override public void enterCase_list1(QB64v2Parser.Case_list1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCase_else(QB64v2Parser.Case_elseContext ctx) { }
+	@Override public void exitCase_list1(QB64v2Parser.Case_list1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -579,6 +591,18 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterParameters_list3(QB64v2Parser.Parameters_list3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameters_list3(QB64v2Parser.Parameters_list3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArguments_list(QB64v2Parser.Arguments_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -615,13 +639,13 @@ public class QB64v2BaseListener implements QB64v2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInput1(QB64v2Parser.Input1Context ctx) { }
+	@Override public void enterId_list(QB64v2Parser.Id_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInput1(QB64v2Parser.Input1Context ctx) { }
+	@Override public void exitId_list(QB64v2Parser.Id_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

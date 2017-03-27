@@ -1,0 +1,37 @@
+select case var!
+    case 5
+        print ""
+    case 6
+        print ""
+    case 7
+        print ""
+    case "sdklfj"
+        print ""
+    case 4.5555
+        print ""
+    case 5.55555555
+        print ""
+    case 2341234
+        print ""
+    case else
+        print "alsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+end select
+
+select case 234
+    case 5
+        print ""
+    case 6
+        print ""
+    case 7
+        print ""
+    case "sdklfj"
+        print ""
+    case 4.5555
+        print ""
+    case 5.55555555
+        print ""
+    case 2341234
+        print ""
+    case else
+        print ""
+end select

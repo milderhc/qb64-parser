@@ -1,0 +1,18 @@
+id 5, id      ' Llamado al procedimiento nombrado id, parametros 5 y id
+id            ' Llamado al procedimiento nombrado id (ya no hay
+              ' ambiguedad en la siguiente linea porque el primer
+              ' parametro no puede ser un identificador por referencia)
+id
+id (id)
+id (id), id
+id (a()), a() ' Los arreglos por referencia tampoco quedan permitidos
+              ' en el primer parametro
+
+id id id id   ' Cuatro llamados consecutivos a un procedimiento
+
+id -id
+id not id
+
+id (5*10*not4)
+
+id -id, id, (id), a()

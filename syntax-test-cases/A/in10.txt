@@ -1,0 +1,20 @@
+'tomado de http://www.schoolfreeware.com
+
+dim wrd as string
+dim revwrd as string
+dim x as integer
+
+input wrd
+
+for x = len(wrd) to 1 step -1
+    revwrd = revwrd + mid$(wrd, x, 1)
+next
+
+print "original word: "; lcase$(wrd)
+print "reverse word: "; lcase$(revwrd)
+
+if lcase$(wrd) = lcase$(revwrd) then
+    print "the word is a palindrome"
+else
+    print "the word is not a palindromealsdfjasdf(*(&*(^*^&^&%^^%&^&^&/\|||\\\\\\\\\\\"
+end if

@@ -1,7 +1,0 @@
-<token_single,2.3,1,1>
-<id,if2,1,4>
-<token_integer,001,2,1>
-<token_single,1.0,3,1>
-<token_single,2.5555,4,1>
-<id,not3,4,7>
->>> Error lexico (linea: 4, posicion: 11)
