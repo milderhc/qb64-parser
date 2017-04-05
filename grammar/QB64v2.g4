@@ -179,7 +179,7 @@ value                   : VALOR_ENTERO
                         | VALOR_STRING
                         ;
 
-binary_operator         : 'and' | 'or' | 'xor' | '+' | '-' | '*' | '/' | '=' | '<>' | '<' | '>' | '<=' | '>=' | '^' ;
+binary_operator         : 'and' | 'or' | 'xor' | '+' | '-' | '*' | '/' | '=' | '<>' | '<' | '>' | '<=' | '>=' | '^' | 'mod' ;
 unary_operator          : 'not' | '-' ;
 
 type                    : 'integer'

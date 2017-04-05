@@ -12,9 +12,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     public Map<String, Sub> subs;
     public Map<String, Function> functions;
-
     public Map<String, Variable> dynamicMemory, staticMemory;
-
 
     private SemanticErrorHandler errorHandler;
 
@@ -92,27 +90,6 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     public T visitParenExpr (QB64v3Parser.ParenExprContext ctx) {
         return null;
     }
-    @Override
-    public T visitCallFunctionExpr (QB64v3Parser.CallFunctionExprContext ctx) {
-        return null;
-    }
-    @Override
-    public T visitCallId (QB64v3Parser.CallIdContext ctx) {
-        return visit(ctx.id());
-    }
-    @Override
-    public T visitPutValue (QB64v3Parser.PutValueContext ctx) {
-        int type = ctx.value.getType();
-        switch (type) {
-            case QB64v3Lexer.INTEGERV:
-                return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
-            case QB64v3Lexer.DOUBLEV:
-                return (T) new Value(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
-            default:
-                return (T) new Value(ctx.value.getText(), Value.Type.STRING);
-        }
-    }
-
 
 
     @Override

@@ -1,7 +1,7 @@
 grammar QB64v3;
 import QB64v3Lex;
 
-qb                      : instruction* (funproc)* EOF ;
+qb                      : instruction* funproc* EOF ;
 
 instruction             : declaration
                         | constDeclaration
@@ -29,31 +29,31 @@ constDeclaration        : CONST singleId '=' expression
                           (',' singleId '=' expression)* ;
 assignment              : id '=' expression ;
 
-expression              : expression op=('/' | '*' | MOD | '^') expression         # mulExpr
+expression              : expression op=(OR | XOR) expression                      # orExpr
+                        | expression AND expression                                # andExpr
+                        | expression op=('=' | '<>') expression                    # eqExpr
+                        | expression op=('<' | '<=' | '>' | '>=') expression       # cmpExpr
                         | expression op=('+' | '-') expression                     # addExpr
+                        | expression op=('/' | '*' | MOD) expression               # mulExpr
+                        | expression '^' expression                                # potExpr
                         | op=('-' | NOT) expression                                # unaryExpr
-                        | expression
-                          op=(AND | OR | XOR | '=' | '<>' | '<' | '>' | '<=' | '>=')
-                          expression                                               # binExpr
                         | '(' expression ')'                                       # parenExpr
-                        | callFunction                                             # callFunctionExpr
-                        | id                                                       # callId
-                        | value=(INTEGERV | DOUBLEV | STRINGV)                     # putValue
                         ;
 
 callSub                 : ID parametersList? ;
-callFunction            : singleId ('(' parametersList ')')? ;
+callId                  : singleId                                                 # callSingleId
+                        | singleId '(' parametersList ')'                          # callFunction
+                        ;
 
-parametersList          : '(' funprocArg ')' (',' parametersList)*               # valuePar
-                        | funprocArg (',' parametersList)*                       # referencePar
+parametersList          : '(' funprocArg ')' (',' parametersList)*                 # valuePar
+                        | funprocArg (',' parametersList)*                         # referencePar
                         ;
 funprocArg              : expression
                         | ID '(' ')'
                         ;
                         
-input                   : INPUT (STRINGV ',')? id (',' id)* ;
-print                   : PRINT expression? printList* ;
-printList               : ';' expression? ;
+input                   : INPUT id (',' id)* ;
+print                   : PRINT expression (';' expression)* ;
 
 ifBlock                 : IF expression THEN instruction*
                           (ELSEIF expression THEN instruction*)*
@@ -63,20 +63,21 @@ doWhileBlock            : DO instruction* LOOP WHILE expression ;
 doUntilBlock            : DO instruction* LOOP UNTIL expression ;
 forBlock                : FOR singleId '=' expression TO expression
                           (STEP expression)?
-                          instruction* NEXT singleId? ;
+                          instruction* NEXT ;
 
-selectBlock             : SELECT CASE id (casesList)*
+selectBlock             : SELECT CASE id casesList?
                           (CASE ELSE instruction*)? END SELECT ;
-casesList               : CASE expression instruction* (casesList)* ;
+casesList               : CASE expression instruction* casesList? ;
 
-funprocPar              : id
-                        | ID '(' ')' AS
-                          type=(INTEGER | LONG | SINGLE | DOUBLE | STRING)
-                        ;
 funproc                 : FUNCTION singleId ('(' funprocPar (',' funprocPar)* ')')?
                           instruction* END FUNCTION                                     # function
                         | SUB ID ('(' funprocPar (',' funprocPar)* ')')?
                           instruction* END SUB                                          # sub
+                        ;
+
+funprocPar              : singleId
+                        | ID '(' ')' AS
+                          type=(INTEGER | LONG | SINGLE | DOUBLE | STRING)
                         ;
 
 suffix                  : suffixType=('%' | '&' | '!' | '#' | '$');

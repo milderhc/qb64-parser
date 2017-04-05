@@ -124,25 +124,13 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCallId(QB64v3Parser.CallIdContext ctx) { }
+	@Override public void enterEqExpr(QB64v3Parser.EqExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCallId(QB64v3Parser.CallIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBinExpr(QB64v3Parser.BinExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBinExpr(QB64v3Parser.BinExprContext ctx) { }
+	@Override public void exitEqExpr(QB64v3Parser.EqExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -184,25 +172,25 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCallFunctionExpr(QB64v3Parser.CallFunctionExprContext ctx) { }
+	@Override public void enterOrExpr(QB64v3Parser.OrExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCallFunctionExpr(QB64v3Parser.CallFunctionExprContext ctx) { }
+	@Override public void exitOrExpr(QB64v3Parser.OrExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPutValue(QB64v3Parser.PutValueContext ctx) { }
+	@Override public void enterPotExpr(QB64v3Parser.PotExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPutValue(QB64v3Parser.PutValueContext ctx) { }
+	@Override public void exitPotExpr(QB64v3Parser.PotExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -220,6 +208,30 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAndExpr(QB64v3Parser.AndExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAndExpr(QB64v3Parser.AndExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCmpExpr(QB64v3Parser.CmpExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmpExpr(QB64v3Parser.CmpExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCallSub(QB64v3Parser.CallSubContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -227,6 +239,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCallSub(QB64v3Parser.CallSubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCallSingleId(QB64v3Parser.CallSingleIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallSingleId(QB64v3Parser.CallSingleIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -299,18 +323,6 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPrint(QB64v3Parser.PrintContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPrintList(QB64v3Parser.PrintListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrintList(QB64v3Parser.PrintListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -400,18 +412,6 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFunction(QB64v3Parser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -431,6 +431,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSub(QB64v3Parser.SubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

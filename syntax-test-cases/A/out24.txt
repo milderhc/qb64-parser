@@ -1,1 +1,1 @@
-<17,70> Error sintactico: se encontro: 'not'; se esperaba: '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '/', '<', '<=', '<>', '=', '>', '>=', '^', 'and', 'or', 'xor'.
+<17,70> Error sintactico: se encontro: 'not'; se esperaba: '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '/', '<', '<=', '<>', '=', '>', '>=', '^', 'and', 'mod', 'or', 'xor'.

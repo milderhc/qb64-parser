@@ -23,8 +23,8 @@ public class QB64v2Parser extends Parser {
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
 		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
 		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, T__50=51, T__51=52, 
-		T__52=53, VALOR_ENTERO=54, VALOR_LONG=55, VALOR_SINGLE=56, VALOR_DOUBLE=57, 
-		VALOR_STRING=58, ID=59, COMMENT=60, WS=61;
+		T__52=53, T__53=54, VALOR_ENTERO=55, VALOR_LONG=56, VALOR_SINGLE=57, VALOR_DOUBLE=58, 
+		VALOR_STRING=59, ID=60, COMMENT=61, WS=62;
 	public static final int
 		RULE_qb = 0, RULE_instruction = 1, RULE_declaration = 2, RULE_declaration1 = 3, 
 		RULE_dim_id = 4, RULE_array = 5, RULE_dim_id_list = 6, RULE_dim_id_list1 = 7, 
@@ -65,16 +65,16 @@ public class QB64v2Parser extends Parser {
 		"'else'", "'for'", "'to'", "'next'", "'step'", "'while'", "'wend'", "'do'", 
 		"'loop'", "'until'", "'select'", "'case'", "'sub'", "'function'", "'input'", 
 		"'print'", "';'", "'and'", "'or'", "'xor'", "'+'", "'-'", "'*'", "'/'", 
-		"'<>'", "'<'", "'>'", "'<='", "'>='", "'^'", "'not'", "'integer'", "'single'", 
-		"'double'", "'long'", "'string'"
+		"'<>'", "'<'", "'>'", "'<='", "'>='", "'^'", "'mod'", "'not'", "'integer'", 
+		"'single'", "'double'", "'long'", "'string'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, "VALOR_ENTERO", "VALOR_LONG", "VALOR_SINGLE", 
-		"VALOR_DOUBLE", "VALOR_STRING", "ID", "COMMENT", "WS"
+		null, null, null, null, null, null, null, "VALOR_ENTERO", "VALOR_LONG", 
+		"VALOR_SINGLE", "VALOR_DOUBLE", "VALOR_STRING", "ID", "COMMENT", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -960,6 +960,7 @@ public class QB64v2Parser extends Parser {
 			case T__45:
 			case T__46:
 			case T__47:
+			case T__48:
 			case VALOR_ENTERO:
 			case VALOR_LONG:
 			case VALOR_SINGLE:
@@ -1983,7 +1984,7 @@ public class QB64v2Parser extends Parser {
 				}
 				break;
 			case T__38:
-			case T__47:
+			case T__48:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(295);
@@ -2129,6 +2130,7 @@ public class QB64v2Parser extends Parser {
 			case T__44:
 			case T__45:
 			case T__46:
+			case T__47:
 			case ID:
 				enterOuterAlt(_localctx, 3);
 				{
@@ -2193,7 +2195,7 @@ public class QB64v2Parser extends Parser {
 				break;
 			case T__3:
 			case T__38:
-			case T__47:
+			case T__48:
 			case VALOR_ENTERO:
 			case VALOR_LONG:
 			case VALOR_SINGLE:
@@ -2284,7 +2286,7 @@ public class QB64v2Parser extends Parser {
 				}
 				break;
 			case T__38:
-			case T__47:
+			case T__48:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(326);
@@ -4024,7 +4026,7 @@ public class QB64v2Parser extends Parser {
 			{
 			setState(513);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__34) | (1L << T__35) | (1L << T__36) | (1L << T__37) | (1L << T__38) | (1L << T__39) | (1L << T__40) | (1L << T__41) | (1L << T__42) | (1L << T__43) | (1L << T__44) | (1L << T__45) | (1L << T__46))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__34) | (1L << T__35) | (1L << T__36) | (1L << T__37) | (1L << T__38) | (1L << T__39) | (1L << T__40) | (1L << T__41) | (1L << T__42) | (1L << T__43) | (1L << T__44) | (1L << T__45) | (1L << T__46) | (1L << T__47))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4074,7 +4076,7 @@ public class QB64v2Parser extends Parser {
 			{
 			setState(515);
 			_la = _input.LA(1);
-			if ( !(_la==T__38 || _la==T__47) ) {
+			if ( !(_la==T__38 || _la==T__48) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4124,7 +4126,7 @@ public class QB64v2Parser extends Parser {
 			{
 			setState(517);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__48) | (1L << T__49) | (1L << T__50) | (1L << T__51) | (1L << T__52))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__49) | (1L << T__50) | (1L << T__51) | (1L << T__52) | (1L << T__53))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4146,7 +4148,7 @@ public class QB64v2Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3?\u020a\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3@\u020a\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -4182,8 +4184,8 @@ public class QB64v2Parser extends Parser {
 		"\66\3\66\3\66\3\66\3\66\5\66\u01f5\n\66\3\67\3\67\3\67\38\38\38\38\38"+
 		"\38\58\u0200\n8\39\39\3:\3:\3;\3;\3<\3<\3<\2\2=\2\4\6\b\n\f\16\20\22\24"+
 		"\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnprtv"+
-		"\2\7\3\2\t\r\3\28<\4\2\17\17%\61\4\2))\62\62\3\2\63\67\u020b\2x\3\2\2"+
-		"\2\4\u009b\3\2\2\2\6\u009d\3\2\2\2\b\u00a9\3\2\2\2\n\u00ab\3\2\2\2\f\u00b3"+
+		"\2\7\3\2\t\r\3\29=\4\2\17\17%\62\4\2))\63\63\3\2\648\u020b\2x\3\2\2\2"+
+		"\4\u009b\3\2\2\2\6\u009d\3\2\2\2\b\u00a9\3\2\2\2\n\u00ab\3\2\2\2\f\u00b3"+
 		"\3\2\2\2\16\u00b5\3\2\2\2\20\u00bb\3\2\2\2\22\u00bd\3\2\2\2\24\u00c0\3"+
 		"\2\2\2\26\u00c3\3\2\2\2\30\u00cd\3\2\2\2\32\u00cf\3\2\2\2\34\u00d6\3\2"+
 		"\2\2\36\u00d8\3\2\2\2 \u00de\3\2\2\2\"\u00e0\3\2\2\2$\u00e6\3\2\2\2&\u00e8"+
@@ -4212,14 +4214,14 @@ public class QB64v2Parser extends Parser {
 		"\7\4\2\2\u00a2\u00a3\5v<\2\u00a3\u00aa\3\2\2\2\u00a4\u00a5\7\5\2\2\u00a5"+
 		"\u00a6\5\16\b\2\u00a6\u00a7\7\4\2\2\u00a7\u00a8\5v<\2\u00a8\u00aa\3\2"+
 		"\2\2\u00a9\u00a0\3\2\2\2\u00a9\u00a4\3\2\2\2\u00aa\t\3\2\2\2\u00ab\u00ac"+
-		"\7=\2\2\u00ac\u00ad\5\f\7\2\u00ad\13\3\2\2\2\u00ae\u00af\7\6\2\2\u00af"+
+		"\7>\2\2\u00ac\u00ad\5\f\7\2\u00ad\13\3\2\2\2\u00ae\u00af\7\6\2\2\u00af"+
 		"\u00b0\5\"\22\2\u00b0\u00b1\7\7\2\2\u00b1\u00b4\3\2\2\2\u00b2\u00b4\3"+
 		"\2\2\2\u00b3\u00ae\3\2\2\2\u00b3\u00b2\3\2\2\2\u00b4\r\3\2\2\2\u00b5\u00b6"+
 		"\5\n\6\2\u00b6\u00b7\5\20\t\2\u00b7\17\3\2\2\2\u00b8\u00b9\7\b\2\2\u00b9"+
 		"\u00bc\5\16\b\2\u00ba\u00bc\3\2\2\2\u00bb\u00b8\3\2\2\2\u00bb\u00ba\3"+
-		"\2\2\2\u00bc\21\3\2\2\2\u00bd\u00be\7=\2\2\u00be\u00bf\5\30\r\2\u00bf"+
-		"\23\3\2\2\2\u00c0\u00c1\7=\2\2\u00c1\u00c2\5\34\17\2\u00c2\25\3\2\2\2"+
-		"\u00c3\u00c4\7=\2\2\u00c4\u00c5\5\30\r\2\u00c5\u00c6\5\f\7\2\u00c6\27"+
+		"\2\2\2\u00bc\21\3\2\2\2\u00bd\u00be\7>\2\2\u00be\u00bf\5\30\r\2\u00bf"+
+		"\23\3\2\2\2\u00c0\u00c1\7>\2\2\u00c1\u00c2\5\34\17\2\u00c2\25\3\2\2\2"+
+		"\u00c3\u00c4\7>\2\2\u00c4\u00c5\5\30\r\2\u00c5\u00c6\5\f\7\2\u00c6\27"+
 		"\3\2\2\2\u00c7\u00ce\7\t\2\2\u00c8\u00ce\7\n\2\2\u00c9\u00ce\7\13\2\2"+
 		"\u00ca\u00ce\7\f\2\2\u00cb\u00ce\7\r\2\2\u00cc\u00ce\3\2\2\2\u00cd\u00c7"+
 		"\3\2\2\2\u00cd\u00c8\3\2\2\2\u00cd\u00c9\3\2\2\2\u00cd\u00ca\3\2\2\2\u00cd"+
@@ -4237,7 +4239,7 @@ public class QB64v2Parser extends Parser {
 		"\2\u00ee\u00ef\7\b\2\2\u00ef\u00f0\5\22\n\2\u00f0\u00f1\7\17\2\2\u00f1"+
 		"\u00f2\5<\37\2\u00f2\u00f3\5(\25\2\u00f3\u00f6\3\2\2\2\u00f4\u00f6\3\2"+
 		"\2\2\u00f5\u00ee\3\2\2\2\u00f5\u00f4\3\2\2\2\u00f6)\3\2\2\2\u00f7\u00f8"+
-		"\7=\2\2\u00f8\u00f9\5,\27\2\u00f9+\3\2\2\2\u00fa\u00fb\5\32\16\2\u00fb"+
+		"\7>\2\2\u00f8\u00f9\5,\27\2\u00f9+\3\2\2\2\u00fa\u00fb\5\32\16\2\u00fb"+
 		"\u00fc\5.\30\2\u00fc\u0104\3\2\2\2\u00fd\u00fe\7\6\2\2\u00fe\u0104\5\60"+
 		"\31\2\u00ff\u0100\7\17\2\2\u0100\u0104\5<\37\2\u0101\u0104\5\36\20\2\u0102"+
 		"\u0104\3\2\2\2\u0103\u00fa\3\2\2\2\u0103\u00fd\3\2\2\2\u0103\u00ff\3\2"+
@@ -4254,7 +4256,7 @@ public class QB64v2Parser extends Parser {
 		"\u0122\u0123\5\64\33\2\u0123\u0125\3\2\2\2\u0124\u011d\3\2\2\2\u0124\u0120"+
 		"\3\2\2\2\u0125\65\3\2\2\2\u0126\u0127\5p9\2\u0127\u0128\5@!\2\u0128\u0132"+
 		"\3\2\2\2\u0129\u0132\5> \2\u012a\u012b\7\6\2\2\u012b\u012c\5\66\34\2\u012c"+
-		"\u012d\7\7\2\2\u012d\u012e\5@!\2\u012e\u0132\3\2\2\2\u012f\u0130\7=\2"+
+		"\u012d\7\7\2\2\u012d\u012e\5@!\2\u012e\u0132\3\2\2\2\u012f\u0130\7>\2"+
 		"\2\u0130\u0132\58\35\2\u0131\u0126\3\2\2\2\u0131\u0129\3\2\2\2\u0131\u012a"+
 		"\3\2\2\2\u0131\u012f\3\2\2\2\u0132\67\3\2\2\2\u0133\u0134\5\32\16\2\u0134"+
 		"\u0135\7\6\2\2\u0135\u0136\5d\63\2\u0136\u0137\7\7\2\2\u0137\u0138\5@"+
@@ -4294,7 +4296,7 @@ public class QB64v2Parser extends Parser {
 		"\3\2\2\2\u01a4\u01a3\3\2\2\2\u01a5W\3\2\2\2\u01a6\u01a7\5p9\2\u01a7\u01a8"+
 		"\5\4\3\2\u01a8\u01a9\5V,\2\u01a9\u01ad\3\2\2\2\u01aa\u01ab\7\24\2\2\u01ab"+
 		"\u01ad\5\4\3\2\u01ac\u01a6\3\2\2\2\u01ac\u01aa\3\2\2\2\u01adY\3\2\2\2"+
-		"\u01ae\u01af\7 \2\2\u01af\u01b0\7=\2\2\u01b0\u01b1\5\\/\2\u01b1\u01b2"+
+		"\u01ae\u01af\7 \2\2\u01af\u01b0\7>\2\2\u01b0\u01b1\5\\/\2\u01b1\u01b2"+
 		"\5\4\3\2\u01b2\u01b3\7\22\2\2\u01b3\u01b4\7 \2\2\u01b4\u01b5\5Z.\2\u01b5"+
 		"\u01c0\3\2\2\2\u01b6\u01b7\7!\2\2\u01b7\u01b8\5\22\n\2\u01b8\u01b9\5\\"+
 		"/\2\u01b9\u01ba\5\4\3\2\u01ba\u01bb\7\22\2\2\u01bb\u01bc\7!\2\2\u01bc"+
@@ -4302,7 +4304,7 @@ public class QB64v2Parser extends Parser {
 		"\2\u01bf\u01b6\3\2\2\2\u01bf\u01be\3\2\2\2\u01c0[\3\2\2\2\u01c1\u01c2"+
 		"\7\6\2\2\u01c2\u01c3\5^\60\2\u01c3\u01c4\7\7\2\2\u01c4\u01c7\3\2\2\2\u01c5"+
 		"\u01c7\3\2\2\2\u01c6\u01c1\3\2\2\2\u01c6\u01c5\3\2\2\2\u01c7]\3\2\2\2"+
-		"\u01c8\u01c9\7=\2\2\u01c9\u01ca\5`\61\2\u01ca_\3\2\2\2\u01cb\u01cc\5\32"+
+		"\u01c8\u01c9\7>\2\2\u01c9\u01ca\5`\61\2\u01ca_\3\2\2\2\u01cb\u01cc\5\32"+
 		"\16\2\u01cc\u01cd\5b\62\2\u01cd\u01d6\3\2\2\2\u01ce\u01cf\7\6\2\2\u01cf"+
 		"\u01d0\7\7\2\2\u01d0\u01d1\7\4\2\2\u01d1\u01d2\5v<\2\u01d2\u01d3\5b\62"+
 		"\2\u01d3\u01d6\3\2\2\2\u01d4\u01d6\5b\62\2\u01d5\u01cb\3\2\2\2\u01d5\u01ce"+

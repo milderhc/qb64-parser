@@ -98,29 +98,17 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitAssignment(QB64v3Parser.AssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code callId}
+	 * Enter a parse tree produced by the {@code eqExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterCallId(QB64v3Parser.CallIdContext ctx);
+	void enterEqExpr(QB64v3Parser.EqExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code callId}
+	 * Exit a parse tree produced by the {@code eqExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitCallId(QB64v3Parser.CallIdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code binExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinExpr(QB64v3Parser.BinExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code binExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinExpr(QB64v3Parser.BinExprContext ctx);
+	void exitEqExpr(QB64v3Parser.EqExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code unaryExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
@@ -158,29 +146,29 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitMulExpr(QB64v3Parser.MulExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code callFunctionExpr}
+	 * Enter a parse tree produced by the {@code orExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterCallFunctionExpr(QB64v3Parser.CallFunctionExprContext ctx);
+	void enterOrExpr(QB64v3Parser.OrExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code callFunctionExpr}
+	 * Exit a parse tree produced by the {@code orExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitCallFunctionExpr(QB64v3Parser.CallFunctionExprContext ctx);
+	void exitOrExpr(QB64v3Parser.OrExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code putValue}
+	 * Enter a parse tree produced by the {@code potExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterPutValue(QB64v3Parser.PutValueContext ctx);
+	void enterPotExpr(QB64v3Parser.PotExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code putValue}
+	 * Exit a parse tree produced by the {@code potExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitPutValue(QB64v3Parser.PutValueContext ctx);
+	void exitPotExpr(QB64v3Parser.PotExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code parenExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
@@ -194,6 +182,30 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitParenExpr(QB64v3Parser.ParenExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code andExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpr(QB64v3Parser.AndExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code andExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpr(QB64v3Parser.AndExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code cmpExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmpExpr(QB64v3Parser.CmpExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code cmpExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmpExpr(QB64v3Parser.CmpExprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#callSub}.
 	 * @param ctx the parse tree
 	 */
@@ -204,12 +216,26 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitCallSub(QB64v3Parser.CallSubContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#callFunction}.
+	 * Enter a parse tree produced by the {@code callSingleId}
+	 * labeled alternative in {@link QB64v3Parser#callId}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallSingleId(QB64v3Parser.CallSingleIdContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code callSingleId}
+	 * labeled alternative in {@link QB64v3Parser#callId}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallSingleId(QB64v3Parser.CallSingleIdContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code callFunction}
+	 * labeled alternative in {@link QB64v3Parser#callId}.
 	 * @param ctx the parse tree
 	 */
 	void enterCallFunction(QB64v3Parser.CallFunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#callFunction}.
+	 * Exit a parse tree produced by the {@code callFunction}
+	 * labeled alternative in {@link QB64v3Parser#callId}.
 	 * @param ctx the parse tree
 	 */
 	void exitCallFunction(QB64v3Parser.CallFunctionContext ctx);
@@ -267,16 +293,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint(QB64v3Parser.PrintContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#printList}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrintList(QB64v3Parser.PrintListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#printList}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrintList(QB64v3Parser.PrintListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#ifBlock}.
 	 * @param ctx the parse tree
@@ -348,16 +364,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitCasesList(QB64v3Parser.CasesListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#funprocPar}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunprocPar(QB64v3Parser.FunprocParContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#funprocPar}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunprocPar(QB64v3Parser.FunprocParContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code function}
 	 * labeled alternative in {@link QB64v3Parser#funproc}.
 	 * @param ctx the parse tree
@@ -381,6 +387,16 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSub(QB64v3Parser.SubContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QB64v3Parser#funprocPar}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunprocPar(QB64v3Parser.FunprocParContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v3Parser#funprocPar}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunprocPar(QB64v3Parser.FunprocParContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#suffix}.
 	 * @param ctx the parse tree
