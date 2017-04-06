@@ -148,6 +148,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterValueExpr(QB64v3Parser.ValueExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValueExpr(QB64v3Parser.ValueExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAddExpr(QB64v3Parser.AddExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -208,6 +220,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIdExpr(QB64v3Parser.IdExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdExpr(QB64v3Parser.IdExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAndExpr(QB64v3Parser.AndExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -239,30 +263,6 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCallSub(QB64v3Parser.CallSubContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCallSingleId(QB64v3Parser.CallSingleIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCallSingleId(QB64v3Parser.CallSingleIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCallFunction(QB64v3Parser.CallFunctionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCallFunction(QB64v3Parser.CallFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

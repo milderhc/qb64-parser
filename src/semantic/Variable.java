@@ -5,7 +5,7 @@ package semantic;
  */
 public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     protected String name;
-    private boolean constVariable;
+    private boolean constType;
 
     public static String INTEGER_SUFFIX = "%";
     public static String LONG_SUFFIX = "&";
@@ -21,7 +21,7 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     public Variable (String name, Type type, boolean constVariable) {
         this.name = name;
         this.type = type;
-        this.constVariable = constVariable;
+        this.constType = constVariable;
     }
 
     public Variable (String name, Type type, T value) {
@@ -32,7 +32,7 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
         this.type = type;
         this.name = name;
         this.value = value;
-        this.constVariable = constVariable;
+        this.constType = constVariable;
     }
 
     public String getName() {
@@ -51,12 +51,12 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
         this.value = value;
     }
 
-    public boolean isConstVariable() {
-        return constVariable;
+    public boolean isConstType() {
+        return constType;
     }
 
-    public void setConstVariable(boolean constVariable) {
-        this.constVariable = constVariable;
+    public void setConstType(boolean constType) {
+        this.constType = constType;
     }
 
     public void addSuffix () {

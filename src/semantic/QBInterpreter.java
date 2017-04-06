@@ -8,7 +8,6 @@ import semantic.gen.QB64v3Parser;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Created by milderhc on 10/03/17.
@@ -28,10 +27,10 @@ public class QBInterpreter {
         QBVisitor visitor = new QBVisitor();
         visitor.visit(tree);
 
-        visitor.functions.forEach((k, v) -> System.out.println(k));
-        visitor.subs.forEach((k, v) -> System.out.println(k));
-        visitor.staticMemory.forEach((k, v) -> System.out.println(k));
-        visitor.dynamicMemory.forEach((k, v) -> System.out.println(k));
+        visitor.program.functions.forEach((k, v) -> System.out.println(k));
+        visitor.program.subs.forEach((k, v) -> System.out.println(k));
+        visitor.program.staticMemory.forEach((k, v) -> System.out.println(k));
+        visitor.program.dynamicMemory.forEach((k, v) -> System.out.println(k));
 
     }
 }

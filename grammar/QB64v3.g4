@@ -38,12 +38,11 @@ expression              : expression op=(OR | XOR) expression                   
                         | expression '^' expression                                # potExpr
                         | op=('-' | NOT) expression                                # unaryExpr
                         | '(' expression ')'                                       # parenExpr
+                        | id                                                       # idExpr
+                        | value=(INTEGERV | DOUBLEV | STRINGV)                     # valueExpr
                         ;
 
 callSub                 : ID parametersList? ;
-callId                  : singleId                                                 # callSingleId
-                        | singleId '(' parametersList ')'                          # callFunction
-                        ;
 
 parametersList          : '(' funprocArg ')' (',' parametersList)*                 # valuePar
                         | funprocArg (',' parametersList)*                         # referencePar
