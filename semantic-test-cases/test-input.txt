@@ -1,4 +1,6 @@
-dim a, b, c, b(5), a(4, 4, 4), b(5, 6) as integer
+dim a, b, c, b(5), a(4, 4, 4) as integer
 
+const x = 10, a$ = "asklfj", h& = 234, x$ = "asldkfj"
 
 dim x, y  as double
+

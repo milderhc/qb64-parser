@@ -33,6 +33,33 @@ public class SemanticErrorHandler {
         incompatibleTypesError(line, column, expectedList, found);
     }
 
+    public void incompatibleNumericError (int line, int column, Value.Type found) {
+        List<Value.Type> expectedList = new ArrayList<>();
+        expectedList.add(Value.Type.DOUBLE);
+        expectedList.add(Value.Type.INTEGER);
+        expectedList.add(Value.Type.LONG);
+        expectedList.add(Value.Type.SINGLE);
+        incompatibleTypesError(line, column, expectedList, found);
+    }
+
+    public void incompatibleStringError (int line, int column, Value.Type found) {
+        List<Value.Type> expectedList = new ArrayList<>();
+        expectedList.add(Value.Type.STRING);
+        incompatibleTypesError(line, column, expectedList, found);
+    }
+
+    public void idAlreadyDeclaredError (int line, int column, String name) {
+        error(line, column, name + " ya ha sido declarado.");
+    }
+
+    public void arrayAlreadyDeclaredError (int line, int column, String name) {
+        error(line, column, "El arreglo " + name.substring(0, name.length() - 1) + " ya ha sido declarado.");
+    }
+
+    public void constAssignmentError (int line, int column, String name) {
+        error(line, column, name + " no puede ser modificado.");
+    }
+
     public String typeString (Value.Type type) {
         switch (type) {
             case INTEGER:

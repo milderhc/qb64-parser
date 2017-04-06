@@ -37,15 +37,26 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         dimIdContexts.forEach(dimIdContext -> {
             program.createDimVariable(dimIdContext, ctx.type.getType());
         });
+
         return null;
     }
 
     @Override
     public T visitConstDeclaration (QB64v3Parser.ConstDeclarationContext ctx) {
         List<QB64v3Parser.SingleIdContext> singleIdContexts = ctx.singleId();
-        singleIdContexts.forEach(singleIdContext -> {
-            program.createConst((Variable) visit(singleIdContext));
-        });
+        List<QB64v3Parser.ExpressionContext> expressions = ctx.expression();
+        for (int i = 0; i < singleIdContexts.size(); ++i)
+            program.createConst((Variable) visit(singleIdContexts.get(i)),
+                    (Value) visit(expressions.get(i)), expressions.get(i).getStart());
+
+        return null;
+    }
+
+    @Override
+    public T visitAssignment (QB64v3Parser.AssignmentContext ctx) {
+        Variable var = (Variable) visit(ctx.id());
+        Value val = (Value) visit(ctx.expression());
+        program.assign(var, val, ctx.expression().getStart());
 
         return null;
     }
@@ -90,6 +101,8 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     @Override
     public T visitValueExpr (QB64v3Parser.ValueExprContext ctx) {
         int type = ctx.value.getType();
+
+        //TODO create proper values
         switch (type) {
             case QB64v3Lexer.INTEGERV:
                     return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
@@ -100,13 +113,6 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         }
     }
 
-
-    @Override
-    public T visitAssignment (QB64v3Parser.AssignmentContext ctx) {
-//        Variable temp = visit(ctx.id());
-
-        return null;
-    }
 
 
     @Override

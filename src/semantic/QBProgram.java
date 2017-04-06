@@ -41,12 +41,16 @@ public class QBProgram {
     }
 
     public void createDynamicVariable(Variable v) {
+        v.addSuffix();
         dynamicMemory.put(v.getName(), v);
     }
 
     public void createStaticVariable(Variable v, Token token) {
         if (staticMemory.containsKey(v.getName())) {
-            errorHandler.error(token.getLine(), token.getCharPositionInLine(),  v.getName() + " ya ha sido declarado");
+            if (v instanceof ArrayQB)
+                errorHandler.arrayAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getName());
+            else
+                errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getName());
         }
         staticMemory.put(v.getName(), v);
     }
@@ -103,8 +107,25 @@ public class QBProgram {
         }
     }
 
-    public void createConst (Variable v) {
-        v.setConstType(true);
-        createDynamicVariable(v);
+    public void assign (Variable var, Value val, Token token) {
+        if (var.isConstType()) {
+            errorHandler.constAssignmentError(token.getLine(), token.getCharPositionInLine(), var.getName());
+        }
+
+        if (var.getType() != Value.Type.STRING &&
+                val.getType() == Value.Type.STRING)
+            errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine(), val.getType());
+
+        if (var.getType() == Value.Type.STRING &&
+                val.getType() != Value.Type.STRING)
+            errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), val.getType());
+
+        var.setValue(val);
+    }
+
+    public void createConst (Variable var, Value val, Token token) {
+        assign(var, val, token);
+        var.setConstType(true);
+        createDynamicVariable(var);
     }
 }
