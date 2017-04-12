@@ -110,18 +110,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitEqExpr(QB64v3Parser.EqExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code unaryExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code unaryExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code valueExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
@@ -133,6 +121,18 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValueExpr(QB64v3Parser.ValueExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code unaryExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code unaryExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code addExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
@@ -206,18 +206,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitIdExpr(QB64v3Parser.IdExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code andExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAndExpr(QB64v3Parser.AndExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code andExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAndExpr(QB64v3Parser.AndExprContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code cmpExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
@@ -229,6 +217,18 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCmpExpr(QB64v3Parser.CmpExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code andExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpr(QB64v3Parser.AndExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code andExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpr(QB64v3Parser.AndExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#callSub}.
 	 * @param ctx the parse tree

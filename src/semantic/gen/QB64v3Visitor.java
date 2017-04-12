@@ -72,19 +72,19 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEqExpr(QB64v3Parser.EqExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code unaryExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code valueExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitValueExpr(QB64v3Parser.ValueExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code unaryExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnaryExpr(QB64v3Parser.UnaryExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code addExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
@@ -128,19 +128,19 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIdExpr(QB64v3Parser.IdExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code andExpr}
-	 * labeled alternative in {@link QB64v3Parser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAndExpr(QB64v3Parser.AndExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code cmpExpr}
 	 * labeled alternative in {@link QB64v3Parser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCmpExpr(QB64v3Parser.CmpExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code andExpr}
+	 * labeled alternative in {@link QB64v3Parser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndExpr(QB64v3Parser.AndExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link QB64v3Parser#callSub}.
 	 * @param ctx the parse tree

@@ -29,17 +29,17 @@ constDeclaration        : CONST singleId '=' expression
                           (',' singleId '=' expression)* ;
 assignment              : id '=' expression ;
 
-expression              : expression op=(OR | XOR) expression                      # orExpr
-                        | expression AND expression                                # andExpr
-                        | expression op=('=' | '<>') expression                    # eqExpr
-                        | expression op=('<' | '<=' | '>' | '>=') expression       # cmpExpr
-                        | expression op=('+' | '-') expression                     # addExpr
-                        | expression op=('/' | '*' | MOD) expression               # mulExpr
-                        | expression '^' expression                                # potExpr
-                        | op=('-' | NOT) expression                                # unaryExpr
-                        | '(' expression ')'                                       # parenExpr
+expression              : value=(INTEGERV | DOUBLEV | STRINGV)                     # valueExpr
                         | id                                                       # idExpr
-                        | value=(INTEGERV | DOUBLEV | STRINGV)                     # valueExpr
+                        | '(' expression ')'                                       # parenExpr
+                        | op=('-' | NOT) expression                                # unaryExpr
+                        | expression '^' expression                                # potExpr
+                        | expression op=('/' | '*' | MOD) expression               # mulExpr
+                        | expression op=('+' | '-') expression                     # addExpr
+                        | expression op=('<' | '<=' | '>' | '>=') expression       # cmpExpr
+                        | expression op=('=' | '<>') expression                    # eqExpr
+                        | expression AND expression                                # andExpr
+                        | expression op=(OR | XOR) expression                      # orExpr
                         ;
 
 callSub                 : ID parametersList? ;

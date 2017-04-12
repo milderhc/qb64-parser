@@ -87,14 +87,14 @@ public class QB64v3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUnaryExpr(QB64v3Parser.UnaryExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitValueExpr(QB64v3Parser.ValueExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitValueExpr(QB64v3Parser.ValueExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUnaryExpr(QB64v3Parser.UnaryExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -143,14 +143,14 @@ public class QB64v3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAndExpr(QB64v3Parser.AndExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCmpExpr(QB64v3Parser.CmpExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCmpExpr(QB64v3Parser.CmpExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAndExpr(QB64v3Parser.AndExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
