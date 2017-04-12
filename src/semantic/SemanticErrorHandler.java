@@ -22,7 +22,7 @@ public class SemanticErrorHandler {
             if (i > 0) errorMessage.append(", ");
             errorMessage.append(typeString(expected.get(i)));
         }
-        errorMessage.append("; Se encontro: " + typeString(found) + ".");
+        errorMessage.append("; se encontro: " + typeString(found) + ".");
         error(line, column, errorMessage.toString());
     }
 

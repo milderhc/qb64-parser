@@ -82,67 +82,21 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     /* Expressions */
     @Override
-    public T visitOrExpr (QB64v3Parser.OrExprContext ctx) {
-        int op = ctx.op.getType();
-
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
-
-        if (left.getType() == Value.Type.STRING) {
-            Token token = ctx.expression(0).getStart();
-            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
-        }
-        if (right.getType() == Value.Type.STRING) {
-            Token token = ctx.expression(1).getStart();
-            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
-        }
-
-        if (op == QB64v3Lexer.OR)
-            return (T) new Value(left.intValue() | right.intValue(), Value.Type.INTEGER);
-        return (T) new Value(left.intValue() ^ right.intValue(), Value.Type.INTEGER);
-    }
-
-
-    @Override
-    public T visitAndExpr (QB64v3Parser.AndExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
-
-        if (left.getType() == Value.Type.STRING) {
-            Token token = ctx.expression(0).getStart();
-            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
-        }
-        if (right.getType() == Value.Type.STRING) {
-            Token token = ctx.expression(1).getStart();
-            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
-        }
-
-        return (T) new Value(left.intValue() & right.intValue(), Value.Type.INTEGER);
-    }
-
-
-
-    @Override
     public T visitValueExpr (QB64v3Parser.ValueExprContext ctx) {
         int type = ctx.value.getType();
 
-        //TODO create proper values
         switch (type) {
             case QB64v3Lexer.INTEGERV:
-                return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
+                return (T) new Value<>(Short.parseShort(ctx.value.getText()), Value.Type.INTEGER);
+            case QB64v3Lexer.LONGV:
+                return (T) new Value<>(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
+            case QB64v3Lexer.SINGLEV:
+                return (T) new Value<>(Float.parseFloat(ctx.value.getText()), Value.Type.SINGLE);
             case QB64v3Lexer.DOUBLEV:
-                return (T) new Value(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
+                return (T) new Value<>(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
             default:
-                return (T) new Value(ctx.value.getText(), Value.Type.STRING);
+                return (T) new Value<>(ctx.value.getText(), Value.Type.STRING);
         }
-    }
-
-
-
-    @Override
-    public T visitIfBlock (QB64v3Parser.IfBlockContext ctx) {
-
-        return null;
     }
 
     @Override
@@ -175,7 +129,211 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         return  null;
     }
 
+    @Override
+    public T visitParenExpr (QB64v3Parser.ParenExprContext ctx) {
+        return visit(ctx.expression());
+    }
 
+    @Override
+    public T visitUnaryExpr (QB64v3Parser.UnaryExprContext ctx) {
+        Value expr = (Value) visit(ctx.expression());
+
+        if (expr.getType() == Value.Type.STRING) {
+            Token token = ctx.expression().getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (ctx.op.getType() == QB64v3Lexer.NOT)
+            return (T) Value.createValue(~expr.intValue(), expr.intType());
+
+        return (T) Value.createValue(-expr.intValue(), expr.getType());
+    }
+
+    @Override
+    public T visitPotExpr (QB64v3Parser.PotExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        return (T) Value.createValue(Math.pow(left.doubleValue(), right.doubleValue()),
+                Value.getType(left.getType(), right.getType()));
+    }
+
+    @Override
+    public T visitMulExpr (QB64v3Parser.MulExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (ctx.op.getType() == QB64v3Lexer.MOD) {
+            if (left.getType() != Value.Type.INTEGER && left.getType() != Value.Type.LONG) {
+                Token token = ctx.expression(0).getStart();
+                program.errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), left.getType());
+            }
+            if (right.getType() != Value.Type.INTEGER && right.getType() != Value.Type.LONG) {
+                Token token = ctx.expression(1).getStart();
+                program.errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), right.getType());
+            }
+
+            return (T) Value.createValue(left.intValue() % right.intValue(),
+                    Value.getType(left.getType(), right.getType()));
+        }
+
+        if (ctx.op.getType() == QB64v3Lexer.DIV)
+            return (T) Value.createValue(left.doubleValue() / right.doubleValue(),
+                    Value.getType(left.getType(), right.getType()));
+        return (T) Value.createValue(left.doubleValue() * right.doubleValue(),
+                Value.getType(left.getType(), right.getType()));
+    }
+
+    @Override
+    public T visitAddExpr (QB64v3Parser.AddExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (ctx.op.getType() == QB64v3Lexer.ADD)
+            return (T) Value.createValue(left.doubleValue() + right.doubleValue(),
+                    Value.getType(left.getType(), right.getType()));
+        return (T) Value.createValue(left.doubleValue() - right.doubleValue(),
+                Value.getType(left.getType(), right.getType()));
+    }
+
+    @Override
+    public T visitCmpExpr (QB64v3Parser.CmpExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            if (right.getType() != Value.Type.STRING) {
+                Token token = ctx.expression(1).getStart();
+                program.errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), right.getType());
+            }
+
+            String l = (String) left.getValue();
+            String r = (String) left.getValue();
+
+            int cmp = l.compareTo(r);
+            if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Value.createValue(cmp < 0);
+            if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Value.createValue(cmp <= 0);
+            if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Value.createValue(cmp > 0);
+            return (T) Value.createValue(cmp >= 0);
+        }
+
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        double cmp = left.doubleValue() - right.doubleValue();
+
+        if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Value.createValue(cmp < 0);
+        if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Value.createValue(cmp <= 0);
+        if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Value.createValue(cmp > 0);
+        return (T) Value.createValue(cmp >= 0);
+    }
+
+    @Override
+    public T visitEqExpr (QB64v3Parser.EqExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            if (right.getType() != Value.Type.STRING) {
+                Token token = ctx.expression(1).getStart();
+                program.errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), right.getType());
+            }
+
+            String l = (String) left.getValue();
+            String r = (String) left.getValue();
+
+            boolean cmp = l.equals(r);
+            if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Value.createValue(cmp);
+            return (T) Value.createValue(!cmp);
+        }
+
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        double cmp = left.doubleValue() - right.doubleValue();
+
+        if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Value.createValue(cmp == 0);
+        return (T) Value.createValue(cmp != 0);
+    }
+
+    @Override
+    public T visitAndExpr (QB64v3Parser.AndExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        return (T) Value.createValue(left.intValue() & right.intValue(),
+                Value.getType(left.intType(), right.intType()));
+    }
+
+    @Override
+    public T visitOrExpr (QB64v3Parser.OrExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (ctx.op.getType() == QB64v3Lexer.OR)
+            return (T) Value.createValue(left.intValue() | right.intValue(),
+                    Value.getType(left.intType(), right.intType()));
+        return (T) Value.createValue(left.intValue() ^ right.intValue(),
+                Value.getType(left.intType(), right.intType()));
+    }
+
+
+
+
+
+    @Override
+    public T visitIfBlock (QB64v3Parser.IfBlockContext ctx) {
+
+        return null;
+    }
 
     @Override
     public T visitFunction(QB64v3Parser.FunctionContext ctx) {
