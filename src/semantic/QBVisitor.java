@@ -35,7 +35,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     public T visitDeclaration (QB64v3Parser.DeclarationContext ctx) {
         List<QB64v3Parser.DimIdContext> dimIdContexts = ctx.dimId();
         dimIdContexts.forEach(dimIdContext -> {
-            program.createDimVariable(dimIdContext, ctx.type.getType());
+            program.createDimVariable(dimIdContext, ctx.type.getType(), ctx.SHARED() != null);
         });
 
         return null;
@@ -79,23 +79,47 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         return (T) dim;
     }
 
-    @Override
-    public T visitMulExpr (QB64v3Parser.MulExprContext ctx) {
 
-        return null;
-    }
+    /* Expressions */
     @Override
-    public T visitAddExpr (QB64v3Parser.AddExprContext ctx) {
-        return null;
+    public T visitOrExpr (QB64v3Parser.OrExprContext ctx) {
+        int op = ctx.op.getType();
+
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (op == QB64v3Lexer.OR)
+            return (T) new Value(left.intValue() | right.intValue(), Value.Type.INTEGER);
+        return (T) new Value(left.intValue() ^ right.intValue(), Value.Type.INTEGER);
     }
+
+
     @Override
-    public T visitUnaryExpr (QB64v3Parser.UnaryExprContext ctx) {
-        return null;
+    public T visitAndExpr (QB64v3Parser.AndExprContext ctx) {
+        Value left = (Value) visit(ctx.expression(0));
+        Value right = (Value) visit(ctx.expression(1));
+
+        if (left.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+        if (right.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        return (T) new Value(left.intValue() & right.intValue(), Value.Type.INTEGER);
     }
-    @Override
-    public T visitParenExpr (QB64v3Parser.ParenExprContext ctx) {
-        return null;
-    }
+
 
 
     @Override
@@ -105,11 +129,11 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         //TODO create proper values
         switch (type) {
             case QB64v3Lexer.INTEGERV:
-                    return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
+                return (T) new Value(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
             case QB64v3Lexer.DOUBLEV:
-                    return (T) new Value(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
+                return (T) new Value(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
             default:
-                    return (T) new Value(ctx.value.getText(), Value.Type.STRING);
+                return (T) new Value(ctx.value.getText(), Value.Type.STRING);
         }
     }
 
@@ -207,4 +231,13 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         return (T) (Integer) ctx.suffixType.getType();
     }
 
+    @Override
+    public T visitPrint (QB64v3Parser.PrintContext ctx) {
+        List<QB64v3Parser.ExpressionContext> expression = ctx.expression();
+        expression.forEach(expressionContext -> {
+            System.out.println(visit(expressionContext));
+        });
+
+        return null;
+    }
 }

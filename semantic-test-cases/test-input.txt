@@ -4,3 +4,4 @@ const x = 10, a$ = "asklfj", h& = 234, x$ = "asldkfj"
 
 dim x, y  as double
 
+print 2 or 1

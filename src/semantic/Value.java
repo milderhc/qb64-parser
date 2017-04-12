@@ -34,4 +34,16 @@ public class Value<T> {
         this.type = type;
     }
 
+    public int intValue () {
+        if (type == Type.DOUBLE) return (int) (double) (Double) value;
+        if (type == Type.SINGLE) return (int) (float) (Float) value;
+        return (int) (Integer) value;
+    }
+
+
+    @Override
+    public String toString () {
+        return value + "";
+    }
+
 }

@@ -33,13 +33,13 @@ public class SemanticErrorHandler {
         incompatibleTypesError(line, column, expectedList, found);
     }
 
-    public void incompatibleNumericError (int line, int column, Value.Type found) {
+    public void incompatibleNumericError (int line, int column) {
         List<Value.Type> expectedList = new ArrayList<>();
         expectedList.add(Value.Type.DOUBLE);
         expectedList.add(Value.Type.INTEGER);
         expectedList.add(Value.Type.LONG);
         expectedList.add(Value.Type.SINGLE);
-        incompatibleTypesError(line, column, expectedList, found);
+        incompatibleTypesError(line, column, expectedList, Value.Type.STRING);
     }
 
     public void incompatibleStringError (int line, int column, Value.Type found) {

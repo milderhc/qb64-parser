@@ -63,7 +63,7 @@ public class QBProgram {
         subs.put(name, sub);
     }
 
-    public void createDimVariable (QB64v3Parser.DimIdContext ctx, int type) {
+    public void createDimVariable (QB64v3Parser.DimIdContext ctx, int type, boolean shared) {
         String name = ctx.ID().getText();
 
         if (ctx.array() != null) {
@@ -71,37 +71,37 @@ public class QBProgram {
             List<Integer> dimensions = (List<Integer>) visitor.visit(ctx.array());
             switch (type) {
                 case QB64v3Lexer.INTEGER:
-                    createStaticVariable(new ArrayQB<Short>(name, Value.Type.INTEGER, dimensions), ctx.getStart());
+                    createStaticVariable(new ArrayQB<Short>(name, Value.Type.INTEGER, dimensions, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.LONG:
-                    createStaticVariable(new ArrayQB<Integer>(name, Value.Type.LONG, dimensions), ctx.getStart());
+                    createStaticVariable(new ArrayQB<Integer>(name, Value.Type.LONG, dimensions, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.SINGLE:
-                    createStaticVariable(new ArrayQB<Float>(name, Value.Type.SINGLE, dimensions), ctx.getStart());
+                    createStaticVariable(new ArrayQB<Float>(name, Value.Type.SINGLE, dimensions, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.DOUBLE:
-                    createStaticVariable(new ArrayQB<Double>(name, Value.Type.DOUBLE, dimensions), ctx.getStart());
+                    createStaticVariable(new ArrayQB<Double>(name, Value.Type.DOUBLE, dimensions, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.STRING:
-                    createStaticVariable(new ArrayQB<String>(name, Value.Type.STRING, dimensions), ctx.getStart());
+                    createStaticVariable(new ArrayQB<String>(name, Value.Type.STRING, dimensions, shared), ctx.getStart());
                     break;
             }
         } else {
             switch (type) {
                 case QB64v3Lexer.INTEGER:
-                    createStaticVariable(new Variable<Short>(name, Variable.Type.INTEGER), ctx.getStart());
+                    createStaticVariable(new Variable<Short>(name, Variable.Type.INTEGER, false, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.LONG:
-                    createStaticVariable(new Variable<Integer>(name, Variable.Type.LONG), ctx.getStart());
+                    createStaticVariable(new Variable<Integer>(name, Variable.Type.LONG, false, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.SINGLE:
-                    createStaticVariable(new Variable<Float>(name, Variable.Type.SINGLE), ctx.getStart());
+                    createStaticVariable(new Variable<Float>(name, Variable.Type.SINGLE, false, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.DOUBLE:
-                    createStaticVariable(new Variable<Double>(name, Variable.Type.DOUBLE), ctx.getStart());
+                    createStaticVariable(new Variable<Double>(name, Variable.Type.DOUBLE, false, shared), ctx.getStart());
                     break;
                 case QB64v3Lexer.STRING:
-                    createStaticVariable(new Variable<String>(name, Variable.Type.STRING), ctx.getStart());
+                    createStaticVariable(new Variable<String>(name, Variable.Type.STRING, false, shared), ctx.getStart());
                     break;
             }
         }
@@ -114,7 +114,7 @@ public class QBProgram {
 
         if (var.getType() != Value.Type.STRING &&
                 val.getType() == Value.Type.STRING)
-            errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine(), val.getType());
+            errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
 
         if (var.getType() == Value.Type.STRING &&
                 val.getType() != Value.Type.STRING)

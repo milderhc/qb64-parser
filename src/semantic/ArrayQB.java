@@ -1,6 +1,5 @@
 package semantic;
 
-import java.rmi.UnexpectedException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +10,8 @@ public class ArrayQB<T> extends Variable<T> {
     private List<Integer> dimensions;
     private Map<String, Variable<T>> values;
 
-    public ArrayQB(String name, Type type, List<Integer> dimensions) {
-        super(name, type);
+    public ArrayQB(String name, Type type, List<Integer> dimensions, boolean shared) {
+        super(name, type, false, shared);
         this.dimensions = dimensions;
     }
 
