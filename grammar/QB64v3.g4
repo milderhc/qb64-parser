@@ -1,6 +1,6 @@
 grammar QB64v3;
 
-qb                      : instruction* funproc* EOF ;
+qb                      : instructionBlock funproc* EOF ;
 
 instruction             : declaration
                         | constDeclaration
@@ -30,7 +30,7 @@ constDeclaration        : CONST singleId '=' expression
 assignment              : id '=' expression ;
 
 expression              : value=(INTEGERV | DOUBLEV | STRINGV | SINGLEV | LONGV)   # valueExpr
-                        | callId                                                       # idExpr
+                        | callId                                                   # idExpr
                         | '(' expression ')'                                       # parenExpr
                         | op=('-' | NOT) expression                                # unaryExpr
                         | expression '^' expression                                # potExpr
@@ -54,24 +54,26 @@ funprocArg              : expression
 input                   : INPUT callId (',' callId)* ;
 print                   : PRINT expression (';' expression)* ;
 
-ifBlock                 : IF expression THEN instruction*
-                          (ELSEIF expression THEN instruction*)*
-                          (ELSE instruction*)? END IF ;
-whileBlock              : WHILE expression instruction* WEND ;
-doWhileBlock            : DO instruction* LOOP WHILE expression ;
-doUntilBlock            : DO instruction* LOOP UNTIL expression ;
+ifBlock                 : IF expression THEN instructionBlock
+                          (ELSEIF expression THEN instructionBlock)*
+                          (ELSE instructionBlock)? END IF ;
+whileBlock              : WHILE expression instructionBlock WEND ;
+doWhileBlock            : DO instructionBlock LOOP WHILE expression ;
+doUntilBlock            : DO instructionBlock LOOP UNTIL expression ;
 forBlock                : FOR singleId '=' expression TO expression
                           (STEP expression)?
-                          instruction* NEXT ;
+                          instructionBlock NEXT ;
 
 selectBlock             : SELECT CASE callId casesList?
-                          (CASE ELSE instruction*)? END SELECT ;
-casesList               : CASE expression instruction* casesList? ;
+                          (CASE ELSE instructionBlock)? END SELECT ;
+casesList               : CASE expression instructionBlock casesList? ;
+
+instructionBlock        : instruction* ;
 
 funproc                 : FUNCTION singleId ('(' funprocPar (',' funprocPar)* ')')?
-                          instruction* END FUNCTION                                     # function
+                          instructionBlock END FUNCTION                                     # function
                         | SUB ID ('(' funprocPar (',' funprocPar)* ')')?
-                          instruction* END SUB                                          # sub
+                          instructionBlock END SUB                                          # sub
                         ;
 
 funprocPar              : singleId

@@ -228,6 +228,12 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCasesList(QB64v3Parser.CasesListContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QB64v3Parser#instructionBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInstructionBlock(QB64v3Parser.InstructionBlockContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code function}
 	 * labeled alternative in {@link QB64v3Parser#funproc}.
 	 * @param ctx the parse tree

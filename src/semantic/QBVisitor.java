@@ -19,14 +19,13 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     @Override
     public T visitQb(QB64v3Parser.QbContext ctx) {
-        List<QB64v3Parser.InstructionContext> instruction = ctx.instruction();
+        QB64v3Parser.InstructionBlockContext instructionBlockContext = ctx.instructionBlock();
         List<QB64v3Parser.FunprocContext> funproc = ctx.funproc();
 
         for (QB64v3Parser.FunprocContext f : funproc)
             visit(f);
 
-        for (QB64v3Parser.InstructionContext i : instruction)
-            visit(i);
+        visit(instructionBlockContext);
 
         return null;
     }
@@ -117,6 +116,8 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
                 v.addSuffix();
             }
         }
+
+        System.out.println("asdklfj");
 
         if (!program.containsDynamicVariable(v.getName())) {
             if (program.containsFunction(v.getProperName()) ||
@@ -371,12 +372,30 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     }
 
 
-
-
-
     @Override
     public T visitIfBlock (QB64v3Parser.IfBlockContext ctx) {
+        List<QB64v3Parser.ExpressionContext> expression = ctx.expression();
+        List<QB64v3Parser.InstructionBlockContext> instructionBlockContexts = ctx.instructionBlock();
 
+        boolean ifExecuted = false;
+        for (int i = 0; i < expression.size(); ++i) {
+            Variable v = (Variable) visit(expression.get(i));
+            Token token = expression.get(i).getStart();
+            if (v.getType() == Value.Type.STRING)
+                program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+
+            double val = v.doubleValue();
+            if (val != 0) {
+                visit(instructionBlockContexts.get(i));
+
+                ifExecuted = true;
+                break;
+            }
+        }
+
+        if (!ifExecuted && instructionBlockContexts.size() > expression.size()) {
+            visit(instructionBlockContexts.get(expression.size()));
+        }
         return null;
     }
 

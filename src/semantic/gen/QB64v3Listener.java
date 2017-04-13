@@ -374,6 +374,16 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitCasesList(QB64v3Parser.CasesListContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v3Parser#instructionBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterInstructionBlock(QB64v3Parser.InstructionBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v3Parser#instructionBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitInstructionBlock(QB64v3Parser.InstructionBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code function}
 	 * labeled alternative in {@link QB64v3Parser#funproc}.
 	 * @param ctx the parse tree

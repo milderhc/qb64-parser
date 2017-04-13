@@ -32,9 +32,9 @@ public class QBInterpreter {
         System.out.println("Subs");
         visitor.program.subs.forEach((k, v) -> System.out.println(k));
         System.out.println("Static Memory");
-        visitor.program.staticMemory.forEach((k, v) -> System.out.println(k));
+        visitor.program.staticMemory.peek().forEach((k, v) -> System.out.println(k));
         System.out.println("Dynamic Memory");
-        visitor.program.dynamicMemory.forEach((k, v) -> System.out.println(k));
+        visitor.program.dynamicMemory.peek().forEach((k, v) -> System.out.println(k));
 
     }
 }

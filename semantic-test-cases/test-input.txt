@@ -1,7 +1,10 @@
-dim a, a(3, 9) as integer
+if a < b then
+    print "askldfja"
+elseif a > b then
+    print "hola"
+else
+    print "aslkdfjlksdjflaksdfljadsf"
+end if
 
-a = 10
-a(2, 5) = 20
-b(5, 5, 5) = 10
-
-print b(5, 5, 5)
+sub s
+end sub

@@ -4,10 +4,7 @@ import org.antlr.v4.runtime.Token;
 import semantic.gen.QB64v3Lexer;
 import semantic.gen.QB64v3Parser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by milderhc on 6/04/17.
@@ -15,7 +12,9 @@ import java.util.TreeMap;
 public class QBProgram {
     public Map<String, Sub> subs;
     public Map<String, Function> functions;
-    public Map<String, Variable> dynamicMemory, staticMemory;
+
+    public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
+    public Stack<List<String>> dynamicMemoryIds, staticMemoryIds;
 
     public SemanticErrorHandler errorHandler;
     private QBVisitor visitor;
@@ -25,28 +24,60 @@ public class QBProgram {
 
         subs = new TreeMap<>();
         functions = new TreeMap<>();
-        dynamicMemory = new TreeMap<>();
-        staticMemory = new TreeMap<>();
+        dynamicMemory = new Stack<>();
+        staticMemory = new Stack<>();
+        dynamicMemoryIds = new Stack<>();
+        staticMemoryIds = new Stack<>();
 
         errorHandler = new SemanticErrorHandler();
+
+        createNewScope();
+    }
+
+    public void createNewScope () {
+        dynamicMemory.push(new TreeMap<>());
+        staticMemory.push(new TreeMap<>());
+        addNewScope();
+    }
+
+    public void addNewScope () {
+        dynamicMemoryIds.push(new LinkedList<>());
+        staticMemoryIds.push(new LinkedList<>());
+    }
+
+    public void deleteScope () {
+        dynamicMemory.pop();
+        staticMemory.pop();
+        eraseScope();
+    }
+
+    public void eraseScope () {
+        for (String id : dynamicMemoryIds.peek())
+            dynamicMemory.peek().remove(id);
+        for (String id : staticMemoryIds.peek())
+            staticMemory.peek().remove(id);
+        dynamicMemoryIds.pop();
+        staticMemory.pop();
     }
 
     public Variable getId (Variable v) {
-        if (staticMemory.containsKey(v.getName()))
-            return staticMemory.get(v.getName());
+        if (staticMemory.peek().containsKey(v.getName()))
+            return staticMemory.peek().get(v.getName());
 
-        if (!dynamicMemory.containsKey(v.getName()))
+        if (!dynamicMemory.peek().containsKey(v.getName()))
             createDynamicVariable(v);
 
-        return dynamicMemory.get(v.getName());
+        return dynamicMemory.peek().get(v.getName());
     }
 
     public void createDynamicVariable(Variable v) {
-        dynamicMemory.put(v.getName(), v);
+        dynamicMemory.peek().put(v.getName(), v);
+        dynamicMemoryIds.peek().add(v.getName());
     }
 
     public void createStaticVariable(Variable v) {
-        staticMemory.put(v.getName(), v);
+        staticMemory.peek().put(v.getName(), v);
+        staticMemoryIds.peek().add(v.getName());
     }
 
     public void addFunction (String name, Function f) {
@@ -66,7 +97,7 @@ public class QBProgram {
 
         if (ctx.array() != null) {
             String arrayName = ArrayQB.getArrayId(name);
-            if (staticMemory.containsKey(arrayName))
+            if (staticMemory.peek().containsKey(arrayName))
                 errorHandler.arrayAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
 
             List<Integer> dimensions = getRealPos((List<Variable>) visitor.visit(ctx.array()), token);
@@ -88,7 +119,7 @@ public class QBProgram {
                     break;
             }
         } else {
-            if (staticMemory.containsKey(name))
+            if (staticMemory.peek().containsKey(name))
                 errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
 
             switch (type) {
@@ -155,28 +186,27 @@ public class QBProgram {
     }
 
     public boolean containsDynamicVariable (String name) {
-        return dynamicMemory.containsKey(name);
+        return dynamicMemory.peek().containsKey(name);
     }
 
     public boolean containsStaticVariable (String name) {
-        return staticMemory.containsKey(name);
+        return staticMemory.peek().containsKey(name);
     }
 
     public Variable getDynamicVariable (String name) {
-        return dynamicMemory.get(name);
+        return dynamicMemory.peek().get(name);
     }
 
     public Variable getStaticVariable (String name) {
-        return staticMemory.get(name);
+        return staticMemory.peek().get(name);
     }
 
     public Variable getStaticVariable (String name, List<Variable> pos, Token token) {
-        return ((ArrayQB) staticMemory.get(name)).get(getRealPos(pos, token));
+        return ((ArrayQB) staticMemory.peek().get(name)).get(getRealPos(pos, token));
     }
 
-    public Value callFunction (Variable f, List<Variable> params) {
-
-        return null;
+    public Variable callFunction (Variable f, List<Variable> params) {
+        return new Variable(null, Value.Type.INTEGER, 1);
     }
 
     public void callSub (Variable s, List<Variable> params) {

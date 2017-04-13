@@ -424,6 +424,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInstructionBlock(QB64v3Parser.InstructionBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInstructionBlock(QB64v3Parser.InstructionBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction(QB64v3Parser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
