@@ -64,6 +64,15 @@ public class Value<T> {
     }
 
     public static Variable createValue(Object value, Type type) {
+        if (value == null) {
+            switch (type) {
+                case INTEGER: value = INTEGER_DEFAULT; break;
+                case LONG: value = LONG_DEFAULT; break;
+                case SINGLE: value = SINGLE_DEFAULT; break;
+                case DOUBLE: value = DOUBLE_DEFAULT; break;
+                default: value = STRING_DEFAULT; break;
+            }
+        }
         String number = String.valueOf(value);
         if (type == Type.INTEGER) return new Variable<>(null, Type.INTEGER, (short) Double.parseDouble(number));
         if (type == Type.LONG) return new Variable<>(null, Type.LONG, (int) Double.parseDouble(number));

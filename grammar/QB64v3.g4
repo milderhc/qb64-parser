@@ -60,7 +60,7 @@ ifBlock                 : IF expression THEN instructionBlock
 whileBlock              : WHILE expression instructionBlock WEND ;
 doWhileBlock            : DO instructionBlock LOOP WHILE expression ;
 doUntilBlock            : DO instructionBlock LOOP UNTIL expression ;
-forBlock                : FOR singleId '=' expression TO expression
+forBlock                : FOR assignment TO expression
                           (STEP expression)?
                           instructionBlock NEXT ;
 

@@ -30,7 +30,6 @@ public class QBProgram {
         staticMemoryIds = new Stack<>();
 
         errorHandler = new SemanticErrorHandler();
-
         createNewScope();
     }
 
@@ -48,6 +47,7 @@ public class QBProgram {
     public void deleteScope () {
         dynamicMemory.pop();
         staticMemory.pop();
+        System.out.println("aslkdjfaklsdfj");
         eraseScope();
     }
 
@@ -56,8 +56,9 @@ public class QBProgram {
             dynamicMemory.peek().remove(id);
         for (String id : staticMemoryIds.peek())
             staticMemory.peek().remove(id);
+
         dynamicMemoryIds.pop();
-        staticMemory.pop();
+        staticMemoryIds.pop();
     }
 
     public Variable getId (Variable v) {
@@ -155,7 +156,7 @@ public class QBProgram {
                 val.getType() != Value.Type.STRING)
             errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), val.getType());
 
-        var.setValue(val);
+        var.setValue(Value.createValue(val, var.getType()));
     }
 
     public void createConst (Variable var, Value val, Token token) {
@@ -211,5 +212,11 @@ public class QBProgram {
 
     public void callSub (Variable s, List<Variable> params) {
 
+    }
+
+    public boolean eval (Variable v, Token token) {
+        if (v.getType() == Value.Type.STRING)
+            errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        return v.doubleValue() != 0;
     }
 }

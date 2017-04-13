@@ -1,10 +1,6 @@
-if a < b then
-    print "askldfja"
-elseif a > b then
-    print "hola"
-else
-    print "aslkdfjlksdjflaksdfljadsf"
-end if
+for i# = 1 to 7 step 0.1
+    print i#
+next
 
 sub s
 end sub

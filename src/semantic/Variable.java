@@ -108,5 +108,9 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     public String getProperName () {
         return properName;
     }
+
+    public void setProperName (String properName) {
+        this.properName = properName;
+    }
 }
 

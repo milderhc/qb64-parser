@@ -57,7 +57,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         Variable val = (Variable) visit(ctx.expression());
         program.assign(var, val, ctx.expression().getStart());
 
-        return null;
+        return (T) var;
     }
 
     @Override
@@ -116,8 +116,6 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
                 v.addSuffix();
             }
         }
-
-        System.out.println("asdklfj");
 
         if (!program.containsDynamicVariable(v.getName())) {
             if (program.containsFunction(v.getProperName()) ||
@@ -380,12 +378,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         boolean ifExecuted = false;
         for (int i = 0; i < expression.size(); ++i) {
             Variable v = (Variable) visit(expression.get(i));
-            Token token = expression.get(i).getStart();
-            if (v.getType() == Value.Type.STRING)
-                program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
-
-            double val = v.doubleValue();
-            if (val != 0) {
+            if (program.eval(v, expression.get(i).getStart())) {
                 visit(instructionBlockContexts.get(i));
 
                 ifExecuted = true;
@@ -396,6 +389,74 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         if (!ifExecuted && instructionBlockContexts.size() > expression.size()) {
             visit(instructionBlockContexts.get(expression.size()));
         }
+
+        return null;
+    }
+
+    @Override
+    public T visitWhileBlock (QB64v3Parser.WhileBlockContext ctx) {
+        while (program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart())) {
+            visit(ctx.instructionBlock());
+        }
+
+        return null;
+    }
+
+    @Override
+    public T visitDoWhileBlock (QB64v3Parser.DoWhileBlockContext ctx) {
+        do {
+            visit(ctx.instructionBlock());
+        } while (program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart()));
+
+        return null;
+    }
+
+    @Override
+    public T visitDoUntilBlock (QB64v3Parser.DoUntilBlockContext ctx) {
+        do {
+            visit(ctx.instructionBlock());
+        } while (!program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart()));
+
+        return null;
+    }
+
+    @Override
+    public T visitForBlock (QB64v3Parser.ForBlockContext ctx) {
+        Variable from = (Variable) visit(ctx.assignment());
+        Variable to = (Variable) visit(ctx.expression(0));
+        Variable step = (ctx.expression().size() > 1 ?
+                        (Variable) visit(ctx.expression(1)) :
+                        new Variable("step", Value.Type.INTEGER, new Short("1")));
+
+
+        if (to.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(0).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (step.getType() == Value.Type.STRING) {
+            Token token = ctx.expression(1).getStart();
+            program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        double diff = from.doubleValue() - to.doubleValue();
+        System.out.println(from.getValue() instanceof Short);
+        if (diff <= 0) {
+            while (diff <= 0) {
+                visit(ctx.instructionBlock());
+
+                program.assign(from, Value.createValue(from.doubleValue() + step.doubleValue(), from.getType()), null);
+                diff = from.doubleValue() - to.doubleValue();
+            }
+        } else {
+            while (diff >= 0) {
+                visit(ctx.instructionBlock());
+
+                program.assign(from, Value.createValue(from.doubleValue() + step.doubleValue(), from.getType()), null);
+                diff = from.doubleValue() - to.doubleValue();
+            }
+        }
+
         return null;
     }
 
@@ -446,7 +507,9 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
                 type = Variable.Type.STRING;
         }
 
-        Variable v = new Variable(id, type);
+        Variable v = Value.createValue(null, type);
+        v.setName(id);
+        v.setProperName(id);
         if (dynamic) {
             v.setDynamic(true);
             v.addSuffix();
