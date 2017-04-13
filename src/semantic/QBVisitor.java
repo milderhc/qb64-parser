@@ -47,7 +47,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         List<QB64v3Parser.ExpressionContext> expressions = ctx.expression();
         for (int i = 0; i < singleIdContexts.size(); ++i)
             program.createConst((Variable) visit(singleIdContexts.get(i)),
-                    (Value) visit(expressions.get(i)), expressions.get(i).getStart());
+                    (Variable) visit(expressions.get(i)), expressions.get(i).getStart());
 
         return null;
     }
@@ -55,7 +55,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     @Override
     public T visitAssignment (QB64v3Parser.AssignmentContext ctx) {
         Variable var = (Variable) visit(ctx.id());
-        Value val = (Value) visit(ctx.expression());
+        Variable val = (Variable) visit(ctx.expression());
         program.assign(var, val, ctx.expression().getStart());
 
         return null;
@@ -64,17 +64,9 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     @Override
     public T visitArray (QB64v3Parser.ArrayContext ctx) {
         List<QB64v3Parser.ExpressionContext> expressions = ctx.expression();
-        List<Integer> dim = new ArrayList<>();
+        List<Variable> dim = new ArrayList<>();
         expressions.forEach(expr -> {
-            semantic.Value value = (Value) visit(expr);
-            if (value.getType() != Value.Type.INTEGER &&
-                    value.getType() != Value.Type.LONG) {
-
-                final Token start = expr.getStart();
-                program.errorHandler.incompatibleIntegerError(start.getLine(), start.getCharPositionInLine(), value.getType());
-            }
-
-            dim.add((Integer)value.getValue());
+            dim.add((Variable) visit(expr));
         });
         return (T) dim;
     }
@@ -87,46 +79,99 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
         switch (type) {
             case QB64v3Lexer.INTEGERV:
-                return (T) new Value<>(Short.parseShort(ctx.value.getText()), Value.Type.INTEGER);
+                return (T) new Variable<>(null, Variable.Type.INTEGER, Short.parseShort(ctx.value.getText()));
             case QB64v3Lexer.LONGV:
-                return (T) new Value<>(Integer.parseInt(ctx.value.getText()), Value.Type.LONG);
+                return (T) new Variable<>(null, Variable.Type.LONG, Integer.parseInt(ctx.value.getText()));
             case QB64v3Lexer.SINGLEV:
-                return (T) new Value<>(Float.parseFloat(ctx.value.getText()), Value.Type.SINGLE);
+                return (T) new Variable<>(null, Variable.Type.SINGLE, Float.parseFloat(ctx.value.getText()));
             case QB64v3Lexer.DOUBLEV:
-                return (T) new Value<>(Double.parseDouble(ctx.value.getText()), Value.Type.DOUBLE);
+                return (T) new Variable<>(null, Variable.Type.DOUBLE, Double.parseDouble(ctx.value.getText()));
             default:
-                return (T) new Value<>(ctx.value.getText(), Value.Type.STRING);
+                return (T) new Variable<>(null, Variable.Type.STRING, ctx.value.getText());
         }
     }
 
     @Override
     public T visitId (QB64v3Parser.IdContext ctx) {
-//        Variable v = (Variable) visit(ctx.singleId());
-//        if (ctx.array() != null) {
-//            List<Integer> dimensions = (List<Integer>) visit(ctx.array());
-//            v.setName(ArrayQB.getArrayId(v.getName()));
-//            if (staticMemory.containsKey(v.getName())) {
-//                return (T) staticMemory.get(v.getName());
-//            }
-//
-//            v.addSuffix();
-//            v.setName(v.getName() + ArrayQB.posAlias(dimensions));
-//
-//            if (!dynamicMemory.containsKey(v.name))
-//                createDynamicVariable(v);
-//        } else {
-//            if (staticMemory.containsKey(v.getName())) {
-//                return (T) staticMemory.get(v.getName());
-//            }
-//
-//            v.addSuffix();
-//            if (!dynamicMemory.containsKey(v.name))
-//                createDynamicVariable(v);
-//        }
-//
-//        return (T) dynamicMemory.get(v.getName());
+        Variable v = (Variable) visit(ctx.singleId());
+        Token token = ctx.getStart();
 
-        return  null;
+        if (ctx.array() != null) {
+            String arrayName = ArrayQB.getArrayId(v.getName());
+            List<Variable> pos = (List<Variable>) visit(ctx.array());
+
+            if (!v.isDynamic()) {
+                if (program.containsStaticVariable(arrayName))
+                    return (T) program.getStaticVariable(arrayName, pos, token);
+
+                v.setDynamic(true);
+                v.addSuffix();
+                v.addSpecificAlias(pos);
+            }
+        } else {
+            if (!v.isDynamic()) {
+                if (program.containsStaticVariable(v.getName()))
+                    return (T) program.getStaticVariable(v.getName());
+
+                v.setDynamic(true);
+                v.addSuffix();
+            }
+        }
+
+        if (!program.containsDynamicVariable(v.getName())) {
+            if (program.containsFunction(v.getProperName()) ||
+                    program.containsSub(v.getProperName()))
+                program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getProperName());
+
+            program.createDynamicVariable(v);
+        }
+
+        return (T) program.getDynamicVariable(v.getName());
+    }
+
+    @Override
+    public T visitCallId (QB64v3Parser.CallIdContext ctx) {
+        Variable v = (Variable) visit(ctx.singleId());
+        Token token = ctx.getStart();
+
+        if (ctx.array() != null) {
+            String arrayName = ArrayQB.getArrayId(v.getName());
+            List<Variable> pos = (List<Variable>) visit(ctx.array());
+
+            if (!v.isDynamic()) {
+                if (program.containsSub(v.getName()))
+                    program.errorHandler.callingSub(token.getLine(), token.getCharPositionInLine(), v.getName());
+
+                if (program.containsStaticVariable(arrayName))
+                    return (T) program.getStaticVariable(arrayName, pos, token);
+
+                v.setDynamic(true);
+                v.addSuffix();
+                v.addSpecificAlias(pos);
+            }
+
+            if (program.containsFunction(v.getProperName()))
+                return (T) program.callFunction(v, pos);
+        } else {
+            if (!v.isDynamic()) {
+                if (program.containsSub(v.getName()))
+                    program.errorHandler.callingSub(token.getLine(), token.getCharPositionInLine(), v.getName());
+
+                if (program.containsStaticVariable(v.getName()))
+                    return (T) program.getStaticVariable(v.getName());
+
+                v.setDynamic(true);
+                v.addSuffix();
+            }
+
+            if (program.containsFunction(v.getProperName()))
+                return (T) program.callFunction(v, null);
+        }
+
+        if (!program.containsDynamicVariable(v.getName()))
+            program.createDynamicVariable(v);
+
+        return (T) program.getDynamicVariable(v.getName());
     }
 
     @Override
@@ -136,193 +181,193 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     @Override
     public T visitUnaryExpr (QB64v3Parser.UnaryExprContext ctx) {
-        Value expr = (Value) visit(ctx.expression());
+        Variable expr = (Variable) visit(ctx.expression());
 
-        if (expr.getType() == Value.Type.STRING) {
+        if (expr.getType() == Variable.Type.STRING) {
             Token token = ctx.expression().getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
         if (ctx.op.getType() == QB64v3Lexer.NOT)
-            return (T) Value.createValue(~expr.intValue(), expr.intType());
+            return (T) Variable.createValue(~expr.intValue(), expr.intType());
 
-        return (T) Value.createValue(-expr.intValue(), expr.getType());
+        return (T) Variable.createValue(-expr.intValue(), expr.getType());
     }
 
     @Override
     public T visitPotExpr (QB64v3Parser.PotExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(0).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
-        return (T) Value.createValue(Math.pow(left.doubleValue(), right.doubleValue()),
-                Value.getType(left.getType(), right.getType()));
+        return (T) Variable.createValue(Math.pow(left.doubleValue(), right.doubleValue()),
+                Variable.getType(left.getType(), right.getType()));
     }
 
     @Override
     public T visitMulExpr (QB64v3Parser.MulExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(0).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
         if (ctx.op.getType() == QB64v3Lexer.MOD) {
-            if (left.getType() != Value.Type.INTEGER && left.getType() != Value.Type.LONG) {
+            if (left.getType() != Variable.Type.INTEGER && left.getType() != Variable.Type.LONG) {
                 Token token = ctx.expression(0).getStart();
                 program.errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), left.getType());
             }
-            if (right.getType() != Value.Type.INTEGER && right.getType() != Value.Type.LONG) {
+            if (right.getType() != Variable.Type.INTEGER && right.getType() != Variable.Type.LONG) {
                 Token token = ctx.expression(1).getStart();
                 program.errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), right.getType());
             }
 
-            return (T) Value.createValue(left.intValue() % right.intValue(),
-                    Value.getType(left.getType(), right.getType()));
+            return (T) Variable.createValue(left.intValue() % right.intValue(),
+                    Variable.getType(left.getType(), right.getType()));
         }
 
         if (ctx.op.getType() == QB64v3Lexer.DIV)
-            return (T) Value.createValue(left.doubleValue() / right.doubleValue(),
-                    Value.getType(left.getType(), right.getType()));
-        return (T) Value.createValue(left.doubleValue() * right.doubleValue(),
-                Value.getType(left.getType(), right.getType()));
+            return (T) Variable.createValue(left.doubleValue() / right.doubleValue(),
+                    Variable.getType(left.getType(), right.getType()));
+        return (T) Variable.createValue(left.doubleValue() * right.doubleValue(),
+                Variable.getType(left.getType(), right.getType()));
     }
 
     @Override
     public T visitAddExpr (QB64v3Parser.AddExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(0).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
         if (ctx.op.getType() == QB64v3Lexer.ADD)
-            return (T) Value.createValue(left.doubleValue() + right.doubleValue(),
-                    Value.getType(left.getType(), right.getType()));
-        return (T) Value.createValue(left.doubleValue() - right.doubleValue(),
-                Value.getType(left.getType(), right.getType()));
+            return (T) Variable.createValue(left.doubleValue() + right.doubleValue(),
+                    Variable.getType(left.getType(), right.getType()));
+        return (T) Variable.createValue(left.doubleValue() - right.doubleValue(),
+                Variable.getType(left.getType(), right.getType()));
     }
 
     @Override
     public T visitCmpExpr (QB64v3Parser.CmpExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
-            if (right.getType() != Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
+            if (right.getType() != Variable.Type.STRING) {
                 Token token = ctx.expression(1).getStart();
                 program.errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), right.getType());
             }
 
             String l = (String) left.getValue();
-            String r = (String) left.getValue();
+            String r = (String) right.getValue();
 
             int cmp = l.compareTo(r);
-            if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Value.createValue(cmp < 0);
-            if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Value.createValue(cmp <= 0);
-            if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Value.createValue(cmp > 0);
-            return (T) Value.createValue(cmp >= 0);
+            if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Variable.createValue(cmp < 0);
+            if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Variable.createValue(cmp <= 0);
+            if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Variable.createValue(cmp > 0);
+            return (T) Variable.createValue(cmp >= 0);
         }
 
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
         double cmp = left.doubleValue() - right.doubleValue();
 
-        if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Value.createValue(cmp < 0);
-        if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Value.createValue(cmp <= 0);
-        if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Value.createValue(cmp > 0);
-        return (T) Value.createValue(cmp >= 0);
+        if (ctx.op.getType() == QB64v3Lexer.LESS) return (T) Variable.createValue(cmp < 0);
+        if (ctx.op.getType() == QB64v3Lexer.LESSOREQUAL) return (T) Variable.createValue(cmp <= 0);
+        if (ctx.op.getType() == QB64v3Lexer.GREATER) return (T) Variable.createValue(cmp > 0);
+        return (T) Variable.createValue(cmp >= 0);
     }
 
     @Override
     public T visitEqExpr (QB64v3Parser.EqExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
-            if (right.getType() != Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
+            if (right.getType() != Variable.Type.STRING) {
                 Token token = ctx.expression(1).getStart();
                 program.errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), right.getType());
             }
 
             String l = (String) left.getValue();
-            String r = (String) left.getValue();
+            String r = (String) right.getValue();
 
             boolean cmp = l.equals(r);
-            if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Value.createValue(cmp);
-            return (T) Value.createValue(!cmp);
+            if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Variable.createValue(cmp);
+            return (T) Variable.createValue(!cmp);
         }
 
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
         double cmp = left.doubleValue() - right.doubleValue();
 
-        if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Value.createValue(cmp == 0);
-        return (T) Value.createValue(cmp != 0);
+        if (ctx.op.getType() == QB64v3Lexer.EQUAL) return (T) Variable.createValue(cmp == 0);
+        return (T) Variable.createValue(cmp != 0);
     }
 
     @Override
     public T visitAndExpr (QB64v3Parser.AndExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(0).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
-        return (T) Value.createValue(left.intValue() & right.intValue(),
-                Value.getType(left.intType(), right.intType()));
+        return (T) Variable.createValue(left.intValue() & right.intValue(),
+                Variable.getType(left.intType(), right.intType()));
     }
 
     @Override
     public T visitOrExpr (QB64v3Parser.OrExprContext ctx) {
-        Value left = (Value) visit(ctx.expression(0));
-        Value right = (Value) visit(ctx.expression(1));
+        Variable left = (Variable) visit(ctx.expression(0));
+        Variable right = (Variable) visit(ctx.expression(1));
 
-        if (left.getType() == Value.Type.STRING) {
+        if (left.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(0).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
-        if (right.getType() == Value.Type.STRING) {
+        if (right.getType() == Variable.Type.STRING) {
             Token token = ctx.expression(1).getStart();
             program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         }
 
         if (ctx.op.getType() == QB64v3Lexer.OR)
-            return (T) Value.createValue(left.intValue() | right.intValue(),
-                    Value.getType(left.intType(), right.intType()));
-        return (T) Value.createValue(left.intValue() ^ right.intValue(),
-                Value.getType(left.intType(), right.intType()));
+            return (T) Variable.createValue(left.intValue() | right.intValue(),
+                    Variable.getType(left.intType(), right.intType()));
+        return (T) Variable.createValue(left.intValue() ^ right.intValue(),
+                Variable.getType(left.intType(), right.intType()));
     }
 
 
@@ -357,9 +402,11 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     public T visitSingleId(QB64v3Parser.SingleIdContext ctx) {
         String id = ctx.ID().getText();
         int suffix;
-        if (ctx.suffix() != null)
+        boolean dynamic = false;
+        if (ctx.suffix() != null) {
             suffix = (Integer) visit(ctx.suffix());
-        else
+            dynamic = true;
+        } else
             suffix = QB64v3Lexer.SINGLESUFFIX;
 
         Variable.Type type;
@@ -381,6 +428,10 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         }
 
         Variable v = new Variable(id, type);
+        if (dynamic) {
+            v.setDynamic(true);
+            v.addSuffix();
+        }
         return (T) v;
     }
 

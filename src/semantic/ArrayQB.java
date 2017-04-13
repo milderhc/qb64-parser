@@ -2,6 +2,7 @@ package semantic;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by milderhc on 11/03/17.
@@ -13,6 +14,7 @@ public class ArrayQB<T> extends Variable<T> {
     public ArrayQB(String name, Type type, List<Integer> dimensions, boolean shared) {
         super(name, type, false, shared);
         this.dimensions = dimensions;
+        this.values = new TreeMap<>();
     }
 
     public Variable<T> get (List<Integer> pos) {
@@ -42,9 +44,10 @@ public class ArrayQB<T> extends Variable<T> {
     private boolean check (List<Integer> pos) {
         if (pos.size() != dimensions.size())
             throw new IndexOutOfBoundsException("Dimensions are wrong");
-        for (int i = 0; i < pos.size(); ++i)
+        for (int i = 0; i < pos.size(); ++i) {
             if (pos.get(i) > dimensions.get(i))
                 throw new IndexOutOfBoundsException("Invalid position");
+        }
         return true;
     }
 

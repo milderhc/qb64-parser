@@ -42,6 +42,10 @@ public class SemanticErrorHandler {
         incompatibleTypesError(line, column, expectedList, Value.Type.STRING);
     }
 
+    public void callingSub (int line, int column, String name) {
+        error(line, column, name + " es un procedimiento, no tiene valor de retorno.");
+    }
+
     public void incompatibleStringError (int line, int column, Value.Type found) {
         List<Value.Type> expectedList = new ArrayList<>();
         expectedList.add(Value.Type.STRING);

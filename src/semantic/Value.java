@@ -35,17 +35,11 @@ public class Value<T> {
     }
 
     public int intValue () {
-        if (type == Type.DOUBLE) return (int) (double) (Double) value;
-        if (type == Type.SINGLE) return (int) (float) (Float) value;
-        if (type == Type.INTEGER) return (int) (Short) value;
-        return (int) (Integer) value;
+        return new Integer(String.valueOf(value));
     }
 
     public double doubleValue () {
-        if (type == Type.DOUBLE) return (double) (Double) value;
-        if (type == Type.SINGLE) return (double) (float) (Float) value;
-        if (type == Type.INTEGER) return (double) (Short) value;
-        return (double) (Integer) value;
+        return new Double(String.valueOf(value));
     }
 
     public Type intType () {
@@ -69,16 +63,16 @@ public class Value<T> {
         return value + "";
     }
 
-    public static Value createValue (Object value, Type type) {
+    public static Variable createValue(Object value, Type type) {
         String number = String.valueOf(value);
-        if (type == Type.INTEGER) return new Value((short) Double.parseDouble(number), Type.INTEGER);
-        if (type == Type.LONG) return new Value((int) Double.parseDouble(number), Type.LONG);
-        if (type == Type.SINGLE) return new Value((float) Double.parseDouble(number), Type.SINGLE);
-        if (type == Type.DOUBLE) return new Value(Double.parseDouble(number), Type.DOUBLE);
-        return new Value(number, Type.STRING);
+        if (type == Type.INTEGER) return new Variable<>(null, Type.INTEGER, (short) Double.parseDouble(number));
+        if (type == Type.LONG) return new Variable<>(null, Type.LONG, (int) Double.parseDouble(number));
+        if (type == Type.SINGLE) return new Variable<>(null, Type.SINGLE, (float) Double.parseDouble(number));
+        if (type == Type.DOUBLE) return new Variable<>(null, Type.DOUBLE, Double.parseDouble(number));
+        return new Variable<>(null, Type.STRING, number);
     }
 
-    public static Value createValue (boolean b) {
-        return (b ? new Value(-1, Type.INTEGER) : new Value(0, Type.INTEGER));
+    public static Variable createValue(boolean b) {
+        return (b ? new Variable(null, Type.INTEGER, -1) : new Variable(null, Type.INTEGER, 0));
     }
 }

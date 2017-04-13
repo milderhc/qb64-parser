@@ -76,6 +76,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCallId(QB64v3Parser.CallIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallId(QB64v3Parser.CallIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSingleId(QB64v3Parser.SingleIdContext ctx) { }
 	/**
 	 * {@inheritDoc}

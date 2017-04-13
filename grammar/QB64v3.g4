@@ -21,6 +21,7 @@ declaration             : DIM SHARED? dimId (',' dimId)* AS
 
 dimId                   : ID array? ;
 id                      : singleId array? ;
+callId                  : singleId array? ;
 singleId                : ID suffix? ;
 array                   : '(' expression (',' expression)* ')' ;
 
@@ -29,7 +30,7 @@ constDeclaration        : CONST singleId '=' expression
 assignment              : id '=' expression ;
 
 expression              : value=(INTEGERV | DOUBLEV | STRINGV | SINGLEV | LONGV)   # valueExpr
-                        | id                                                       # idExpr
+                        | callId                                                       # idExpr
                         | '(' expression ')'                                       # parenExpr
                         | op=('-' | NOT) expression                                # unaryExpr
                         | expression '^' expression                                # potExpr
@@ -50,7 +51,7 @@ funprocArg              : expression
                         | ID '(' ')'
                         ;
                         
-input                   : INPUT id (',' id)* ;
+input                   : INPUT callId (',' callId)* ;
 print                   : PRINT expression (';' expression)* ;
 
 ifBlock                 : IF expression THEN instruction*
@@ -63,7 +64,7 @@ forBlock                : FOR singleId '=' expression TO expression
                           (STEP expression)?
                           instruction* NEXT ;
 
-selectBlock             : SELECT CASE id casesList?
+selectBlock             : SELECT CASE callId casesList?
                           (CASE ELSE instruction*)? END SELECT ;
 casesList               : CASE expression instruction* casesList? ;
 

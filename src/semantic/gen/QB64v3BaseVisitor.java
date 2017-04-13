@@ -52,6 +52,13 @@ public class QB64v3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCallId(QB64v3Parser.CallIdContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitSingleId(QB64v3Parser.SingleIdContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

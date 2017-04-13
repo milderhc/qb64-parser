@@ -58,6 +58,16 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitId(QB64v3Parser.IdContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v3Parser#callId}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallId(QB64v3Parser.CallIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v3Parser#callId}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallId(QB64v3Parser.CallIdContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#singleId}.
 	 * @param ctx the parse tree
 	 */
