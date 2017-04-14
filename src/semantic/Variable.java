@@ -76,12 +76,16 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     }
 
     public void addSuffix () {
-        switch (this.type) {
-            case INTEGER: name += INTEGER_SUFFIX; break;
-            case LONG: name += LONG_SUFFIX; break;
-            case SINGLE: name += SINGLE_SUFFIX; break;
-            case DOUBLE: name += DOUBLE_SUFFIX; break;
-            default: name += STRING_SUFFIX;
+        name += getSuffix(this.type);
+    }
+
+    public static String getSuffix (Type type) {
+        switch (type) {
+            case INTEGER: return INTEGER_SUFFIX;
+            case LONG: return LONG_SUFFIX;
+            case SINGLE: return SINGLE_SUFFIX;
+            case DOUBLE: return DOUBLE_SUFFIX;
+            default: return STRING_SUFFIX;
         }
     }
 

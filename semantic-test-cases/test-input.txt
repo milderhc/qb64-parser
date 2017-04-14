@@ -1,6 +1,9 @@
-for i# = 1 to 7 step 0.1
-    print i#
-next
+DIM a as INTEGER
+a% = 1
+print a
 
-sub s
-end sub
+DIM a(2, 2) as INTEGER
+a%(2, 2) = 2
+print a(2, 2)
+
+DIM b, b(3, a) as SINGLE

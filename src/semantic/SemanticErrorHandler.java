@@ -57,7 +57,7 @@ public class SemanticErrorHandler {
     }
 
     public void arrayAlreadyDeclaredError (int line, int column, String name) {
-        error(line, column, "El arreglo " + name.substring(0, name.length() - 1) + " ya ha sido declarado.");
+        error(line, column, "El arreglo " + name + " ya ha sido declarado.");
     }
 
     public void constAssignmentError (int line, int column, String name) {

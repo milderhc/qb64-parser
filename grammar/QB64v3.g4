@@ -44,11 +44,9 @@ expression              : value=(INTEGERV | DOUBLEV | STRINGV | SINGLEV | LONGV)
 
 callSub                 : ID parametersList? ;
 
-parametersList          : '(' funprocArg ')' (',' parametersList)*                 # valuePar
-                        | funprocArg (',' parametersList)*                         # referencePar
-                        ;
-funprocArg              : expression
-                        | ID '(' ')'
+parametersList          : | funprocArg (',' funprocArg)* ;
+funprocArg              : expression                                               # argExpr
+                        | ID '(' ')'                                               # argArr
                         ;
                         
 input                   : INPUT callId (',' callId)* ;
@@ -64,9 +62,8 @@ forBlock                : FOR assignment TO expression
                           (STEP expression)?
                           instructionBlock NEXT ;
 
-selectBlock             : SELECT CASE callId casesList?
+selectBlock             : SELECT CASE callId (CASE expression instructionBlock)*
                           (CASE ELSE instructionBlock)? END SELECT ;
-casesList               : CASE expression instructionBlock casesList? ;
 
 instructionBlock        : instruction* ;
 

@@ -1,7 +1,6 @@
 package semantic;
 
 import org.antlr.v4.runtime.Token;
-import semantic.gen.QB64v3Lexer;
 import semantic.gen.QB64v3Parser;
 
 import java.util.*;
@@ -14,7 +13,6 @@ public class QBProgram {
     public Map<String, Function> functions;
 
     public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
-    public Stack<List<String>> dynamicMemoryIds, staticMemoryIds;
 
     public SemanticErrorHandler errorHandler;
     private QBVisitor visitor;
@@ -26,8 +24,6 @@ public class QBProgram {
         functions = new TreeMap<>();
         dynamicMemory = new Stack<>();
         staticMemory = new Stack<>();
-        dynamicMemoryIds = new Stack<>();
-        staticMemoryIds = new Stack<>();
 
         errorHandler = new SemanticErrorHandler();
         createNewScope();
@@ -36,29 +32,11 @@ public class QBProgram {
     public void createNewScope () {
         dynamicMemory.push(new TreeMap<>());
         staticMemory.push(new TreeMap<>());
-        addNewScope();
-    }
-
-    public void addNewScope () {
-        dynamicMemoryIds.push(new LinkedList<>());
-        staticMemoryIds.push(new LinkedList<>());
     }
 
     public void deleteScope () {
         dynamicMemory.pop();
         staticMemory.pop();
-        System.out.println("aslkdjfaklsdfj");
-        eraseScope();
-    }
-
-    public void eraseScope () {
-        for (String id : dynamicMemoryIds.peek())
-            dynamicMemory.peek().remove(id);
-        for (String id : staticMemoryIds.peek())
-            staticMemory.peek().remove(id);
-
-        dynamicMemoryIds.pop();
-        staticMemoryIds.pop();
     }
 
     public Variable getId (Variable v) {
@@ -73,12 +51,12 @@ public class QBProgram {
 
     public void createDynamicVariable(Variable v) {
         dynamicMemory.peek().put(v.getName(), v);
-        dynamicMemoryIds.peek().add(v.getName());
     }
 
     public void createStaticVariable(Variable v) {
         staticMemory.peek().put(v.getName(), v);
-        staticMemoryIds.peek().add(v.getName());
+        v.addSuffix();
+        createDynamicVariable(v);
     }
 
     public void addFunction (String name, Function f) {
@@ -89,57 +67,63 @@ public class QBProgram {
         subs.put(name, sub);
     }
 
-    public void createDimVariable (QB64v3Parser.DimIdContext ctx, int type, boolean shared) {
+    public ArrayQB createArray (String arrayName, Value.Type type, List<Variable> pos, boolean shared, Token token) {
+        List<Integer> dimensions = getRealPos(pos, token);
+        switch (type) {
+            case INTEGER:
+                return new ArrayQB<Short>(arrayName, Value.Type.INTEGER, dimensions, shared);
+            case LONG:
+                return new ArrayQB<Integer>(arrayName, Value.Type.LONG, dimensions, shared);
+            case SINGLE:
+                return new ArrayQB<Float>(arrayName, Value.Type.SINGLE, dimensions, shared);
+            case DOUBLE:
+                return new ArrayQB<Double>(arrayName, Value.Type.DOUBLE, dimensions, shared);
+            default:
+                return new ArrayQB<String>(arrayName, Value.Type.STRING, dimensions, shared);
+        }
+    }
+
+    public Variable createVariable (String name, Value.Type type, boolean shared) {
+        switch (type) {
+            case INTEGER:
+                return new Variable<Short>(name, Variable.Type.INTEGER, false, shared);
+            case LONG:
+                return new Variable<Integer>(name, Variable.Type.LONG, false, shared);
+            case SINGLE:
+                return new Variable<Float>(name, Variable.Type.SINGLE, false, shared);
+            case DOUBLE:
+                return new Variable<Double>(name, Variable.Type.DOUBLE, false, shared);
+            default:
+                return new Variable<String>(name, Variable.Type.STRING, false, shared);
+        }
+    }
+
+    public void createDimVariable (QB64v3Parser.DimIdContext ctx, Value.Type type, boolean shared) {
         String name = ctx.ID().getText();
         Token token = ctx.getStart();
 
         if (functions.containsKey(name) || subs.containsKey(name))
             errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
 
+        String suffix = Variable.getSuffix(type);
+
         if (ctx.array() != null) {
             String arrayName = ArrayQB.getArrayId(name);
             if (staticMemory.peek().containsKey(arrayName))
                 errorHandler.arrayAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
 
-            List<Integer> dimensions = getRealPos((List<Variable>) visitor.visit(ctx.array()), token);
-            switch (type) {
-                case QB64v3Lexer.INTEGER:
-                    createStaticVariable(new ArrayQB<Short>(arrayName, Value.Type.INTEGER, dimensions, shared));
-                    break;
-                case QB64v3Lexer.LONG:
-                    createStaticVariable(new ArrayQB<Integer>(arrayName, Value.Type.LONG, dimensions, shared));
-                    break;
-                case QB64v3Lexer.SINGLE:
-                    createStaticVariable(new ArrayQB<Float>(arrayName, Value.Type.SINGLE, dimensions, shared));
-                    break;
-                case QB64v3Lexer.DOUBLE:
-                    createStaticVariable(new ArrayQB<Double>(arrayName, Value.Type.DOUBLE, dimensions, shared));
-                    break;
-                case QB64v3Lexer.STRING:
-                    createStaticVariable(new ArrayQB<String>(arrayName, Value.Type.STRING, dimensions, shared));
-                    break;
-            }
+            if (dynamicMemory.peek().containsKey(arrayName + suffix))
+                errorHandler.arrayAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
+
+            createStaticVariable(createArray(arrayName, type, (List<Variable>) visitor.visit(ctx.array()), shared, token));
         } else {
             if (staticMemory.peek().containsKey(name))
                 errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
 
-            switch (type) {
-                case QB64v3Lexer.INTEGER:
-                    createStaticVariable(new Variable<Short>(name, Variable.Type.INTEGER, false, shared));
-                    break;
-                case QB64v3Lexer.LONG:
-                    createStaticVariable(new Variable<Integer>(name, Variable.Type.LONG, false, shared));
-                    break;
-                case QB64v3Lexer.SINGLE:
-                    createStaticVariable(new Variable<Float>(name, Variable.Type.SINGLE, false, shared));
-                    break;
-                case QB64v3Lexer.DOUBLE:
-                    createStaticVariable(new Variable<Double>(name, Variable.Type.DOUBLE, false, shared));
-                    break;
-                case QB64v3Lexer.STRING:
-                    createStaticVariable(new Variable<String>(name, Variable.Type.STRING, false, shared));
-                    break;
-            }
+            if (dynamicMemory.peek().containsKey(name + suffix))
+                errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), name);
+
+            createStaticVariable(createVariable(name, type, shared));
         }
     }
 
@@ -170,10 +154,7 @@ public class QBProgram {
         for (Variable v : pos) {
             if (v.getType() != Value.Type.INTEGER && v.getType() != Value.Type.LONG)
                 errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), v.getType());
-            if (v.getType() == Value.Type.INTEGER)
-                realPos.add((int)(short) v.getValue());
-            else
-                realPos.add((int) v.getValue());
+            realPos.add(new Integer(String.valueOf(v.getValue())));
         }
         return realPos;
     }

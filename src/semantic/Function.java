@@ -2,14 +2,13 @@ package semantic;
 
 import semantic.gen.QB64v3Parser;
 
-import java.util.List;
-
 /**
  * Created by milderhc on 10/03/17.
  */
 public class Function {
     private QB64v3Parser.FunctionContext ctx;
     private Variable.Type returnType;
+//    private
 
     public Function(QB64v3Parser.FunctionContext ctx, Variable.Type returnType) {
         this.ctx = ctx;

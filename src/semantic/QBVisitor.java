@@ -30,11 +30,26 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         return null;
     }
 
+    private Value.Type getType (int type) {
+        switch (type) {
+            case QB64v3Lexer.INTEGER:
+                return Value.Type.INTEGER;
+            case QB64v3Lexer.LONG:
+                return Value.Type.LONG;
+            case QB64v3Lexer.SINGLE:
+                return Value.Type.SINGLE;
+            case QB64v3Lexer.DOUBLE:
+                return Value.Type.DOUBLE;
+            default:
+                return Value.Type.STRING;
+        }
+    }
+
     @Override
     public T visitDeclaration (QB64v3Parser.DeclarationContext ctx) {
         List<QB64v3Parser.DimIdContext> dimIdContexts = ctx.dimId();
         dimIdContexts.forEach(dimIdContext -> {
-            program.createDimVariable(dimIdContext, ctx.type.getType(), ctx.SHARED() != null);
+            program.createDimVariable(dimIdContext, getType(ctx.type.getType()), ctx.SHARED() != null);
         });
 
         return null;
@@ -102,30 +117,36 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             if (!v.isDynamic()) {
                 if (program.containsStaticVariable(arrayName))
                     return (T) program.getStaticVariable(arrayName, pos, token);
-
-                v.setDynamic(true);
-                v.addSuffix();
-                v.addSpecificAlias(pos);
             }
+
+            v = program.createArray(arrayName, v.getType(), pos, false, token);
+            v.addSuffix();
+            if (!program.containsDynamicVariable(v.getName())) {
+                if (program.containsFunction(v.getProperName()) ||
+                        program.containsSub(v.getProperName()))
+                    program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getProperName());
+
+                program.createDynamicVariable(v);
+            }
+
+            return (T) ((ArrayQB) program.getDynamicVariable(v.getName())).get(program.getRealPos(pos, token));
         } else {
             if (!v.isDynamic()) {
                 if (program.containsStaticVariable(v.getName()))
                     return (T) program.getStaticVariable(v.getName());
-
-                v.setDynamic(true);
-                v.addSuffix();
             }
+
+            v.addSuffix();
+            if (!program.containsDynamicVariable(v.getName())) {
+                if (program.containsFunction(v.getProperName()) ||
+                        program.containsSub(v.getProperName()))
+                    program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getProperName());
+
+                program.createDynamicVariable(v);
+            }
+
+            return (T) program.getDynamicVariable(v.getName());
         }
-
-        if (!program.containsDynamicVariable(v.getName())) {
-            if (program.containsFunction(v.getProperName()) ||
-                    program.containsSub(v.getProperName()))
-                program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), v.getProperName());
-
-            program.createDynamicVariable(v);
-        }
-
-        return (T) program.getDynamicVariable(v.getName());
     }
 
     @Override
@@ -143,14 +164,17 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
                 if (program.containsStaticVariable(arrayName))
                     return (T) program.getStaticVariable(arrayName, pos, token);
-
-                v.setDynamic(true);
-                v.addSuffix();
-                v.addSpecificAlias(pos);
             }
 
             if (program.containsFunction(v.getProperName()))
                 return (T) program.callFunction(v, pos);
+
+            v = program.createArray(arrayName, v.getType(), pos, false, token);
+            v.addSuffix();
+            if (!program.containsDynamicVariable(v.getName()))
+                program.createDynamicVariable(v);
+
+            return (T) ((ArrayQB) program.getDynamicVariable(v.getName())).get(program.getRealPos(pos, token));
         } else {
             if (!v.isDynamic()) {
                 if (program.containsSub(v.getName()))
@@ -158,19 +182,17 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
                 if (program.containsStaticVariable(v.getName()))
                     return (T) program.getStaticVariable(v.getName());
-
-                v.setDynamic(true);
-                v.addSuffix();
             }
 
             if (program.containsFunction(v.getProperName()))
                 return (T) program.callFunction(v, null);
+
+            v.addSuffix();
+            if (!program.containsDynamicVariable(v.getName()))
+                program.createDynamicVariable(v);
+
+            return (T) program.getDynamicVariable(v.getName());
         }
-
-        if (!program.containsDynamicVariable(v.getName()))
-            program.createDynamicVariable(v);
-
-        return (T) program.getDynamicVariable(v.getName());
     }
 
     @Override
@@ -425,8 +447,8 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         Variable from = (Variable) visit(ctx.assignment());
         Variable to = (Variable) visit(ctx.expression(0));
         Variable step = (ctx.expression().size() > 1 ?
-                        (Variable) visit(ctx.expression(1)) :
-                        new Variable("step", Value.Type.INTEGER, new Short("1")));
+                (Variable) visit(ctx.expression(1)) :
+                new Variable("step", Value.Type.INTEGER, new Short("1")));
 
 
         if (to.getType() == Value.Type.STRING) {
@@ -440,7 +462,6 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         }
 
         double diff = from.doubleValue() - to.doubleValue();
-        System.out.println(from.getValue() instanceof Short);
         if (diff <= 0) {
             while (diff <= 0) {
                 visit(ctx.instructionBlock());
@@ -455,6 +476,45 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
                 program.assign(from, Value.createValue(from.doubleValue() + step.doubleValue(), from.getType()), null);
                 diff = from.doubleValue() - to.doubleValue();
             }
+        }
+
+        return null;
+    }
+
+
+    @Override
+    public T visitSelectBlock (QB64v3Parser.SelectBlockContext ctx) {
+        Variable v = (Variable) visit(ctx.callId());
+
+        List<QB64v3Parser.ExpressionContext> expression = ctx.expression();
+        List<QB64v3Parser.InstructionBlockContext> instructionBlockContexts = ctx.instructionBlock();
+
+        boolean caseExecuted = false;
+        for (int i = 0; i < expression.size(); ++i) {
+            Variable expr = (Variable) visit(expression.get(i));
+            Token token = expression.get(i).getStart();
+
+            double cmp;
+            if (v.getType() != Value.Type.STRING) {
+                if (expr.getType() == Value.Type.STRING)
+                    program.errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
+                cmp = v.doubleValue() - expr.doubleValue();
+            } else {
+                if (expr.getType() != Value.Type.STRING)
+                    program.errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), expr.getType());
+                cmp = ((String) v.getValue()).compareTo((String) expr.getValue());
+            }
+
+            if (cmp == 0) {
+                visit(instructionBlockContexts.get(i));
+
+                caseExecuted = true;
+                break;
+            }
+        }
+
+        if (!caseExecuted && instructionBlockContexts.size() > expression.size()) {
+            visit(instructionBlockContexts.get(expression.size()));
         }
 
         return null;
@@ -510,10 +570,8 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         Variable v = Value.createValue(null, type);
         v.setName(id);
         v.setProperName(id);
-        if (dynamic) {
+        if (dynamic)
             v.setDynamic(true);
-            v.addSuffix();
-        }
         return (T) v;
     }
 

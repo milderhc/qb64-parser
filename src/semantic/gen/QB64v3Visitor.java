@@ -222,12 +222,6 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelectBlock(QB64v3Parser.SelectBlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v3Parser#casesList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCasesList(QB64v3Parser.CasesListContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link QB64v3Parser#instructionBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
