@@ -1,0 +1,1 @@
+<1,7> Error semantico: numero incorrecto de parametros al llamar la funcion 'f'.

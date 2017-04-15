@@ -1,0 +1,3 @@
+Esto debe ser impreso
+20
+<4,7> Error semantico: tipos de datos incompatibles. Se esperaba: string; se encontro: integer.

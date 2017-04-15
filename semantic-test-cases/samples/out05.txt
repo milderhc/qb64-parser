@@ -1,0 +1,2 @@
+10
+<9,12> Error semantico: se accedio a una posicion no valida del arreglo: 99999999.
