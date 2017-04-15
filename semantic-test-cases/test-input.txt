@@ -1,2 +1,14 @@
-PRINT hola(3, 4, 5, 6)               ' No hay error
-PRINT hola(3, 4)                     ' Error semantico
+
+
+print f (1); " alksjdf"
+
+function f (x)
+    print x
+    if x < 7 then
+        print f (x + 1)
+        print f (x + 2)
+    end if
+    print x
+end function
+
+

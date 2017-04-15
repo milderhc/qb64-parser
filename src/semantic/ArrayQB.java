@@ -1,5 +1,6 @@
 package semantic;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -10,6 +11,12 @@ import java.util.TreeMap;
 public class ArrayQB<T> extends Variable<T> {
     private List<Integer> dimensions;
     private Map<String, Variable<T>> values;
+
+    public ArrayQB (ArrayQB arr) {
+        super(arr);
+        dimensions = new LinkedList<>(arr.getDimensions());
+        values = new TreeMap<>(arr.getValues());
+    }
 
     public ArrayQB(String name, Type type, List<Integer> dimensions, boolean shared) {
         super(name, type, false, shared);

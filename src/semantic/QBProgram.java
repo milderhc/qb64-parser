@@ -15,6 +15,7 @@ public class QBProgram {
     public Map<String, Variable> sharedMemory;
     public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
     public Stack<List<String>> dynamicIds, staticIds;
+    public Stack<TreeSet<String>> ignoredShared;
 
     public SemanticErrorHandler errorHandler;
     private QBVisitor visitor;
@@ -29,6 +30,7 @@ public class QBProgram {
         sharedMemory = new TreeMap<>();
         dynamicIds = new Stack<>();
         staticIds = new Stack<>();
+        ignoredShared = new Stack<>();
 
         errorHandler = new SemanticErrorHandler();
         createNewScope();
@@ -37,13 +39,16 @@ public class QBProgram {
     public void createNewScope () {
         dynamicMemory.push(new TreeMap<>());
         staticMemory.push(new TreeMap<>());
+        ignoredShared.push(new TreeSet<>());
         addTemporalScope();
     }
 
     public void deleteScope () {
+        dynamicIds.pop();
+        staticIds.pop();
         dynamicMemory.pop();
         staticMemory.pop();
-        deleteTemporalScope();
+        ignoredShared.pop();
     }
 
     public void addTemporalScope () {
@@ -199,7 +204,7 @@ public class QBProgram {
     }
 
     public boolean containsStaticVariable (String name) {
-        if (sharedMemory.containsKey(name))
+        if (!ignoredShared.peek().contains(name) && sharedMemory.containsKey(name))
             return true;
         return staticMemory.peek().containsKey(name);
     }
@@ -208,30 +213,28 @@ public class QBProgram {
         return dynamicMemory.peek().get(name);
     }
 
-    public Variable getDynamicVariable (String name, List<Variable> pos) {
-        return ((ArrayQB) dynamicMemory.peek().get(name)).get(pos);
-    }
-
     public Variable getStaticVariable (String name) {
-        if (sharedMemory.containsKey(name))
+        if (!ignoredShared.peek().contains(name) && sharedMemory.containsKey(name))
             return sharedMemory.get(name);
         return staticMemory.peek().get(name);
     }
 
-    public Variable callFunction (String name) {
+    public Variable callFunction (String name, List<Variable> parameters) {
         createNewScope();
 
         Function f = functions.get(name);
         createStaticVariable(new Variable(name, f.getReturnType()));
-        List<Variable> parameters = f.getParameters();
         parameters.forEach(par -> {
             if (par instanceof ArrayQB)
                 createStaticVariable(par);
-            else
+            else {
+                if (sharedMemory.containsKey(par.getProperName()))
+                    ignoredShared.peek().add(par.getProperName());
                 createDynamicVariable(par);
+            }
         });
 
-        visitor.visit(functions.get(name).getCtx());
+        visitor.visit(f.getCtx());
 
         Variable returnValue = getStaticVariable(name);
         deleteScope();
@@ -239,19 +242,21 @@ public class QBProgram {
         return returnValue;
     }
 
-    public void callSub (String name) {
+    public void callSub (String name, List<Variable> parameters) {
         createNewScope();
 
         Sub sub = subs.get(name);
-        List<Variable> parameters = sub.getParameters();
         parameters.forEach(par -> {
             if (par instanceof ArrayQB)
                 createStaticVariable(par);
-            else
+            else {
+                if (sharedMemory.containsKey(par.getProperName()))
+                    ignoredShared.peek().add(par.getProperName());
                 createDynamicVariable(par);
+            }
         });
 
-        visitor.visit(subs.get(name).getCtx());
+        visitor.visit(sub.getCtx());
 
         deleteScope();
     }

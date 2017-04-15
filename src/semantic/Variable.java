@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by milderhc on 10/03/17.
  */
-public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
+public class Variable<T> extends Value<T> implements Comparable<Variable<T>>, Cloneable {
     protected String name;
     protected String properName;
     private boolean constType;
@@ -18,6 +18,14 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     public static String DOUBLE_SUFFIX = "#";
     public static String STRING_SUFFIX = "$";
 
+    public Variable (Variable v) {
+        super(v);
+        this.name = new String(v.getName());
+        this.properName = new String(v.getProperName());
+        this.constType = v.isConstType();
+        this.shared = v.isShared();
+        this.dynamic = v.isDynamic();
+    }
 
     public Variable (String name, Type type) {
         this(name, type, false, false);

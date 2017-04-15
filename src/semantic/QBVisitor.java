@@ -99,17 +99,22 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
         Token token = ctx.getStart();
         Sub sub = program.getSub(name);
-        List<Variable> parameters = sub.getParameters();
+        List<Variable> parameters = sub.getClonedParameters();
         List<QB64v3Parser.ArgExpressionContext> argExpressionContexts = ctx.argExpression();
         if (parameters.size() != argExpressionContexts.size())
             program.errorHandler.incorrectNumberOfParametersSub(token.getLine(), token.getCharPositionInLine(), name);
 
         for (int i = 0; i < parameters.size(); ++i) {
             Variable arg = (Variable) visit(argExpressionContexts.get(i));
+            if (program.containsSub(parameters.get(i).getProperName()) || program.containsFunction(parameters.get(i).getProperName())) {
+                token = sub.getParCtx().get(i).getStart();
+                program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), parameters.get(i).getProperName());
+            }
+
             program.assign(parameters.get(i), arg, argExpressionContexts.get(i).getStart());
         }
 
-        program.callSub(name);
+        program.callSub(name, parameters);
         return null;
     }
 
@@ -226,7 +231,6 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
     @Override
     public T visitCallId (QB64v3Parser.CallIdContext ctx) {
         Variable v = (Variable) visit(ctx.singleId());
-        Token token = ctx.getStart();
         List<QB64v3Parser.ArgExpressionContext> argExpressionContexts = ctx.argExpression();
 
         if (!argExpressionContexts.isEmpty()) {
@@ -237,16 +241,20 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             });
 
             if (!v.isDynamic()) {
-                if (program.containsSub(v.getName()))
+                if (program.containsSub(v.getName())) {
+                    Token token = ctx.singleId().getStart();
                     program.errorHandler.callingSub(token.getLine(), token.getCharPositionInLine(), v.getName());
+                }
 
                 if (program.containsStaticVariable(arrayName)) {
                     ArrayQB arr = (ArrayQB) program.getStaticVariable(arrayName);
-                    if (arr.getDimensions().size() != pos.size())
+                    if (arr.getDimensions().size() != pos.size()) {
+                        Token token = ctx.singleId().getStart();
                         program.errorHandler.incorrectNumberOfDimensions(token.getLine(), token.getCharPositionInLine(), arr.getProperName());
+                    }
 
                     for (int i = 0; i < pos.size(); ++i) {
-                        token = argExpressionContexts.get(i).getStart();
+                        Token token = argExpressionContexts.get(i).getStart();
                         if (pos.get(i).getType() != Value.Type.INTEGER && pos.get(i).getType() != Value.Type.LONG)
                             program.errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), pos.get(i).getType());
                         if (pos.get(i).intValue() > (Integer) arr.getDimensions().get(i))
@@ -259,18 +267,25 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
             if (program.containsFunction(v.getProperName())) {
                 Function f = program.getFunction(v.getProperName());
-                List<Variable> parameters = f.getParameters();
-                if (parameters.size() != argExpressionContexts.size())
+                List<Variable> parameters = f.getClonedParameters();
+                if (parameters.size() != argExpressionContexts.size()) {
+                    Token token = ctx.singleId().getStart();
                     program.errorHandler.incorrectNumberOfParametersFunction(token.getLine(), token.getCharPositionInLine(), v.getProperName());
+                }
 
                 for (int i = 0; i < parameters.size(); ++i) {
                     Variable arg = (Variable) visit(argExpressionContexts.get(i));
+                    if (program.containsSub(parameters.get(i).getProperName()) || program.containsFunction(parameters.get(i).getProperName())) {
+                        Token token = f.getParCtx().get(i).getStart();
+                        program.errorHandler.idAlreadyDeclaredError(token.getLine(), token.getCharPositionInLine(), parameters.get(i).getProperName());
+                    }
                     program.assign(parameters.get(i), arg, argExpressionContexts.get(i).getStart());
                 }
 
-                return (T) program.callFunction(v.getProperName());
+                return (T) program.callFunction(v.getProperName(), parameters);
             }
 
+            Token token = ctx.singleId().getStart();
             v = program.createArray(arrayName, v.getType(), pos, false, token);
             v.addSuffix();
             if (!program.containsDynamicVariable(v.getName()))
@@ -291,9 +306,10 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             return (T) arr.get(pos);
         } else {
             if (!v.isDynamic()) {
-                if (program.containsSub(v.getName()))
+                if (program.containsSub(v.getName())) {
+                    Token token = ctx.singleId().getStart();
                     program.errorHandler.callingSub(token.getLine(), token.getCharPositionInLine(), v.getName());
-
+                }
                 if (program.containsStaticVariable(v.getName()))
                     return (T) program.getStaticVariable(v.getName());
             }
@@ -301,10 +317,11 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             if (program.containsFunction(v.getProperName())) {
                 Function f = program.getFunction(v.getProperName());
                 List<Variable> parameters = f.getParameters();
-                if (parameters.size() != argExpressionContexts.size())
+                if (parameters.size() != argExpressionContexts.size()) {
+                    Token token = ctx.singleId().getStart();
                     program.errorHandler.incorrectNumberOfParametersFunction(token.getLine(), token.getCharPositionInLine(), v.getProperName());
-
-                return (T) program.callFunction(v.getProperName());
+                }
+                return (T) program.callFunction(v.getProperName(), new LinkedList<>());
             }
 
             v.addSuffix();
@@ -669,7 +686,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             parameters.add(currentPar);
         });
 
-        Function f = new Function(ctx.instructionBlock(), parameters, functionName.getType());
+        Function f = new Function(ctx.instructionBlock(), funprocParContexts, parameters, functionName.getType());
         program.addFunction(functionName.getName(), f);
 
         return null;
@@ -689,7 +706,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             parameters.add(currentPar);
         });
 
-        Sub s = new Sub(ctx.instructionBlock(), parameters);
+        Sub s = new Sub(ctx.instructionBlock(), funprocParContexts, parameters);
         program.addSub(name, s);
 
         return null;

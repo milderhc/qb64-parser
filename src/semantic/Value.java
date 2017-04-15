@@ -11,6 +11,11 @@ public class Value<T> {
     public static Double DOUBLE_DEFAULT = 0.0;
     public static String STRING_DEFAULT = "";
 
+    public Value (Value v) {
+        this.type = v.getType();
+        this.value = (T) v.getValue();
+    }
+
     public Value () {}
 
     public Value(T value, Type type) {
