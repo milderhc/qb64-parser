@@ -88,6 +88,16 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitArray(QB64v3Parser.ArrayContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QB64v3Parser#argArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgArray(QB64v3Parser.ArgArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QB64v3Parser#argArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgArray(QB64v3Parser.ArgArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#constDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -240,6 +250,42 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitAndExpr(QB64v3Parser.AndExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code argExpr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgExpr(QB64v3Parser.ArgExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code argExpr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgExpr(QB64v3Parser.ArgExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code argArr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgArr(QB64v3Parser.ArgArrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code argArr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgArr(QB64v3Parser.ArgArrContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code parenArgExpr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenArgExpr(QB64v3Parser.ParenArgExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code parenArgExpr}
+	 * labeled alternative in {@link QB64v3Parser#argExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenArgExpr(QB64v3Parser.ParenArgExprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#callSub}.
 	 * @param ctx the parse tree
 	 */
@@ -249,40 +295,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCallSub(QB64v3Parser.CallSubContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code valuePar}
-	 * labeled alternative in {@link QB64v3Parser#parametersList}.
-	 * @param ctx the parse tree
-	 */
-	void enterValuePar(QB64v3Parser.ValueParContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code valuePar}
-	 * labeled alternative in {@link QB64v3Parser#parametersList}.
-	 * @param ctx the parse tree
-	 */
-	void exitValuePar(QB64v3Parser.ValueParContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code referencePar}
-	 * labeled alternative in {@link QB64v3Parser#parametersList}.
-	 * @param ctx the parse tree
-	 */
-	void enterReferencePar(QB64v3Parser.ReferenceParContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code referencePar}
-	 * labeled alternative in {@link QB64v3Parser#parametersList}.
-	 * @param ctx the parse tree
-	 */
-	void exitReferencePar(QB64v3Parser.ReferenceParContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#funprocArg}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunprocArg(QB64v3Parser.FunprocArgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#funprocArg}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunprocArg(QB64v3Parser.FunprocArgContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#input}.
 	 * @param ctx the parse tree
@@ -398,15 +410,29 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitSub(QB64v3Parser.SubContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#funprocPar}.
+	 * Enter a parse tree produced by the {@code singleIdPar}
+	 * labeled alternative in {@link QB64v3Parser#funprocPar}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunprocPar(QB64v3Parser.FunprocParContext ctx);
+	void enterSingleIdPar(QB64v3Parser.SingleIdParContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#funprocPar}.
+	 * Exit a parse tree produced by the {@code singleIdPar}
+	 * labeled alternative in {@link QB64v3Parser#funprocPar}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunprocPar(QB64v3Parser.FunprocParContext ctx);
+	void exitSingleIdPar(QB64v3Parser.SingleIdParContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code arrayPar}
+	 * labeled alternative in {@link QB64v3Parser#funprocPar}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayPar(QB64v3Parser.ArrayParContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code arrayPar}
+	 * labeled alternative in {@link QB64v3Parser#funprocPar}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayPar(QB64v3Parser.ArrayParContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#suffix}.
 	 * @param ctx the parse tree

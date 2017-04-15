@@ -116,5 +116,9 @@ public class Variable<T> extends Value<T> implements Comparable<Variable<T>> {
     public void setProperName (String properName) {
         this.properName = properName;
     }
+
+    public boolean isShared() {
+        return shared;
+    }
 }
 

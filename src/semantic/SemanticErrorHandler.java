@@ -80,5 +80,43 @@ public class SemanticErrorHandler {
                 return "TYPE NOT SUPPORTED";
         }
     }
+
+    public void indexOutOfBounds(int line, int column, List<Integer> realPos) {
+        StringBuilder s = new StringBuilder("(");
+        for (int i = 0; i < realPos.size(); ++i) {
+            if (i > 0) s.append(",");
+            s.append(realPos.get(i));
+        }
+        s.append(")");
+        error(line, column, "se accedio a una posicion no valida del arreglo: " + s.toString() + ".");
+    }
+
+    public void subNotDeclared(int line, int column, String name) {
+        error(line, column, "el procedimiento " + name + " no ha sido declarado.");
+    }
+
+    public void arrayNotDeclared(int line, int column, String name) {
+        error(line, column, "el arreglo " + name + " no hay sido declarado.");
+    }
+
+    public void incorrectNumberOfParametersSub(int line, int column, String name) {
+        error(line, column, "numero incorrecto de parametros al llamar el procedimiento " + name + ".");
+    }
+
+    public void incorrectNumberOfParametersFunction(int line, int column, String name) {
+        error(line, column, "numero incorrecto de parametros al llamar la funcion " + name + ".");
+    }
+
+    public void incompatibleArrayError(int line, int column, Value.Type type) {
+        error(line, column, "tipos de datos incompatibles. Se esperaba: arreglo; se encontro: " + typeString(type) + ".");
+    }
+
+    public void incompatibleSingleNumericVariableError(int line, int column) {
+        error(line, column, "tipos de datos incompatibles. Se esperaba: double, integer, long, single; se encontro: arreglo.");
+    }
+
+    public void incompatibleSingleStringVariableError(int line, int column) {
+        error(line, column, "tipos de datos incompatibles. Se esperaba: string; se encontro: arreglo.");
+    }
 }
 

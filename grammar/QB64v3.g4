@@ -21,9 +21,10 @@ declaration             : DIM SHARED? dimId (',' dimId)* AS
 
 dimId                   : ID array? ;
 id                      : singleId array? ;
-callId                  : singleId array? ;
+callId                  : singleId argArray? ;
 singleId                : ID suffix? ;
 array                   : '(' expression (',' expression)* ')' ;
+argArray                : '(' argExpression (',' argExpression)* ')' ;
 
 constDeclaration        : CONST singleId '=' expression
                           (',' singleId '=' expression)* ;
@@ -41,13 +42,12 @@ expression              : value=(INTEGERV | DOUBLEV | STRINGV | SINGLEV | LONGV)
                         | expression AND expression                                # andExpr
                         | expression op=(OR | XOR) expression                      # orExpr
                         ;
-
-callSub                 : ID parametersList? ;
-
-parametersList          : | funprocArg (',' funprocArg)* ;
-funprocArg              : expression                                               # argExpr
+argExpression           : expression                                               # argExpr
                         | ID '(' ')'                                               # argArr
+                        | '(' argExpression ')'                                    # parenArgExpr
                         ;
+
+callSub                 : ID (| argExpression (',' argExpression)*) ;
                         
 input                   : INPUT callId (',' callId)* ;
 print                   : PRINT expression (';' expression)* ;
@@ -73,9 +73,9 @@ funproc                 : FUNCTION singleId ('(' funprocPar (',' funprocPar)* ')
                           instructionBlock END SUB                                          # sub
                         ;
 
-funprocPar              : singleId
+funprocPar              : singleId                                                          # singleIdPar
                         | ID '(' ')' AS
-                          type=(INTEGER | LONG | SINGLE | DOUBLE | STRING)
+                          type=(INTEGER | LONG | SINGLE | DOUBLE | STRING)                  # arrayPar
                         ;
 
 suffix                  : suffixType=('%' | '&' | '!' | '#' | '$');

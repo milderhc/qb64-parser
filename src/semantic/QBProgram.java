@@ -12,6 +12,7 @@ public class QBProgram {
     public Map<String, Sub> subs;
     public Map<String, Function> functions;
 
+    public Map<String, Variable> sharedMemory;
     public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
 
     public SemanticErrorHandler errorHandler;
@@ -24,6 +25,7 @@ public class QBProgram {
         functions = new TreeMap<>();
         dynamicMemory = new Stack<>();
         staticMemory = new Stack<>();
+        sharedMemory = new TreeMap<>();
 
         errorHandler = new SemanticErrorHandler();
         createNewScope();
@@ -54,6 +56,8 @@ public class QBProgram {
     }
 
     public void createStaticVariable(Variable v) {
+        if (v.isShared())
+            sharedMemory.put(v.getName(), v);
         staticMemory.peek().put(v.getName(), v);
         v.addSuffix();
         createDynamicVariable(v);
@@ -127,9 +131,30 @@ public class QBProgram {
         }
     }
 
-    public void assign (Variable var, Value val, Token token) {
+    public void assign (Variable var, Variable val, Token token) {
         if (var.isConstType()) {
             errorHandler.constAssignmentError(token.getLine(), token.getCharPositionInLine(), var.getName());
+        }
+
+        if (var instanceof ArrayQB && !(val instanceof ArrayQB))
+            errorHandler.incompatibleArrayError(token.getLine(), token.getCharPositionInLine(), val.getType());
+
+        if (!(var instanceof ArrayQB) && val instanceof ArrayQB) {
+            if (var.getType() == Value.Type.STRING)
+                errorHandler.incompatibleSingleStringVariableError(token.getLine(), token.getCharPositionInLine());
+            errorHandler.incompatibleSingleNumericVariableError(token.getLine(), token.getCharPositionInLine());
+        }
+
+        if (var instanceof ArrayQB) {
+            if (var.getType() != val.getType()) {
+                List<Value.Type> expected = new LinkedList<>();
+                expected.add(var.getType());
+                errorHandler.incompatibleTypesError(token.getLine(), token.getCharPositionInLine(), expected, val.getType());
+            }
+
+            ((ArrayQB) var).setDimensions(((ArrayQB) val).getDimensions());
+            ((ArrayQB) var).setValues(((ArrayQB) val).getValues());
+            return;
         }
 
         if (var.getType() != Value.Type.STRING &&
@@ -143,7 +168,7 @@ public class QBProgram {
         var.setValue(Value.createValue(val, var.getType()));
     }
 
-    public void createConst (Variable var, Value val, Token token) {
+    public void createConst (Variable var, Variable val, Token token) {
         assign(var, val, token);
         var.setConstType(true);
         createDynamicVariable(var);
@@ -172,6 +197,8 @@ public class QBProgram {
     }
 
     public boolean containsStaticVariable (String name) {
+        if (sharedMemory.containsKey(name))
+            return true;
         return staticMemory.peek().containsKey(name);
     }
 
@@ -180,24 +207,54 @@ public class QBProgram {
     }
 
     public Variable getStaticVariable (String name) {
+        if (sharedMemory.containsKey(name))
+            return sharedMemory.get(name);
         return staticMemory.peek().get(name);
     }
 
     public Variable getStaticVariable (String name, List<Variable> pos, Token token) {
-        return ((ArrayQB) staticMemory.peek().get(name)).get(getRealPos(pos, token));
+        try {
+            if (sharedMemory.containsKey(name))
+                return ((ArrayQB) sharedMemory.get(name)).get(getRealPos(pos, token));
+            return ((ArrayQB) staticMemory.peek().get(name)).get(getRealPos(pos, token));
+        } catch (IndexOutOfBoundsException e) {
+            errorHandler.indexOutOfBounds(token.getLine(), token.getCharPositionInLine(), getRealPos(pos, token));
+        }
+        return null;
     }
 
     public Variable callFunction (Variable f, List<Variable> params) {
         return new Variable(null, Value.Type.INTEGER, 1);
     }
 
-    public void callSub (Variable s, List<Variable> params) {
+    public void callSub (String name) {
+        createNewScope();
 
+        Sub sub = subs.get(name);
+        List<Variable> parameters = sub.getParameters();
+        parameters.forEach(par -> {
+            if (par instanceof ArrayQB)
+                createStaticVariable(par);
+            else
+                createDynamicVariable(par);
+        });
+
+        visitor.visit(subs.get(name).getCtx());
+
+        deleteScope();
     }
 
     public boolean eval (Variable v, Token token) {
         if (v.getType() == Value.Type.STRING)
             errorHandler.incompatibleNumericError(token.getLine(), token.getCharPositionInLine());
         return v.doubleValue() != 0;
+    }
+
+    public Sub getSub(String name) {
+        return subs.get(name);
+    }
+
+    public Function getFunction(String name) {
+        return functions.get(name);
     }
 }

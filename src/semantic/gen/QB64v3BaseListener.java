@@ -112,6 +112,18 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArgArray(QB64v3Parser.ArgArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArgArray(QB64v3Parser.ArgArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterConstDeclaration(QB64v3Parser.ConstDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -268,6 +280,42 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArgExpr(QB64v3Parser.ArgExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArgExpr(QB64v3Parser.ArgExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArgArr(QB64v3Parser.ArgArrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArgArr(QB64v3Parser.ArgArrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParenArgExpr(QB64v3Parser.ParenArgExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParenArgExpr(QB64v3Parser.ParenArgExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCallSub(QB64v3Parser.CallSubContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -275,42 +323,6 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCallSub(QB64v3Parser.CallSubContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterValuePar(QB64v3Parser.ValueParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitValuePar(QB64v3Parser.ValueParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterReferencePar(QB64v3Parser.ReferenceParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitReferencePar(QB64v3Parser.ReferenceParContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFunprocArg(QB64v3Parser.FunprocArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunprocArg(QB64v3Parser.FunprocArgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -448,13 +460,25 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
+	@Override public void enterSingleIdPar(QB64v3Parser.SingleIdParContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunprocPar(QB64v3Parser.FunprocParContext ctx) { }
+	@Override public void exitSingleIdPar(QB64v3Parser.SingleIdParContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArrayPar(QB64v3Parser.ArrayParContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayPar(QB64v3Parser.ArrayParContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

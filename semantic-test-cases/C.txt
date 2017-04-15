@@ -1,0 +1,12 @@
+DIM a as INTEGER
+a$ = "asldkfj"
+a# = 0.0001
+a! = 10
+a% = 15
+a& = 999999
+print a; a$
+print a%
+print a&
+print a$
+print a!
+print a#

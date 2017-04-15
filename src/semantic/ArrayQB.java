@@ -68,4 +68,12 @@ public class ArrayQB<T> extends Variable<T> {
     public static String getArrayId (String id) {
         return id + "@";
     }
+
+    public void setDimensions(List<Integer> dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public void setValues(Map<String, Variable<T>> values) {
+        this.values = values;
+    }
 }
