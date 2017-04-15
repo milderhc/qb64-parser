@@ -1,0 +1,7 @@
+FOR i = 1 TO 3
+    FOR j = 1 TO 2
+        FOR k = 1 TO 2
+            PRINT i * j * k
+        NEXT
+    NEXT
+NEXT

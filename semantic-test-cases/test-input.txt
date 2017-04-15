@@ -1,10 +1,7 @@
-PRINT "Esto debe ser impreso"
-PRINT 5 * 4
-
-a = f("sdklfj")
-print a
-
-FUNCTION f (par$)
-    print par$
-    f = 10
-END FUNCTION
+PRINT hola(3, 4, 5, 6)               ' No hay error
+PRINT hola(3, 4, 1, 6)               ' No hay error
+PRINT hola(0, 0, 0, 0)               ' No hay error
+PRINT hola(3, 4, 5, 10)              ' Error en tiempo de ejecucion
+                           ' Hay error porque cuando se llamo hola por
+                           ' primera vez se creo de con tamano que no
+                           ' soporta la posicion que se desea acceder

@@ -43,7 +43,7 @@ public class SemanticErrorHandler {
     }
 
     public void callingSub (int line, int column, String name) {
-        error(line, column, name + " es un procedimiento, no tiene valor de retorno.");
+        error(line, column, "'" + name + "' es un procedimiento, no tiene valor de retorno.");
     }
 
     public void incompatibleStringError (int line, int column, Value.Type found) {
@@ -53,15 +53,15 @@ public class SemanticErrorHandler {
     }
 
     public void idAlreadyDeclaredError (int line, int column, String name) {
-        error(line, column, name + " ya ha sido declarado.");
+        error(line, column, "'" + name + "' ya ha sido declarado.");
     }
 
     public void arrayAlreadyDeclaredError (int line, int column, String name) {
-        error(line, column, "El arreglo " + name + " ya ha sido declarado.");
+        error(line, column, "El arreglo '" + name + "' ya ha sido declarado.");
     }
 
     public void constAssignmentError (int line, int column, String name) {
-        error(line, column, name + " no puede ser modificado.");
+        error(line, column, "'" + name + "' no puede ser modificado.");
     }
 
     public String typeString (Value.Type type) {
@@ -86,19 +86,19 @@ public class SemanticErrorHandler {
     }
 
     public void subNotDeclared(int line, int column, String name) {
-        error(line, column, "el procedimiento " + name + " no ha sido declarado.");
+        error(line, column, "el procedimiento '" + name + "' no ha sido declarado.");
     }
 
     public void arrayNotDeclared(int line, int column, String name) {
-        error(line, column, "el arreglo " + name + " no hay sido declarado.");
+        error(line, column, "el arreglo '" + name + "' no hay sido declarado.");
     }
 
     public void incorrectNumberOfParametersSub(int line, int column, String name) {
-        error(line, column, "numero incorrecto de parametros al llamar el procedimiento " + name + ".");
+        error(line, column, "numero incorrecto de parametros al llamar el procedimiento '" + name + "'.");
     }
 
     public void incorrectNumberOfParametersFunction(int line, int column, String name) {
-        error(line, column, "numero incorrecto de parametros al llamar la funcion " + name + ".");
+        error(line, column, "numero incorrecto de parametros al llamar la funcion '" + name + "'.");
     }
 
     public void incompatibleArrayError(int line, int column, Value.Type type) {
@@ -114,7 +114,7 @@ public class SemanticErrorHandler {
     }
 
     public void incorrectNumberOfDimensions(int line, int column, String name) {
-        error(line, column, "las dimensiones del arreglo " + name.substring(0, name.length() - 1) + " no son las especificadas");
+        error(line, column, "las dimensiones del arreglo '" + name.substring(0, name.length() - 1) + "' no son las especificadas");
     }
 }
 
