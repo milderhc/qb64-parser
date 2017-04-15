@@ -20,11 +20,10 @@ declaration             : DIM SHARED? dimId (',' dimId)* AS
                           type=(INTEGER | LONG | SINGLE | DOUBLE | STRING) ;
 
 dimId                   : ID array? ;
-id                      : singleId array? ;
-callId                  : singleId argArray? ;
+id                      : singleId ('(' expression (',' expression)* ')')? ;
+callId                  : singleId ('(' argExpression (',' argExpression)* ')')? ;
 singleId                : ID suffix? ;
 array                   : '(' expression (',' expression)* ')' ;
-argArray                : '(' argExpression (',' argExpression)* ')' ;
 
 constDeclaration        : CONST singleId '=' expression
                           (',' singleId '=' expression)* ;

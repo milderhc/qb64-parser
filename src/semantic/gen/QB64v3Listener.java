@@ -88,16 +88,6 @@ public interface QB64v3Listener extends ParseTreeListener {
 	 */
 	void exitArray(QB64v3Parser.ArrayContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QB64v3Parser#argArray}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgArray(QB64v3Parser.ArgArrayContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QB64v3Parser#argArray}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgArray(QB64v3Parser.ArgArrayContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link QB64v3Parser#constDeclaration}.
 	 * @param ctx the parse tree
 	 */

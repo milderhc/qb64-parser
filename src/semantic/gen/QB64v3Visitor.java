@@ -59,12 +59,6 @@ public interface QB64v3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArray(QB64v3Parser.ArrayContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link QB64v3Parser#argArray}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArgArray(QB64v3Parser.ArgArrayContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link QB64v3Parser#constDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

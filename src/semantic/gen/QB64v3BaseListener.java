@@ -112,18 +112,6 @@ public class QB64v3BaseListener implements QB64v3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgArray(QB64v3Parser.ArgArrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgArray(QB64v3Parser.ArgArrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterConstDeclaration(QB64v3Parser.ConstDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}

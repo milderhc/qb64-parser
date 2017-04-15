@@ -81,14 +81,8 @@ public class SemanticErrorHandler {
         }
     }
 
-    public void indexOutOfBounds(int line, int column, List<Integer> realPos) {
-        StringBuilder s = new StringBuilder("(");
-        for (int i = 0; i < realPos.size(); ++i) {
-            if (i > 0) s.append(",");
-            s.append(realPos.get(i));
-        }
-        s.append(")");
-        error(line, column, "se accedio a una posicion no valida del arreglo: " + s.toString() + ".");
+    public void indexOutOfBounds(int line, int column, int pos) {
+        error(line, column, "se accedio a una posicion no valida del arreglo: " + pos + ".");
     }
 
     public void subNotDeclared(int line, int column, String name) {
@@ -117,6 +111,10 @@ public class SemanticErrorHandler {
 
     public void incompatibleSingleStringVariableError(int line, int column) {
         error(line, column, "tipos de datos incompatibles. Se esperaba: string; se encontro: arreglo.");
+    }
+
+    public void incorrectNumberOfDimensions(int line, int column, String name) {
+        error(line, column, "las dimensiones del arreglo " + name.substring(0, name.length() - 1) + " no son las especificadas");
     }
 }
 

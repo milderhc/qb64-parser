@@ -72,7 +72,8 @@ public class QBProgram {
     }
 
     public ArrayQB createArray (String arrayName, Value.Type type, List<Variable> pos, boolean shared, Token token) {
-        List<Integer> dimensions = getRealPos(pos, token);
+        List<Integer> dimensions = new LinkedList<>();
+        pos.forEach(p -> dimensions.add(p.intValue()));
         switch (type) {
             case INTEGER:
                 return new ArrayQB<Short>(arrayName, Value.Type.INTEGER, dimensions, shared);
@@ -103,7 +104,7 @@ public class QBProgram {
     }
 
     public void createDimVariable (QB64v3Parser.DimIdContext ctx, Value.Type type, boolean shared) {
-        String name = ctx.ID().getText();
+        String name = ctx.ID().getText().toLowerCase();
         Token token = ctx.getStart();
 
         if (functions.containsKey(name) || subs.containsKey(name))
@@ -174,16 +175,6 @@ public class QBProgram {
         createDynamicVariable(var);
     }
 
-    public List<Integer> getRealPos (List<Variable> pos, Token token) {
-        List<Integer> realPos = new ArrayList<>();
-        for (Variable v : pos) {
-            if (v.getType() != Value.Type.INTEGER && v.getType() != Value.Type.LONG)
-                errorHandler.incompatibleIntegerError(token.getLine(), token.getCharPositionInLine(), v.getType());
-            realPos.add(new Integer(String.valueOf(v.getValue())));
-        }
-        return realPos;
-    }
-
     public boolean containsFunction (String name) {
         return functions.containsKey(name);
     }
@@ -206,25 +197,39 @@ public class QBProgram {
         return dynamicMemory.peek().get(name);
     }
 
+    public Variable getDynamicVariable (String name, List<Variable> pos) {
+        return ((ArrayQB) dynamicMemory.peek().get(name)).get(pos);
+    }
+
     public Variable getStaticVariable (String name) {
         if (sharedMemory.containsKey(name))
             return sharedMemory.get(name);
         return staticMemory.peek().get(name);
     }
 
-    public Variable getStaticVariable (String name, List<Variable> pos, Token token) {
-        try {
-            if (sharedMemory.containsKey(name))
-                return ((ArrayQB) sharedMemory.get(name)).get(getRealPos(pos, token));
-            return ((ArrayQB) staticMemory.peek().get(name)).get(getRealPos(pos, token));
-        } catch (IndexOutOfBoundsException e) {
-            errorHandler.indexOutOfBounds(token.getLine(), token.getCharPositionInLine(), getRealPos(pos, token));
-        }
-        return null;
+    public Variable getStaticVariable (String name, List<Variable> pos) {
+        return ((ArrayQB) staticMemory.peek().get(name)).get(pos);
     }
 
-    public Variable callFunction (Variable f, List<Variable> params) {
-        return new Variable(null, Value.Type.INTEGER, 1);
+    public Variable callFunction (String name) {
+        createNewScope();
+
+        Function f = functions.get(name);
+        createStaticVariable(new Variable(name, f.getReturnType()));
+        List<Variable> parameters = f.getParameters();
+        parameters.forEach(par -> {
+            if (par instanceof ArrayQB)
+                createStaticVariable(par);
+            else
+                createDynamicVariable(par);
+        });
+
+        visitor.visit(functions.get(name).getCtx());
+
+        Variable returnValue = getStaticVariable(name);
+        deleteScope();
+
+        return returnValue;
     }
 
     public void callSub (String name) {

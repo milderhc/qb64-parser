@@ -17,7 +17,7 @@ public class ArrayQB<T> extends Variable<T> {
         this.values = new TreeMap<>();
     }
 
-    public Variable<T> get (List<Integer> pos) {
+    public Variable<T> get (List<Variable> pos) {
         if (check(pos)) {
             String stringPos = posAlias(pos);
             if (!values.containsKey(stringPos)) {
@@ -34,26 +34,26 @@ public class ArrayQB<T> extends Variable<T> {
         return null;
     }
 
-    public void set (List<Integer> pos, T newValue) {
+    public void set (List<Variable> pos, T newValue) {
         if (check(pos)) {
             String stringPos = posAlias(pos);
             values.put(stringPos, new Variable<T>(stringPos, this.type, newValue));
         }
     }
 
-    private boolean check (List<Integer> pos) {
+    private boolean check (List<Variable> pos) {
         if (pos.size() != dimensions.size())
             throw new IndexOutOfBoundsException("Dimensions are wrong");
         for (int i = 0; i < pos.size(); ++i) {
-            if (pos.get(i) > dimensions.get(i))
+            if (pos.get(i).intValue() > dimensions.get(i))
                 throw new IndexOutOfBoundsException("Invalid position");
         }
         return true;
     }
 
-    public static String posAlias (List<Integer> pos) {
+    public static String posAlias (List<Variable> pos) {
         StringBuilder build = new StringBuilder();
-        pos.forEach(p -> build.append(pos + "@"));
+        pos.forEach(p -> build.append(p.intValue() + "@"));
         return build.toString();
     }
 

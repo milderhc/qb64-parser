@@ -1,6 +1,10 @@
-x = 10
-call (x)
+PRINT "Esto debe ser impreso"
+PRINT 5 * 4
 
-sub call (x)
-    print x
-end sub
+a = f("sdklfj")
+print a
+
+FUNCTION f (par$)
+    print par$
+    f = 10
+END FUNCTION
