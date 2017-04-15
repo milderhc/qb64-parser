@@ -14,6 +14,7 @@ public class QBProgram {
 
     public Map<String, Variable> sharedMemory;
     public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
+    public Stack<List<String>> dynamicIds, staticIds;
 
     public SemanticErrorHandler errorHandler;
     private QBVisitor visitor;
@@ -26,6 +27,8 @@ public class QBProgram {
         dynamicMemory = new Stack<>();
         staticMemory = new Stack<>();
         sharedMemory = new TreeMap<>();
+        dynamicIds = new Stack<>();
+        staticIds = new Stack<>();
 
         errorHandler = new SemanticErrorHandler();
         createNewScope();
@@ -34,30 +37,38 @@ public class QBProgram {
     public void createNewScope () {
         dynamicMemory.push(new TreeMap<>());
         staticMemory.push(new TreeMap<>());
+        addTemporalScope();
     }
 
     public void deleteScope () {
         dynamicMemory.pop();
         staticMemory.pop();
+        deleteTemporalScope();
     }
 
-    public Variable getId (Variable v) {
-        if (staticMemory.peek().containsKey(v.getName()))
-            return staticMemory.peek().get(v.getName());
+    public void addTemporalScope () {
+        dynamicIds.push(new LinkedList<>());
+        staticIds.push(new LinkedList<>());
+    }
 
-        if (!dynamicMemory.peek().containsKey(v.getName()))
-            createDynamicVariable(v);
-
-        return dynamicMemory.peek().get(v.getName());
+    public void deleteTemporalScope () {
+        for (String s : dynamicIds.peek())
+            dynamicMemory.peek().remove(s);
+        for (String s : staticIds.peek())
+            staticMemory.peek().remove(s);
+        dynamicIds.pop();
+        staticIds.pop();
     }
 
     public void createDynamicVariable(Variable v) {
+        dynamicIds.peek().add(v.getName());
         dynamicMemory.peek().put(v.getName(), v);
     }
 
     public void createStaticVariable(Variable v) {
         if (v.isShared())
             sharedMemory.put(v.getName(), v);
+        staticIds.peek().add(v.getName());
         staticMemory.peek().put(v.getName(), v);
         v.addSuffix();
         createDynamicVariable(v);
@@ -205,10 +216,6 @@ public class QBProgram {
         if (sharedMemory.containsKey(name))
             return sharedMemory.get(name);
         return staticMemory.peek().get(name);
-    }
-
-    public Variable getStaticVariable (String name, List<Variable> pos) {
-        return ((ArrayQB) staticMemory.peek().get(name)).get(pos);
     }
 
     public Variable callFunction (String name) {

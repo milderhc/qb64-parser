@@ -1,0 +1,22 @@
+x = 1.00
+PRINT x
+x = 1.00400
+PRINT x
+x = 1.0000000000400
+PRINT x
+x# = 1.0000000000400
+PRINT x#
+
+
+DIM a as INTEGER
+a$ = "asldkfj"
+a# = 1.0001
+a! = 10
+a% = 15
+a& = 999999
+print a; a$
+print a%
+print a&
+print a$
+print a!
+print a#

@@ -1,7 +1,2 @@
 PRINT hola(3, 4, 5, 6)               ' No hay error
-PRINT hola(3, 4, 1, 6)               ' No hay error
-PRINT hola(0, 0, 0, 0)               ' No hay error
-PRINT hola(3, 4, 5, 10)              ' Error en tiempo de ejecucion
-                           ' Hay error porque cuando se llamo hola por
-                           ' primera vez se creo de con tamano que no
-                           ' soporta la posicion que se desea acceder
+PRINT hola(3, 4)                     ' Error semantico

@@ -1,0 +1,9 @@
+DIM a AS INTEGER
+a% = 1
+PRINT a
+
+DIM a(2, 2) AS INTEGER
+a%(2, 2) = 2
+PRINT a(2, 2)
+
+DIM b, b(3, a) AS SINGLE

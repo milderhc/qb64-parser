@@ -1,0 +1,36 @@
+a = 6              ' Se crea un single con valor 6
+PRINT a            ' Imprime 6
+a! = 7             ' Se cambia el valor
+PRINT a            ' Imprime 7
+
+DIM b AS INTEGER   ' Se declara un integer
+b = 6              ' Se cambia el valor
+PRINT b            ' Imprime 6
+b! = 7             ' Se crea un single con valor 7
+b# = 7.777         ' Se crea un double con valor 7.777
+PRINT b            ' Imprime 6
+b% = 10            ' Se cambia el valor de 'b'
+PRINT b            ' Imprime 10
+
+PRINT xd           ' Se crea un single y se imprime. Imprime 0
+
+c% = 5             ' integer con valor 5
+PRINT c% * d       ' Multiplicacion de 5 con 0.0, imprime 0
+PRINT c% * d&      ' Multiplicacion de 5 con 0, imprime 0
+PRINT c * d        ' Multiplicacion de 0 con 0.0, imprime 0
+
+
+a(3, 4) = 6        ' Se crea un matriz de single de tamano (4x5)
+PRINT a(3, 4)      ' Imprime 6
+a!(3, 4) = 7       ' Se cambia el valor
+PRINT a(3, 4)      ' Imprime 7
+
+
+DIM b(3, 4) AS LONG    ' Se declara una matriz de long
+b(3, 4) = 6            ' Se cambia el valor en esa posicion
+PRINT b(3, 4)          ' Imprime 6
+b%(3, 4) = 7           ' Se crea una matriz de integer de tamano (4x5)
+b!(3, 4) = 7           ' Se crea una matriz de single de tamano (4x5)
+PRINT b(3, 4)          ' Imprime 6
+b&(3, 4) = 8           ' Se cambia el valor de b(3, 4)
+PRINT b(3, 4)          ' Imprime 8

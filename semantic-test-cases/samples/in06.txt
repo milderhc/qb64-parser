@@ -1,0 +1,13 @@
+print f * 2
+print f! * 2
+print 2 * s
+
+FUNCTION f
+f = 3
+f! = 4
+END FUNCTION
+
+
+SUB s
+    print "nada"
+END SUB

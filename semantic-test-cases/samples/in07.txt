@@ -1,0 +1,6 @@
+PRINT "Test"
+a = f(10)
+
+FUNCTION f (par$)
+    f = "hola"
+END FUNCTION

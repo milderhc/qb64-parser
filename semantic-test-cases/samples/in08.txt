@@ -1,0 +1,19 @@
+FOR i = 10 TO 15
+    DIM xd AS INTEGER
+    xd = i
+NEXT
+
+PRINT xd                            ' Imprime 15
+proc
+
+SUB proc
+DIM xd AS INTEGER
+
+FOR a = 10 TO 15
+    IF a THEN
+        DIM var AS INTEGER
+    END IF
+
+NEXT
+DIM var AS DOUBLE             ' Error, re-declaracion de var
+END SUB

@@ -546,8 +546,12 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     @Override
     public T visitDoWhileBlock (QB64v3Parser.DoWhileBlockContext ctx) {
+        boolean condition;
         do {
+            program.addTemporalScope();
             visit(ctx.instructionBlock());
+            condition = program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart());
+            if (condition) program.deleteTemporalScope();
         } while (program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart()));
 
         return null;
@@ -555,9 +559,13 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     @Override
     public T visitDoUntilBlock (QB64v3Parser.DoUntilBlockContext ctx) {
+        boolean condition;
         do {
+            program.addTemporalScope();
             visit(ctx.instructionBlock());
-        } while (!program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart()));
+            condition = !program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart());
+            if (condition) program.deleteTemporalScope();
+        } while (condition);
 
         return null;
     }
@@ -584,17 +592,23 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
         double diff = from.doubleValue() - to.doubleValue();
         if (diff <= 0) {
             while (diff <= 0) {
+                program.addTemporalScope();
                 visit(ctx.instructionBlock());
 
                 program.assign(from, Value.createValue(from.doubleValue() + step.doubleValue(), from.getType()), null);
                 diff = from.doubleValue() - to.doubleValue();
+
+                if (diff <= 0) program.deleteTemporalScope();
             }
         } else {
             while (diff >= 0) {
+                program.addTemporalScope();
                 visit(ctx.instructionBlock());
 
                 program.assign(from, Value.createValue(from.doubleValue() + step.doubleValue(), from.getType()), null);
                 diff = from.doubleValue() - to.doubleValue();
+
+                if (diff >= 0) program.deleteTemporalScope();
             }
         }
 

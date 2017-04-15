@@ -12,7 +12,7 @@ public class SemanticErrorHandler {
 
     public void error (int line, int column, String message) {
         ++column;
-        System.err.println("<" + line + "," + column + ">" + ERROR_PREFIX + message);
+        System.out.println("<" + line + "," + column + ">" + ERROR_PREFIX + message);
         System.exit(-1);
     }
 
@@ -114,7 +114,7 @@ public class SemanticErrorHandler {
     }
 
     public void incorrectNumberOfDimensions(int line, int column, String name) {
-        error(line, column, "las dimensiones del arreglo '" + name.substring(0, name.length() - 1) + "' no son las especificadas");
+        error(line, column, "las dimensiones del arreglo '" + name.substring(0, name.length() - 1) + "' no son las especificadas.");
     }
 }
 

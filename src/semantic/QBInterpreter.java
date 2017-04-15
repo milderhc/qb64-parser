@@ -26,15 +26,5 @@ public class QBInterpreter {
 
         QBVisitor visitor = new QBVisitor();
         visitor.visit(tree);
-
-        System.out.println("Functions");
-        visitor.program.functions.forEach((k, v) -> System.out.println(k));
-        System.out.println("Subs");
-        visitor.program.subs.forEach((k, v) -> System.out.println(k));
-        System.out.println("Static Memory");
-        visitor.program.staticMemory.peek().forEach((k, v) -> System.out.println(k));
-        System.out.println("Dynamic Memory");
-        visitor.program.dynamicMemory.peek().forEach((k, v) -> System.out.println(k));
-
     }
 }
