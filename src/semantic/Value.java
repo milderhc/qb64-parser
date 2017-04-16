@@ -5,15 +5,16 @@ public class Value<T> {
     protected Type type;
     protected T value;
 
-    public static Short INTEGER_DEFAULT = 0;
-    public static Integer LONG_DEFAULT = 0;
-    public static Float SINGLE_DEFAULT = 0.0f;
-    public static Double DOUBLE_DEFAULT = 0.0;
-    public static String STRING_DEFAULT = "";
+    public static final Short INTEGER_DEFAULT = 0;
+    public static final Integer LONG_DEFAULT = 0;
+    public static final Float SINGLE_DEFAULT = 0.0f;
+    public static final Double DOUBLE_DEFAULT = 0.0;
+    public static final String STRING_DEFAULT = "";
 
     public Value (Value v) {
-        this.type = v.getType();
-        this.value = (T) v.getValue();
+        Variable temp = Value.createValue(v.getValue(), v.getType());
+        this.type = temp.getType();
+        this.value = (T) temp.getValue();
     }
 
     public Value () {}

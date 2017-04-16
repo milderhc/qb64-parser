@@ -169,8 +169,8 @@ public class QBProgram {
                 errorHandler.incompatibleTypesError(token.getLine(), token.getCharPositionInLine(), expected, val.getType());
             }
 
-            ((ArrayQB) var).setDimensions(((ArrayQB) val).getDimensions());
-            ((ArrayQB) var).setValues(((ArrayQB) val).getValues());
+            ((ArrayQB) var).setDimensions(((ArrayQB) val).copyDimensions());
+            ((ArrayQB) var).setValues(((ArrayQB) val).copyValues());
             return;
         }
 
@@ -182,7 +182,7 @@ public class QBProgram {
                 val.getType() != Value.Type.STRING)
             errorHandler.incompatibleStringError(token.getLine(), token.getCharPositionInLine(), val.getType());
 
-        var.setValue(Value.createValue(val, var.getType()));
+        var.setValue(Value.createValue(val.getValue(), var.getType()).getValue());
     }
 
     public void createConst (Variable var, Variable val, Token token) {

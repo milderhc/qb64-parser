@@ -1,9 +1,6 @@
 package semantic;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by milderhc on 11/03/17.
@@ -14,8 +11,20 @@ public class ArrayQB<T> extends Variable<T> {
 
     public ArrayQB (ArrayQB arr) {
         super(arr);
-        dimensions = new LinkedList<>(arr.getDimensions());
-        values = new TreeMap<>(arr.getValues());
+        dimensions = arr.copyDimensions();
+        values = arr.copyValues();
+    }
+
+    public Map<String, Variable<T>> copyValues () {
+        Map<String, Variable<T>> copy = new TreeMap<>();
+        values.forEach((k, v) -> copy.put(k, new Variable<T>((Variable) v)));
+        return copy;
+    }
+
+    public List<Integer> copyDimensions () {
+        List<Integer> copy = new LinkedList<>();
+        dimensions.forEach(d -> copy.add(new Integer(String.valueOf(d))));
+        return copy;
     }
 
     public ArrayQB(String name, Type type, List<Integer> dimensions, boolean shared) {
