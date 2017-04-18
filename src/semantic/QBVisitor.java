@@ -399,7 +399,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
         if (ctx.op.getType() == QB64v3Lexer.DIV) {
             if (right.doubleValue() == 0) {
-                Token token = ctx.expression(0).getStart();
+                Token token = ctx.expression(1).getStart();
                 program.errorHandler.divisionByZeroError(token.getLine(), token.getCharPositionInLine());
             }
             return (T) Variable.createValue(left.doubleValue() / right.doubleValue(),
