@@ -1,17 +1,1 @@
-dim shared x as integer
-x = 9999
-
-dim a(3, 3) as integer
-a(2, 2) = 21
-
-print f (1, a())
-print a(2, 2)
-
-function f (x, hola() as integer)
-    hola(2, 2) = x
-    print hola%(2, 2)
-    if x < 7 then
-        print f (x + 1, hola())
-    end if
-    print hola(2, 2)
-end function
+print 1/0

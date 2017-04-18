@@ -41,7 +41,7 @@ public class Value<T> {
     }
 
     public int intValue () {
-        return new Integer(String.valueOf(value));
+        return (int) (double) new Double(String.valueOf(value));
     }
 
     public double doubleValue () {

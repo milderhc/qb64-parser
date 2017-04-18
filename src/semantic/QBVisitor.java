@@ -397,9 +397,14 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
                     Variable.getType(left.getType(), right.getType()));
         }
 
-        if (ctx.op.getType() == QB64v3Lexer.DIV)
+        if (ctx.op.getType() == QB64v3Lexer.DIV) {
+            if (right.doubleValue() == 0) {
+                Token token = ctx.expression(0).getStart();
+                program.errorHandler.divisionByZeroError(token.getLine(), token.getCharPositionInLine());
+            }
             return (T) Variable.createValue(left.doubleValue() / right.doubleValue(),
                     Variable.getType(left.getType(), right.getType()));
+        }
         return (T) Variable.createValue(left.doubleValue() * right.doubleValue(),
                 Variable.getType(left.getType(), right.getType()));
     }
@@ -554,8 +559,12 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
 
     @Override
     public T visitWhileBlock (QB64v3Parser.WhileBlockContext ctx) {
-        while (program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart())) {
+        boolean condition = program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart());
+        while (condition) {
+            program.addTemporalScope();
             visit(ctx.instructionBlock());
+            condition = program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart());
+            if (condition) program.deleteTemporalScope();
         }
 
         return null;
@@ -569,7 +578,7 @@ public class QBVisitor<T> extends QB64v3BaseVisitor<T> {
             visit(ctx.instructionBlock());
             condition = program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart());
             if (condition) program.deleteTemporalScope();
-        } while (program.eval((Variable) visit(ctx.expression()), ctx.expression().getStart()));
+        } while (condition);
 
         return null;
     }

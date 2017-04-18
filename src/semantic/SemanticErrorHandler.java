@@ -116,5 +116,9 @@ public class SemanticErrorHandler {
     public void incorrectNumberOfDimensions(int line, int column, String name) {
         error(line, column, "las dimensiones del arreglo '" + name.substring(0, name.length() - 1) + "' no son las especificadas.");
     }
+
+    public void divisionByZeroError(int line, int column) {
+        error(line, column, "division por cero.");
+    }
 }
 

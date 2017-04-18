@@ -7,9 +7,9 @@ public class SemanticPractice {
         QBInterpreter interpreter = new QBInterpreter();
         interpreter.go("semantic-test-cases/test-input.txt");
 
-//        String input = "semantic-test-cases/samples/in09.txt";
-//        interpreter.go(input);
-//        System.setOut(new PrintStream(new File("semantic-test-cases/samples/out09.txt")));
+//        String input = "semantic-test-cases/test-cases/in09.txt";
+////        interpreter.go(input);
+//        System.setOut(new PrintStream(new File("semantic-test-cases/test-cases/out09.txt")));
 //        interpreter.go(input);
     }
 }
