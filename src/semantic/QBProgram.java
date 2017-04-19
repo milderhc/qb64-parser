@@ -9,13 +9,13 @@ import java.util.*;
  * Created by milderhc on 6/04/17.
  */
 public class QBProgram {
-    public Map<String, Sub> subs;
-    public Map<String, Function> functions;
+    private Map<String, Sub> subs;
+    private Map<String, Function> functions;
 
-    public Map<String, Variable> sharedMemory;
-    public Stack<Map<String, Variable>> dynamicMemory, staticMemory;
-    public Stack<List<String>> dynamicIds, staticIds;
-    public Stack<TreeSet<String>> ignoredShared;
+    private Map<String, Variable> sharedMemory;
+    private Stack<Map<String, Variable>> dynamicMemory, staticMemory;
+    private Stack<List<String>> dynamicIds, staticIds;
+    private Stack<TreeSet<String>> ignoredShared;
 
     public SemanticErrorHandler errorHandler;
     private QBVisitor visitor;
